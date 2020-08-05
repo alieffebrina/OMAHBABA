@@ -4,7 +4,6 @@
 	<title>hello</title>
 </head>
 <body>
-hello mas riski
-
+hello mas riski 2
 </body>
 </html>
