@@ -48,6 +48,5 @@ class Welcome extends CI_Controller {
 		// $data['hutangdashboard'] = $this->M_penjualan->hutangdashboard();
 		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');
-		$this->load->view('template/footerwelcome.php', $data);
 	}
 }

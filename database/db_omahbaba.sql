@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2020 at 02:38 PM
+-- Generation Time: Aug 08, 2020 at 03:07 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -69,7 +69,8 @@ INSERT INTO `tb_akses` (`id_akses`, `id_submenu`, `id_user`, `view`, `add`, `edi
 (58, 25, 1, '1', '1', '1', '1'),
 (84, 26, 1, '1', '1', '1', '1'),
 (85, 27, 1, '1', '1', '1', '1'),
-(86, 28, 1, '1', '1', '1', '1');
+(86, 28, 1, '1', '1', '1', '1'),
+(87, 30, 1, '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -808,7 +809,7 @@ INSERT INTO `tb_menu` (`id_menu`, `menu`, `icon`, `urutan`) VALUES
 (5, 'Laporan', 'fa fa-pie-chart', 6),
 (6, 'Accounting', 'fa fa-laptop', 7),
 (7, 'Setting', 'fa fa-table', 8),
-(8, 'Absensi', 'fa-calendar-check-o', 2);
+(8, 'Absensi', 'fa-calendar', 2);
 
 -- --------------------------------------------------------
 
@@ -1020,6 +1021,13 @@ CREATE TABLE `tb_staf` (
   `tglupdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tb_staf`
+--
+
+INSERT INTO `tb_staf` (`id_user`, `nopegawai`, `nama`, `alamat`, `tlp`, `jabatan`, `username`, `password`, `id_cabang`, `id_userupdate`, `tglupdate`) VALUES
+(1, '1', 'administrator', 'administrator', '12345678', 'administrator', 'admin', 'admin', 0, 1, '2020-08-08');
+
 -- --------------------------------------------------------
 
 --
@@ -1106,7 +1114,8 @@ INSERT INTO `tb_submenu` (`id_submenu`, `id_menus`, `submenu`, `linksubmenu`, `s
 (26, 3, 'Retur', 'C_Pembelian/mretur', 'aktif'),
 (27, 4, 'Stock Opname', 'C_Stok/so', 'aktif'),
 (28, 1, 'Data Harga', 'C_harga', 'aktif'),
-(29, 4, 'Stok Retur', 'C_Stok/retur', 'aktif');
+(29, 4, 'Stok Retur', 'C_Stok/retur', 'aktif'),
+(30, 8, 'Absensi', '', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -1340,7 +1349,7 @@ ALTER TABLE `tb_warna`
 -- AUTO_INCREMENT for table `tb_akses`
 --
 ALTER TABLE `tb_akses`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `tb_barang`
@@ -1454,7 +1463,7 @@ ALTER TABLE `tb_sjpenjualan`
 -- AUTO_INCREMENT for table `tb_staf`
 --
 ALTER TABLE `tb_staf`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_stok`
@@ -1472,7 +1481,7 @@ ALTER TABLE `tb_stokopname`
 -- AUTO_INCREMENT for table `tb_submenu`
 --
 ALTER TABLE `tb_submenu`
-  MODIFY `id_submenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_submenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `tb_suplier`

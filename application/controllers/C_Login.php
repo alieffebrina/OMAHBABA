@@ -23,8 +23,9 @@ class C_Login extends CI_Controller {
 		$user = $this->M_login->get($username);
 
 		if(empty($user)){
-			$this->session->set_flashdata('pesan','salah');
-			$this->load->view('v_login');
+			// $this->session->set_flashdata('pesan','salah');
+			// $this->load->view('v_login');
+			echo "kosong";
 		} else {
 		    if($password == $user->password){ // Jika password yang diinput sama dengan password yang didatabase
         		$session = array(

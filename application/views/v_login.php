@@ -56,10 +56,19 @@
                 <div class="col-md-6 col-12 fxt-bg-color">
                     <div class="fxt-content">
                         <div class="fxt-form">
-                            <form method="POST">
+                            <div class="box-body">
+                                <?php if ($this->session->flashdata('SUCCESS')) { ?>
+                                   <div class="alert alert-success alert-dismissible">
+                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                      <h5><i class="icon fa fa-check"></i> Success!</h5>
+                                      Data berhasil di perbarui.
+                                    </div>                 
+                                  <?php } ?>
+                                </div>
+                            <form class="login100-form validate-form" action="<?php echo site_url('C_Login/cek_login'); ?>" method="post">
                                 <div class="form-group">  
-                                    <label for="email" class="input-label">Email Address</label>                                              
-                                    <input type="email" id="email" class="form-control" name="email" placeholder="demo@gmail.com" required="required">
+                                    <label for="email" class="input-label">Username</label>                                              
+                                    <input type="text" id="username" class="form-control" name="username" placeholder="username" required="required">
                                 </div>
                                 <div class="form-group">  
                                     <label for="password" class="input-label">Password</label>                                               

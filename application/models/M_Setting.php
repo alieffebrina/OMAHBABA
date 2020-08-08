@@ -126,7 +126,7 @@ class M_Setting extends CI_Model {
     function getmenu1($id){
         $this->db->distinct();
         $this->db->select('id_menu, menu, icon');
-        $this->db->order_by('id_menu', 'ASC');
+        $this->db->order_by('urutan', 'ASC');
         $this->db->join('tb_submenu', 'tb_submenu.id_menus = tb_menu.id_menu');
         $this->db->join('tb_akses', 'tb_akses.id_submenu = tb_submenu.id_submenu');
         $where = array(
