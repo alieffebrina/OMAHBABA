@@ -93,35 +93,12 @@ class M_Setting extends CI_Model {
         return $query->result();
     }
 
-    // function getbarangbarang(){
-    //     $this->db->select('*');
-    //     $this->db->from('tb_satuan');
-    //     $this->db->from('tb_jenisbarang');
-    //     $this->db->from('tb_konversi');
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
-
     function getsuplier(){
         $this->db->select('*');
         $this->db->from('tb_provinsi');
         $query = $this->db->get();
         return $query->result();
     }
-
-    //function getharga(){
-        //$this->db->select('*');
-        //$this->db->from('tb_barang');
-        //$query = $this->db->get();
-        //return $query->result();
-    //}
-
-    // function getkonversisatuan(){
-    //     $this->db->select('*');
-    //     $this->db->from('tb_satuan');
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
 
     function getmenu1($id){
         $this->db->distinct();

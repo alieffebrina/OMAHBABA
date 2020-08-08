@@ -34,7 +34,7 @@
                                 <a href="login-4.html" class="fxt-logo"><img src="<?php echo base_url() ?>assets/login/img/logo-4.png" alt="Logo"></a>
                             </div>
                             <div class="fxt-transformY-50 fxt-transition-delay-2">
-                                <h1>Welcome To Our xmee</h1>
+                                <h1>Welcome To Omah Baba</h1>
                             </div>
                             <div class="fxt-transformY-50 fxt-transition-delay-3">
                                 <p>Grursus mal suada faci lisis Lorem ipsum dolarorit more ametion consectetur elit. Vesti at bulum nec odio aea the dumm ipsumm ipsum that dolocons rsus mal suada and fadolorit to the dummy consectetur elit the Lorem Ipsum genera.</p>
@@ -75,7 +75,7 @@
                                     <input id="password" type="password" class="form-control" name="password" placeholder="********" required="required">
                                     <i toggle="#password" class="fa fa-fw fa-eye toggle-password field-icon"></i>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <div class="fxt-checkbox-area">
                                         <div class="checkbox">
                                             <input id="checkbox1" type="checkbox">
@@ -83,15 +83,15 @@
                                         </div>
                                         <a href="<?php echo base_url() ?>assets/login/forgot-password-4.html" class="switcher-text">Forgot Password</a>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <button type="submit" class="fxt-btn-fill">Log in</button>
                                 </div>
                             </form>                            
                         </div> 
-                        <div class="fxt-footer">
+                        <!-- <div class="fxt-footer">
                             <p>Don't have an account?<a href="register-4.html" class="switcher-text">Register</a></p>
-                        </div>                            
+                        </div>                             -->
                     </div>
                 </div>
             </div>
