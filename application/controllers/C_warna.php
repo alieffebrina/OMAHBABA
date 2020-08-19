@@ -1,12 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class C_User extends CI_Controller{
+class C_warna extends CI_Controller{
     
     public function __construct(){
         parent::__construct();
         $this->load->helper(array('form','url'));
         $this->load->library('session');
-        $this->load->model('M_User');
+        $this->load->model('M_warna');
         $this->load->model('M_Setting');
+        if(!$this->session->userdata('id_user')){
+            redirect('C_Login');
+        }
     }
 
     function index()
@@ -15,8 +18,8 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['user'] = $this->M_User->getuser();
-        $this->load->view('master/user/v_user',$data); 
+        $data['warna'] = $this->M_warna->getwarna();
+        $this->load->view('master/warna/v_warna',$data); 
         $this->load->view('template/footer');
     }
 
@@ -26,18 +29,17 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['provinsi'] = $this->M_Setting->getprovinsi();
-        $data['cabang'] = $this->M_Setting->getcabangss();
-        $this->load->view('master/user/v_adduser', $data); 
+        $data['warna'] = $this->M_Setting->getwarna();
+        $this->load->view('master/warna/v_addwarna', $data); 
         $this->load->view('template/footer');
     }
 
-    function cek_user(){
+    function cek_warna(){
         # ambil Kualifikasiname dari form
         
-        $kode = $this->input->post('user');
+        $kode = $this->input->post('warna');
                 # select ke model member Kualifikasiname yang diinput Kualifikasi
-        $hasil_kode = $this->M_User->cek_user($kode);
+        $hasil_kode = $this->M_warna->cek_warna($kode);
          
                 # pengecekan value $hasil_Kualifikasiname
         if(count($hasil_kode)!=0){
@@ -54,14 +56,20 @@ class C_User extends CI_Controller{
 
     public function tambah()
     {   
-        $this->M_User->tambahdata();
-        $data = $this->M_User->cekkodeuser();
-        foreach ($data as $id) {
-            $id =$id;
-            $this->M_User->tambahakses($id);
+
+        $id = $this->session->userdata('id_user');
+        $cek= $this->M_warna->tambahdata($id);
+        // $data = $this->M_satuan->cekkodesatuan();
+        // foreach ($data as $id) {
+        //     $id =$id;
+        //     $this->M_satuan->tambahakses($id);
+        // }
+        if($cek){
+            $this->session->set_flashdata('Sukses', "Data warna Berhasil Di Tambahkan.");
+        }else{
+            $this->session->set_flashdata('Sukses', "Data warna Tidak Boleh Sama Ataupun Kosong.");
         }
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-        redirect('C_User');
+        redirect('C_warna/add');
     }
 
     function view($ida)
@@ -70,8 +78,8 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['user'] = $this->M_User->getspek($ida);
-        $this->load->view('master/user/v_vuser',$data); 
+        $data['warna'] = $this->M_warna->getspek($ida);
+        $this->load->view('master/warna/v_vwarna',$data); 
         $this->load->view('template/footer');
     }
 
@@ -81,25 +89,26 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['provinsi'] = $this->M_Setting->getprovinsi();
-        $data['cabang'] = $this->M_Setting->getcabangss();
-        $data['user'] = $this->M_User->getspek($iduser);
-        $this->load->view('master/user/v_euser',$data); 
+        //$data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['warna'] = $this->M_warna->getspek($iduser);
+        $this->load->view('master/warna/v_ewarna',$data); 
         $this->load->view('template/footer');
     }
 
-    function edituser()
+    function editwarna()
     {   
-        $this->M_User->edit();
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-        redirect('C_User');
+
+        $id = $this->session->userdata('id_user');
+        $this->M_warna->edit($id);
+        $this->session->set_flashdata('Sukses', "Data warna Berhasil Di Perbarui.");
+        redirect('C_warna/add');
     }
 
     function hapus($id){
-        $where = array('id_user' => $id);
-        $this->M_Setting->delete($where,'tb_staf');
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-        redirect('C_User');
+        $where = array('id_warna' => $id);
+        $this->M_Setting->delete($where,'tb_warna');
+        $this->session->set_flashdata('Sukses', "Data warna Berhasil Di Hapus.");
+        redirect('C_warna/add');
     }
 
 }

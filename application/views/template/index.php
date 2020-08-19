@@ -22,7 +22,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3><?php //echo $barang; ?></h3>
+              <h3><?php echo $barang; ?></h3>
 
               <p>Total Item</p>
             </div>
@@ -37,7 +37,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><?php //echo $datapelanggan; ?><sup style="font-size: 20px"></sup></h3>
+              <h3><?php echo $datapelanggan; ?><sup style="font-size: 20px"></sup></h3>
 
               <p>Data Pelanggan</p>
             </div>
@@ -52,11 +52,11 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-             <h3>Rp. <?php //$total = 0; 
-             //  foreach ($totalpenjualan as $totalpenjualan) {
-             //    $total += $totalpenjualan->total;
-             //  }
-             //  echo number_format($total); ?></h3>
+             <h3>Rp. <?php $total = 0; 
+              foreach ($totalpenjualan as $totalpenjualan) {
+                $total += $totalpenjualan->total;
+              }
+              echo number_format($total); ?></h3>
               <p>Penjualan bulan <?php echo date('F Y')?></p>
             </div>
             <div class="icon">
@@ -145,21 +145,21 @@
             <!-- /.box-body -->
             <div class="box-footer text-black">
               <div class="row">
-                <?php //foreach ($stokdashboard as $key) { 
-                 // $a = 100-(($key->stok/$key->stokmin)*100);?>
+                <?php foreach ($stokdashboard as $key) { 
+                  $a = 100-(($key->stok/$key->stokmin)*100);?>
 
                 <div class="col-sm-12">
                   <!-- Progress bars -->
                   <div class="clearfix">
-                    <span class="pull-left"><?php // echo $key->barang.' / '.$key->jenisbarang; ?></span>
-                    <small class="pull-right"><?php //echo $key->stok.' / '.$key->satuan ?></small>
+                    <span class="pull-left"><?php echo $key->barang.' / '.$key->jenisbarang; ?></span>
+                    <small class="pull-right"><?php echo $key->stok.' / '.$key->satuan ?></small>
                   </div>
                   <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 10%;"></div>
+                    <div class="progress-bar progress-bar-green" style="width: <?php echo $a ?>%;"></div>
                   </div>
                 </div>
 
-                <?php //} ?>
+                <?php } ?>
                 <!-- /.col -->
               </div>
               <!-- /.row -->
@@ -186,7 +186,7 @@
             <div class="box-body">
               <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
               <ul class="todo-list">
-                <?php //foreach ($hutangdashboard as $hd) { ?>
+                <?php foreach ($hutangdashboard as $hd) { ?>
                 <li>
                   <!-- drag handle -->
                   <span class="handle">
@@ -196,11 +196,11 @@
                   <!-- checkbox -->
                   <input type="checkbox" value="">
                   <!-- todo text -->
-                  <span class="text"></span>
+                  <span class="text"><?php echo $hd->nama ?></span>
                   <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i></small>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i> Rp. <?php echo number_format($hd->totalhutang) ?></small>
                 </li>
-                <?php// } ?>
+                <?php } ?>
               </ul>
             </div>
             <!-- /.box-body -->

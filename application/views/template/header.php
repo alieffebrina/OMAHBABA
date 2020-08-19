@@ -3,12 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- OMAH BABA -->
   <title>OMAH BABA</title>
   <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/login/images/icons/paving.jpg"/>
-  <!-- GARAM -->
-  <!-- <title>GARAM</title> -->
-  <!-- <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/login/images/icons/paving.jpg"/> -->
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -47,18 +43,14 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-      <!-- OMAH BABA -->
 <body class="hold-transition skin-green fixed sidebar-mini">
-      <!-- GARAM -->
-<!-- <body class="hold-transition skin-blue fixed sidebar-mini"> -->
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
     <a href="<?php echo site_url('Welcome'); ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <!-- OMAH BABA -->
-      <span class="logo-mini"><b>OMAH</b></span>
+      <span class="logo-mini"><b>O</b>B</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>OMAH </b>BABA</span>
     </a>

@@ -1,12 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class C_User extends CI_Controller{
+class C_gudang extends CI_Controller{
     
     public function __construct(){
         parent::__construct();
         $this->load->helper(array('form','url'));
         $this->load->library('session');
-        $this->load->model('M_User');
+        $this->load->model('M_gudang');
         $this->load->model('M_Setting');
+        if(!$this->session->userdata('id_user')){
+            redirect('C_Login');
+        }
     }
 
     function index()
@@ -15,8 +18,8 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['user'] = $this->M_User->getuser();
-        $this->load->view('master/user/v_user',$data); 
+        $data['gudang'] = $this->M_gudang->getgudang();
+        $this->load->view('master/gudang/v_gudang',$data); 
         $this->load->view('template/footer');
     }
 
@@ -26,18 +29,18 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+        $data['gudang'] = $this->M_Setting->getgudang();
         $data['provinsi'] = $this->M_Setting->getprovinsi();
-        $data['cabang'] = $this->M_Setting->getcabangss();
-        $this->load->view('master/user/v_adduser', $data); 
+        $this->load->view('master/gudang/v_addgudang', $data); 
         $this->load->view('template/footer');
     }
 
-    function cek_user(){
+    function cek_gudang(){
         # ambil Kualifikasiname dari form
         
-        $kode = $this->input->post('user');
+        $kode = $this->input->post('gudang');
                 # select ke model member Kualifikasiname yang diinput Kualifikasi
-        $hasil_kode = $this->M_User->cek_user($kode);
+        $hasil_kode = $this->M_gudang->cek_gudang($kode);
          
                 # pengecekan value $hasil_Kualifikasiname
         if(count($hasil_kode)!=0){
@@ -52,16 +55,18 @@ class C_User extends CI_Controller{
          
     }
 
-    public function tambah()
+   public function tambah()
     {   
-        $this->M_User->tambahdata();
-        $data = $this->M_User->cekkodeuser();
-        foreach ($data as $id) {
-            $id =$id;
-            $this->M_User->tambahakses($id);
-        }
+
+        $id = $this->session->userdata('id_user');
+        $this->M_gudang->tambahdata($id);
+        // $data = $this->M_suplier->cekkodesuplier();
+        // foreach ($data as $id) {
+        //     $id =$id;
+        //     $this->M_suplier->tambahakses($id);
+        // }
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-        redirect('C_User');
+        redirect('C_gudang');
     }
 
     function view($ida)
@@ -70,8 +75,8 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['user'] = $this->M_User->getspek($ida);
-        $this->load->view('master/user/v_vuser',$data); 
+        $data['gudang'] = $this->M_gudang->getspek($ida);
+        $this->load->view('master/gudang/v_vgudang',$data); 
         $this->load->view('template/footer');
     }
 
@@ -82,24 +87,25 @@ class C_User extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
-        $data['cabang'] = $this->M_Setting->getcabangss();
-        $data['user'] = $this->M_User->getspek($iduser);
-        $this->load->view('master/user/v_euser',$data); 
+        $data['gudang'] = $this->M_gudang->getspek($iduser);
+        $this->load->view('master/gudang/v_egudang',$data); 
         $this->load->view('template/footer');
     }
 
-    function edituser()
+    function editgudang()
     {   
-        $this->M_User->edit();
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-        redirect('C_User');
+
+        $id = $this->session->userdata('id_user');
+        $this->M_gudang->edit($id);
+        $this->session->set_flashdata('Sukses', "Data Gudang Berhasil Di Perbarui.");
+        redirect('C_gudang/add');
     }
 
     function hapus($id){
-        $where = array('id_user' => $id);
-        $this->M_Setting->delete($where,'tb_staf');
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-        redirect('C_User');
+        $where = array('id_gudang' => $id);
+        $this->M_Setting->delete($where,'tb_gudang');
+        $this->session->set_flashdata('Sukses', "Data Gudang Berhasil Di Hapus.");
+        redirect('C_gudang/add');
     }
 
 }
