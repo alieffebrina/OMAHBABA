@@ -44,12 +44,6 @@
                     </select>
                   </div>
                 </div>
-               <!--  <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK"  maxlength="16" minlength="16" onkeypress="return Angkasaja(event)">
-                  </div>
-                </div> -->
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
@@ -84,13 +78,32 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Telepon</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon"  maxlength="12" minlength="12" placeholder="Telepons">
+                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon" maxlength="12" minlength="6" onkeypress="return Angkasaja(event)">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Jabatan</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan Pegawai">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Tipe User</label>
+                  <div class="col-sm-9">
+                  <div class="input-group input-group-sm">
+                    <select class="form-control select2" id="tipeuser" name="tipeuser" style="width: 100%;">
+                      <option value="">--Pilih--</option>
+                      <?php foreach ($tipeuser as $tipeuser) { ?>
+                      <option value="<?php echo $tipeuser->id_tipeuser ?>"><?php echo $tipeuser->tipeuser ?></option>
+                      <?php } ?>
+                    </select>
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modaltipeuser">
+                            Tambah
+                          </button>
+                        </span>
+                  </div>
+                    
                   </div>
                 </div>
                 <div class="form-group">
@@ -123,3 +136,23 @@
     </section>
     <!-- /.content -->
   </div>
+<div class="modal fade" id="modaltipeuser">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Tipe User</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" id="tipeusermodal" name="tipeusermodal" placeholder="Tipe User">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btnsimpantipeuser">Save changes</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

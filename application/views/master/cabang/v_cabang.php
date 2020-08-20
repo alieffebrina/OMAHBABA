@@ -42,9 +42,6 @@
                   <th>No</th>
                   <th>Nama Cabang</th>
                   <th>Nama Gudang</th>
-                  <th>Provinsi</th>
-                  <th>Kabupaten/Kota</th>
-                  <th>Kecamatan</th>
                   <th>Alamat</th>
                   <th>Telepon</th>
                   <th>Email</th>
@@ -59,10 +56,7 @@
                   <td><?php echo $no++; ?></td>
                   <td><?php echo $cabang->namacabang; ?></td>
                   <td><?php echo $cabang->gudang; ?></td>
-                  <td><?php echo $cabang->name_prov;?></td>
-                  <td><?php echo $cabang->name_kota;?></td>
-                  <td><?php echo $cabang->kecamatan;?></td>
-                  <td><?php echo $cabang->alamat;?></td>
+                  <td><?php echo $cabang->alamat.', Kec. '.$cabang->kecamatan.', '.$cabang->name_kota.', '.$cabang->name_prov;?></td>
                   <td><?php echo $cabang->tlf;?></td>
                   <td><?php echo $cabang->email;?></td>
                   <td>

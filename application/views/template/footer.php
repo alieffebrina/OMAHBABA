@@ -102,6 +102,34 @@
 </script>
 <!-- Page script -->
 <script>
+  $(document).ready(function(){
+  
+  $('#btnsimpantipeuser').click(function(){ // Ketika tombol simpan di klik
+    $.ajax({
+      url: "<?php echo base_url("index.php/C_User/tambahtipeuser"); ?>", // Isi dengan url/path file php yang dituju
+      type: 'POST', // Tentukan type nya POST atau GET
+      data: {tipeusermodal : $("#tipeusermodal").val()}, // Ambil semua data yang ada didalam tag form
+      dataType: 'json',
+      beforeSend: function(e) {
+        if(e && e.overrideMimeType) {
+          e.overrideMimeType('application/jsoncharset=UTF-8')
+        }
+      },
+      success: function(response){ // Ketika proses pengiriman berhasil
+          $('.close').click(); // Close / Tutup Modal Dialog
+          $("#tipeuser").html(response.list_tipeuser).show();
+      },
+      error: function (xhr, ajaxOptions, thrownError) { // Ketika terjadi error
+        alert(xhr.responseText) // munculkan alert
+      }
+    })
+  })
+  $('#modaltipeuser').on('hidden.bs.modal', function (e){ // Ketika Modal Dialog di Close / tertutup
+    $('#modaltipeuser input').val('') // Clear inputan menjadi kosong
+  })
+})
+</script>
+<script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
     $("#prov").change(function(){ // Ketika user mengganti atau memilih data provinsi
@@ -349,48 +377,6 @@
       var input = document.getElementById('totalfix').innerHTML.replace(/[^0-9]/g,'');
       //terbilang
       document.getElementById("terbilang").innerHTML = terbilang(input);
-
-    //   if(d<f || f==0){
-    //     var hitungtotal = f-d+e;
-    //     var numbertotal = hitungtotal.toString(),
-    //       sisa  = numbertotal.length % 3,
-    //       rupiah  = numbertotal.substr(0, sisa),
-    //       ribuan  = numbertotal.substr(sisa).match(/\d{3}/g);
-
-
-    //     // COBA UNUK MENGECEK APAKAH DISKON MELEBIHI TOTAL
-    //     // var hitungtotal = f-d+e+1-1;
-    //     // if (d>f){
-    //     //   $("#nilaidiskonbawah").css("color","#fc5d32");
-    //     //   $("#diskonbawah").css("border-color","#fc5d32");
-    //     //   $("#nilaidiskonbawah").html("diskon melebihi total penjualan");
-    //     //   $("#diskonbawah").val("");
-    //     // }
-    //     // var numbertotal = hitungtotal.toString(),
-    //     //   sisa  = numbertotal.length % 3,
-    //     //   rupiah  = numbertotal.substr(0, sisa),
-    //     //   ribuan  = numbertotal.substr(sisa).match(/\d{3}/g);
-
-            
-    //     if (ribuan) {
-    //       separator = sisa ? '.' : '';
-    //       rupiah += separator + ribuan.join('.');
-    //     }
-
-    //     // ME
-    //     document.getElementById('totalfixruppiah').value = hitungtotal;
-
-    //     document.getElementById('totalfix').innerHTML = formatRupiah(rupiah);
-    //     var input = document.getElementById('totalfix').innerHTML.replace(/\./g, "");
-
-    //     document.getElementById('total').value = input;
-    //     //terbilang
-    //     document.getElementById("terbilang").innerHTML = terbilang(input);
-    // }else{
-    //   alert('diskon tidak boleh lebih besar dari subtotal penjualan');
-    //   document.getElementById('diskonbawah').value=0;
-    //   Calculate_total();
-    // }
   };
 
   function stopCalc(){

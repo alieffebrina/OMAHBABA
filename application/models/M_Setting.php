@@ -82,14 +82,16 @@ class M_Setting extends CI_Model {
     }
 
 	function getprovinsi(){
-		$this->db->select('*');
-		$this->db->from('tb_provinsi');
-		$query = $this->db->get();
-    	return $query->result();
+        $this->db->select('*');
+        $this->db->order_by('name_prov', 'ASC');
+        $this->db->from('tb_provinsi');
+        $query = $this->db->get();
+        return $query->result();
     }
 
     function getkota($id){
         $this->db->select('*');
+        $this->db->order_by('name_kota', 'ASC');
         $where = array(
             'id_provinsi' => $id
         );
@@ -99,6 +101,7 @@ class M_Setting extends CI_Model {
 
     function getkec($id){
         $this->db->select('*');
+        $this->db->order_by('kecamatan', 'ASC');
         $where = array(
             'id_kota' => $id
         );
@@ -110,9 +113,9 @@ class M_Setting extends CI_Model {
         $this->db->select('*');
         $this->db->join('tb_submenu', 'tb_submenu.id_submenu = tb_akses.id_submenu');
         $this->db->join('tb_menu', 'tb_menu.id_menu = tb_submenu.id_menus');
-        $this->db->join('tb_staf', 'tb_staf.id_user = tb_akses.id_user');
+        $this->db->join('tb_staf', 'tb_staf.id_tipeuser = tb_akses.id_tipeuser');
         $where = array(
-            'tb_akses.id_user' => $ida
+            'tb_akses.id_tipeuser' => $ida
         );
         $query = $this->db->get_where('tb_akses', $where);
         return $query->result();
@@ -195,7 +198,7 @@ class M_Setting extends CI_Model {
         $this->db->join('tb_submenu', 'tb_submenu.id_menus = tb_menu.id_menu');
         $this->db->join('tb_akses', 'tb_akses.id_submenu = tb_submenu.id_submenu');
         $where = array(
-            'tb_akses.id_user' => $id, 'tb_akses.view' => '1'
+            'tb_akses.id_tipeuser' => $id, 'tb_akses.view' => '1'
         );
         $query = $this->db->get_where('tb_menu', $where);
         return $query->result();

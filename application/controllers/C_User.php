@@ -28,6 +28,7 @@ class C_User extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['cabang'] = $this->M_Setting->getcabangss();
+        $data['tipeuser'] = $this->M_User->gettipeuser();
         $this->load->view('master/user/v_adduser', $data); 
         $this->load->view('template/footer');
     }
@@ -55,13 +56,21 @@ class C_User extends CI_Controller{
     public function tambah()
     {   
         $this->M_User->tambahdata();
-        $data = $this->M_User->cekkodeuser();
-        foreach ($data as $id) {
-            $id =$id;
-            $this->M_User->tambahakses($id);
-        }
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_User');
+    }
+
+    public function tambahtipeuser()
+    {   
+        $this->M_User->tambahtipeuser();
+        $data = $this->M_User->gettipeuser();
+            $lists = "<option value=''>Pilih</option>";
+        foreach($data as $data){
+              $lists .= "<option value=".$data->id_tipeuser.">".$data->tipeuser."</option>"; // Tambahkan tag option ke variabel $lists
+            }
+        $callback = array('list_tipeuser'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+        echo json_encode($callback); // konversi varibael $callback menjadi JSON
+
     }
 
     function view($ida)

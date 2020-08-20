@@ -19,6 +19,10 @@ class M_User extends CI_Model {
         return $this->db->get_where('tb_staf',$where)->result();
     }
 
+     function gettipeuser(){
+        return $this->db->get('tb_tipeuser')->result();
+    }
+
     function cek_user($kode){
         $this->db->select('*');
         $where = array(
@@ -27,6 +31,14 @@ class M_User extends CI_Model {
         $query = $this->db->get_where('tb_staf', $where);
         return $query->result();
     }
+
+    function tambahtipeuser(){
+        $user = array(
+            'tipeuser' => $this->input->post('tipeusermodal'),
+        );
+        $this->db->insert('tb_tipeuser', $user);
+    }
+
 
     function tambahdata(){
         $user = array(
@@ -49,8 +61,8 @@ class M_User extends CI_Model {
     }
 
     function cekkodeuser(){
-        $this->db->select_max('id_user');
-        $iduser = $this->db->get('tb_staf');
+        $this->db->select_max('id_tipeuser');
+        $iduser = $this->db->get('tb_tipeuser');
         return $iduser->row();
     }
 
@@ -59,7 +71,7 @@ class M_User extends CI_Model {
 
         for($i=0; $i<$total; $i++){
             $fungsi = array('id_submenu' => $i+1 , 
-                'id_user' => $id);
+                'id_tipeuser' => $id);
 
             $this->db->insert('tb_akses', $fungsi);            
         }
@@ -69,9 +81,9 @@ class M_User extends CI_Model {
 		$this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_staf.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_staf.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_staf.id_kecamatan');
-        $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_staf.id_cabang');
+        // $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_staf.id_cabang');
         $where = array(
-            'id_user' => $iduser
+            'tb_staf.id_user' => $iduser
         );
         $query = $this->db->get_where('tb_staf', $where);
     	return $query->result();

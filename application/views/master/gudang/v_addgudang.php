@@ -68,13 +68,13 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Telepon</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlf" name="tlf" placeholder="Telepon"  maxlength="12" minlength="12">
+                    <input type="text" class="form-control" id="tlf" name="tlf" placeholder="Telepon" maxlength="12" minlength="6" onkeypress="return Angkasaja(event)">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="email" name="email">
+                    <input type="email" class="form-control" id="email" name="email">
                   </div>
                 </div>
               </div>
