@@ -3,11 +3,10 @@
 class M_User extends CI_Model {
 
 	function getuser(){
-		$this->db->select('*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_staf.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_staf.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_staf.id_kecamatan');
-        // $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_staf.id_cabang');
+        $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_staf.id_cabang');
         $query = $this->db->get('tb_staf');
     	return $query->result();
     }
@@ -23,15 +22,6 @@ class M_User extends CI_Model {
         return $this->db->get('tb_tipeuser')->result();
     }
 
-    function cek_user($kode){
-        $this->db->select('*');
-        $where = array(
-            'username' => $kode
-        );
-        $query = $this->db->get_where('tb_staf', $where);
-        return $query->result();
-    }
-
     function tambahtipeuser(){
         $user = array(
             'tipeuser' => $this->input->post('tipeusermodal'),
@@ -42,8 +32,7 @@ class M_User extends CI_Model {
 
     function tambahdata(){
         $user = array(
-            // 'nik' => $this->input->post('nik'),
-            'id_user' => $id,
+            'nopegawai' => $this->input->post('nopegawai'),
             'nama' => $this->input->post('nama'),
             'id_cabang' => $this->input->post('namacabang'),
             'id_provinsi' => $this->input->post('prov'),
@@ -60,7 +49,7 @@ class M_User extends CI_Model {
         $this->db->insert('tb_staf', $user);
     }
 
-    function cekkodeuser(){
+    function cekkodetipeuser(){
         $this->db->select_max('id_tipeuser');
         $iduser = $this->db->get('tb_tipeuser');
         return $iduser->row();
@@ -77,13 +66,13 @@ class M_User extends CI_Model {
         }
     }
 
-    function getspek($iduser){
+    function getspek($ida){
 		$this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_staf.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_staf.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_staf.id_kecamatan');
-        // $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_staf.id_cabang');
+        $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_staf.id_cabang');
         $where = array(
-            'tb_staf.id_user' => $iduser
+            'tb_staf.id_user' => $ida
         );
         $query = $this->db->get_where('tb_staf', $where);
     	return $query->result();

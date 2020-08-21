@@ -12,7 +12,7 @@ class C_User extends CI_Controller{
     function index()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['user'] = $this->M_User->getuser();
@@ -23,9 +23,23 @@ class C_User extends CI_Controller{
     function add()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+        $modul = 'staf';
+        $kode = $this->M_Setting->cekkode($modul);
+        foreach ($kode as $modul) {
+            $a = $modul->kodefinal;
+            date_default_timezone_set('Asia/Jakarta');
+            $tgl = date('dmY');
+            $a = str_replace("tanggal", $tgl, $a);
+            $data = $this->M_User->getuser();
+            $id = count($data)+1;
+            $a = str_replace("no", $id, $a);
+        }
+        $idnama = $this->session->userdata('nama');
+        $name = str_replace("username", $idnama, $a);
+        $data['kode'] = $name;
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['cabang'] = $this->M_Setting->getcabangss();
         $data['tipeuser'] = $this->M_User->gettipeuser();
@@ -34,20 +48,26 @@ class C_User extends CI_Controller{
     }
 
     function cek_user(){
-        # ambil Kualifikasiname dari form
-        
+        $tabel = 'tb_staf';
+        $cek = 'username';
         $kode = $this->input->post('user');
-                # select ke model member Kualifikasiname yang diinput Kualifikasi
-        $hasil_kode = $this->M_User->cek_user($kode);
-         
-                # pengecekan value $hasil_Kualifikasiname
-        if(count($hasil_kode)!=0){
-          # kalu value $hasil_Kualifikasiname tidak 0
-                  # echo 1 untuk pertanda Kualifikasiname sudah ada pada db    
-                       echo '1';
+        $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
+        if(count($hasil_kode)!=0){ 
+            echo '1';
         }else{
-                  # kalu value $hasil_Kualifikasiname = 0
-                  # echo 2 untuk pertanda Kualifikasiname belum ada pada db
+            echo '2';
+        }
+         
+    }
+
+    function cek_kodeuser(){
+        $tabel = 'tb_staf';
+        $cek = 'nopegawai';
+        $kode = $this->input->post('nopegawai');
+        $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
+        if(count($hasil_kode)!=0){ 
+            echo '1';
+        }else{
             echo '2';
         }
          
@@ -76,7 +96,7 @@ class C_User extends CI_Controller{
     function view($ida)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['user'] = $this->M_User->getspek($ida);
@@ -87,7 +107,7 @@ class C_User extends CI_Controller{
     function edit($iduser)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();

@@ -28,6 +28,13 @@
             <form class="form-horizontal" method="POST" action="<?php echo site_url('C_User/tambah')?>">
               <div class="box-body">
                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">No Pegawai</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nopegawai" name="nopegawai" placeholder="No Pegawai" value="<?php echo $kode ?>" onkeyup="cek_username()">
+                  <span id="pesankodeuser"></span>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="namauser" name="nama" placeholder="Nama">

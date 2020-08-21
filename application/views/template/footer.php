@@ -606,7 +606,42 @@
     }
      
 </script>
-
+<script type='text/javascript'>
+    var error = 1; // nilai default untuk error 1
+ 
+    function cek_kodeuser(){
+        $("#pesankodeuser").hide();
+ 
+        var nopegawai = $("#nopegawai").val();
+ 
+        if(nopegawai != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_User/cek_kodeuser'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'nopegawai='+nopegawai,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesankodeuser").css("color","#fc5d32");
+                        $("#nopegawai").css("border-color","#fc5d32");
+                        $("#pesankodeuser").html("No Pegawai sudah digunakan !");
+                        $("#nopegawai").val("");
+ 
+                        error = 1;
+                    }else{
+                        $("#pesankodeuser").css("color","#59c113");
+                        $("#nopegawai").css("border-color","#59c113");
+                        $("#pesankodeuser").html("");
+                        error = 0;
+                    }
+ 
+                    $("#pesankodeuser").fadeIn(1000);
+                }
+            });
+        }       
+         
+    }
+     
+</script>
 <script type='text/javascript'>
     var error = 1; // nilai default untuk error 1
  

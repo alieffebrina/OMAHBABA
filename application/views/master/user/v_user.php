@@ -40,7 +40,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <!-- <th>NIK</th> -->
+                  <th>NIK</th>
                   <th>Nama</th>
                   <th>Cabang</th>
                   <th>Alamat</th>
@@ -57,7 +57,7 @@
                   foreach ($user as $user) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
-                  <!-- <td><?php echo $user->nik; ?></td> -->
+                  <td><?php echo $user->id_user; ?></td>
                   <td><?php echo $user->nama; ?></td>
                   <td><?php echo $user->namacabang; ?></td>
                   <td><?php echo $user->alamat; ?></td>

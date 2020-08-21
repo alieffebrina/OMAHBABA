@@ -33,7 +33,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('template/header.php');
-		$id = $this->session->userdata('id_user');
+		$id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
 		$this->load->view('template/sidebar.php', $data);
 		// $data['barang'] = $this->M_barang->totalitem();

@@ -1,7 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class M_Setting extends CI_Model {
-
+    function cek($cek,$kode,$tabel){
+        $this->db->select('*');
+        $where = array(
+            $cek => $kode
+        );
+        $query = $this->db->get_where($tabel, $where);
+        return $query->result();
+    }
     function getsatuan(){
         $this->db->select('*');
         $this->db->from('tb_satuan');

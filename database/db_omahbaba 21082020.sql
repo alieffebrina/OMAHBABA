@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2020 at 05:18 PM
+-- Generation Time: Aug 21, 2020 at 05:57 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -72,7 +72,13 @@ INSERT INTO `tb_akses` (`id_akses`, `id_submenu`, `id_tipeuser`, `view`, `add`, 
 (86, 28, 1, '1', '1', '1', '1'),
 (87, 30, 1, '1', '1', '1', '1'),
 (88, 31, 1, '1', '1', '1', '1'),
-(89, 32, 1, '1', '1', '1', '1');
+(89, 32, 1, '1', '1', '1', '1'),
+(90, 33, 1, '1', '1', '1', '1'),
+(91, 34, 1, '1', '1', '1', '1'),
+(92, 35, 1, '1', '1', '1', '1'),
+(93, 36, 1, '1', '1', '1', '1'),
+(94, 37, 1, '1', '1', '1', '1'),
+(95, 38, 1, '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -112,7 +118,7 @@ CREATE TABLE `tb_cabang` (
   `alamat` varchar(100) NOT NULL,
   `tlf` char(12) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
   `tglupdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -120,7 +126,7 @@ CREATE TABLE `tb_cabang` (
 -- Dumping data for table `tb_cabang`
 --
 
-INSERT INTO `tb_cabang` (`id_cabang`, `namacabang`, `id_gudang`, `id_kota`, `id_kecamatan`, `id_provinsi`, `alamat`, `tlf`, `email`, `id_user`, `tglupdate`) VALUES
+INSERT INTO `tb_cabang` (`id_cabang`, `namacabang`, `id_gudang`, `id_kota`, `id_kecamatan`, `id_provinsi`, `alamat`, `tlf`, `email`, `user`, `tglupdate`) VALUES
 (1, 'cabang brebes', 1, '5107', '5107040', '51', 'bali', '1232112', 'asd@asd', 1, '2020-08-20');
 
 -- --------------------------------------------------------
@@ -7371,6 +7377,25 @@ INSERT INTO `tb_kecamatan` (`id_kecamatan`, `id_kota`, `kecamatan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_kode`
+--
+
+CREATE TABLE `tb_kode` (
+  `id_kode` int(11) NOT NULL,
+  `modultransaksi` varchar(50) NOT NULL,
+  `kodefinal` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_kode`
+--
+
+INSERT INTO `tb_kode` (`id_kode`, `modultransaksi`, `kodefinal`) VALUES
+(12, 'staf', 'username-ST-tanggal-no');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_konversi`
 --
 
@@ -8143,7 +8168,7 @@ CREATE TABLE `tb_sjpenjualan` (
 CREATE TABLE `tb_staf` (
   `id_user` int(11) NOT NULL,
   `id_tipeuser` int(11) NOT NULL,
-  `nopegawai` varchar(20) NOT NULL,
+  `nopegawai` varchar(50) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `alamat` varchar(200) NOT NULL,
   `id_kecamatan` char(7) NOT NULL,
@@ -8163,7 +8188,8 @@ CREATE TABLE `tb_staf` (
 --
 
 INSERT INTO `tb_staf` (`id_user`, `id_tipeuser`, `nopegawai`, `nama`, `alamat`, `id_kecamatan`, `id_kota`, `id_provinsi`, `tlp`, `jabatan`, `username`, `password`, `id_cabang`, `id_userupdate`, `tglupdate`) VALUES
-(1, 1, '1', 'administrator', 'administrator', '3578040', '3578', '35', '12345678', 'administrator', 'admin', 'admin', 0, 1, '2020-08-08');
+(1, 1, '1', 'administrator', 'bali', '3329170', '3329', '33', '12345678', 'administrator', 'admin', 'admin', 1, 1, '2020-08-21'),
+(2, 0, '', 'RIZKY FEBRIANTO', 'asd', '1112031', '1112', '11', '131', 'jabatan', 'rizky', 'rizky', 1, 0, '2020-08-21');
 
 -- --------------------------------------------------------
 
@@ -8223,38 +8249,44 @@ CREATE TABLE `tb_submenu` (
 --
 
 INSERT INTO `tb_submenu` (`id_submenu`, `id_menus`, `submenu`, `linksubmenu`, `statusmenu`) VALUES
-(1, 1, ' Data User', 'C_User', 'aktif'),
-(2, 1, 'Data Jenis Customer', 'C_User', 'tidak'),
-(3, 1, 'Data Konversi', 'C_konversi', 'tidak'),
-(4, 1, 'Data Jenis Barang', 'C_jenisbarang', 'tidak'),
-(5, 1, 'Data Satuan', 'C_satuan', 'tidak'),
+(1, 1, ' Data Staf', 'C_User', 'aktif'),
+(2, 1, 'Data Tipe User', '', 'aktif'),
+(3, 1, 'Data Konversi', '', 'aktif'),
+(4, 1, 'Data Kategori', '', 'aktif'),
+(5, 1, 'Data Satuan', '', 'aktif'),
 (6, 5, 'Laporan Kas', 'C_Kas/laporan', 'aktif'),
-(7, 1, 'Data Barang', 'C_barang', 'aktif'),
-(8, 1, 'Data Pelanggan', 'C_Pelanggan', 'aktif'),
-(9, 1, 'Data Suplier', 'C_suplier', 'aktif'),
-(10, 2, 'Transaksi Penjualan', 'C_penjualan', 'aktif'),
-(11, 2, 'Surat Jalan', 'C_suratjalan', 'aktif'),
+(7, 1, 'Data Barang', '', 'aktif'),
+(8, 1, 'Data Pelanggan', '', 'aktif'),
+(9, 1, 'Data Suplier', '', 'aktif'),
+(10, 2, 'Pre Order', '', 'aktif'),
+(11, 2, 'Surat Jalan', '', 'aktif'),
 (12, 5, 'Laporan Piutang', 'C_penjualan/piutang', 'aktif'),
-(13, 2, 'Retur', 'C_returpenjualan', 'aktif'),
-(14, 3, 'Transaksi Pembelian', 'C_Pembelian', 'aktif'),
+(13, 2, 'Invoice', '', 'aktif'),
+(14, 3, 'Pre Order', 'C_Pembelian', 'aktif'),
 (15, 5, 'Laporan Hutang', 'C_Pembelian/lhutang', 'aktif'),
 (16, 5, 'Laporan Pembelian', 'C_Pembelian/laporan', 'aktif'),
 (17, 5, 'Laporan Penjualan', 'C_penjualan/laporan', 'aktif'),
 (18, 4, 'Stock ', 'C_Stok', 'aktif'),
-(19, 4, 'Mutasi Barang', 'C_mutasibarang', 'tidak'),
-(20, 6, 'Hutang', 'C_Pembelian/lhutang', 'aktif'),
-(21, 6, 'Piutang', 'C_penjualan/piutang', 'aktif'),
-(22, 6, 'Arus Kas', 'C_Kas', 'aktif'),
+(19, 4, 'Mutasi Barang', 'C_mutasibarang', 'aktif'),
+(20, 6, 'Kas Masuk', '', 'aktif'),
+(21, 6, 'Kas Keluar', '', 'aktif'),
+(22, 6, 'Bonus Sales', '', 'aktif'),
 (23, 6, 'Laba Rugi', 'C_labarugi', 'aktif'),
 (24, 7, 'Hak Akses Login', 'C_Setting', 'aktif'),
 (25, 7, 'Data Kode', 'C_Setting/vkode', 'aktif'),
-(26, 3, 'Retur', 'C_Pembelian/mretur', 'aktif'),
+(26, 3, 'Surat Jalan', '', 'aktif'),
 (27, 4, 'Stock Opname', 'C_Stok/so', 'aktif'),
-(28, 1, 'Data Harga', 'C_harga', 'aktif'),
+(28, 1, 'Data Harga', '', 'aktif'),
 (29, 4, 'Stok Retur', 'C_Stok/retur', 'aktif'),
 (30, 8, 'Absensi', '', 'aktif'),
 (31, 7, 'User Log', 'C_User/userlog', 'aktif'),
-(32, 1, 'Data Cabang', 'C_cabang', 'aktif');
+(32, 1, 'Data Cabang', '', 'aktif'),
+(33, 1, 'Data Sales', '', 'aktif'),
+(34, 1, 'Data Warna', '', 'aktif'),
+(35, 1, 'Data Voucher', '', 'aktif'),
+(36, 3, 'Invoice', '', 'aktif'),
+(37, 3, 'Retur Pembelian', '', 'aktif'),
+(38, 2, 'Retur Penjualan', '', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -8428,6 +8460,12 @@ ALTER TABLE `tb_kecamatan`
   ADD PRIMARY KEY (`id_kecamatan`) USING BTREE;
 
 --
+-- Indexes for table `tb_kode`
+--
+ALTER TABLE `tb_kode`
+  ADD PRIMARY KEY (`id_kode`);
+
+--
 -- Indexes for table `tb_konversi`
 --
 ALTER TABLE `tb_konversi`
@@ -8555,7 +8593,7 @@ ALTER TABLE `tb_warna`
 -- AUTO_INCREMENT for table `tb_akses`
 --
 ALTER TABLE `tb_akses`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `tb_barang`
@@ -8610,6 +8648,12 @@ ALTER TABLE `tb_invoicejual`
 --
 ALTER TABLE `tb_kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_kode`
+--
+ALTER TABLE `tb_kode`
+  MODIFY `id_kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_konversi`
@@ -8669,7 +8713,7 @@ ALTER TABLE `tb_sjpenjualan`
 -- AUTO_INCREMENT for table `tb_staf`
 --
 ALTER TABLE `tb_staf`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_stok`
@@ -8687,7 +8731,7 @@ ALTER TABLE `tb_stokopname`
 -- AUTO_INCREMENT for table `tb_submenu`
 --
 ALTER TABLE `tb_submenu`
-  MODIFY `id_submenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_submenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `tb_suplier`

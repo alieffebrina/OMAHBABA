@@ -32,15 +32,7 @@
                   <div class="col-sm-9">
                     <select class="form-control select2" id="modultransaksi" name="modultransaksi" style="width: 100%;">
                       <option value=''>Pilih</option>
-                      <option value='barang'>Barang</option>
-                      <option value='penjualan'>Penjualan</option>
-                      <option value='Surat Jalan'>Surat Jalan</option>
-                      <option value='Retur Penjualan'>Retur Penjualan</option>
-                      <option value='pembelian'>Pembelian</option>
-                      <option value='Retur Pembelian'>Retur Pembelian</option>
-                      <!-- <option value='invoice'>Invoice</option>
-                      <option value='notapembayaranpo'>Nota Pembayaran Purchase Order</option>
-                      <option value='notapembayaranso'>Nota Pembayaran Sales Order</option> -->
+                      <option value='staf'>Kode Staf</option>
                     </select>
                   </div>
                 </div>
