@@ -68,6 +68,18 @@ class C_suplier extends CI_Controller{
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
     }
 
+    function cek_suplierkode(){
+        $tabel = 'tb_suplier';
+        $cek = 'nosuplier';
+        $kode = $this->input->post('nosuplier');
+        $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
+        if(count($hasil_kode)!=0){ 
+            echo '1';
+        }else{
+            echo '2';
+        }
+    }
+
     public function tambah()
     {   
 

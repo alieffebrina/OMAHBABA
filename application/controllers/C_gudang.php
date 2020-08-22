@@ -15,7 +15,7 @@ class C_gudang extends CI_Controller{
     function index()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['gudang'] = $this->M_gudang->getgudang();
@@ -26,7 +26,7 @@ class C_gudang extends CI_Controller{
     function add()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['gudang'] = $this->M_Setting->getgudang();
@@ -60,11 +60,11 @@ class C_gudang extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_gudang->tambahdata($id);
-        // $data = $this->M_suplier->cekkodesuplier();
-        // foreach ($data as $id) {
-        //     $id =$id;
-        //     $this->M_suplier->tambahakses($id);
-        // }
+
+        $id_submenu = '39';
+        $ket = 'tambah data gudang';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_gudang');
     }
@@ -72,7 +72,7 @@ class C_gudang extends CI_Controller{
     function view($ida)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['gudang'] = $this->M_gudang->getspek($ida);
@@ -97,15 +97,26 @@ class C_gudang extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_gudang->edit($id);
+
+        $id_submenu = '39';
+        $ket = 'edit data gudang';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('Sukses', "Data Gudang Berhasil Di Perbarui.");
-        redirect('C_gudang/add');
+        redirect('C_gudang');
     }
 
     function hapus($id){
         $where = array('id_gudang' => $id);
         $this->M_Setting->delete($where,'tb_gudang');
+
+
+        $id_submenu = '39';
+        $ket = 'hapus data gudang';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('Sukses', "Data Gudang Berhasil Di Hapus.");
-        redirect('C_gudang/add');
+        redirect('C_gudang');
     }
 
 }

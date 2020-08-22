@@ -78,8 +78,7 @@
                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="gudang" name="gudang" value="<?php echo $gudang->email ?>">
-                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $gudang->id_gudang ?>">
+                    <input type="text" class="form-control" id="email" name="email" value="<?php echo $gudang->email ?>">
                   </div>
                 </div>
               </div>
@@ -87,7 +86,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('C_gudang/index'); ?>" class="btn btn-default">Batal</a>
+                    <a href="<?php echo site_url('C_gudang'); ?>" class="btn btn-default">Batal</a>
                     <button type="submit" class="btn btn-info">Simpan Data</button>
                   </div>
               </div>

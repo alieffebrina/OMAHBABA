@@ -12,7 +12,7 @@ class C_cabang extends CI_Controller{
     function index()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['cabang'] = $this->M_cabang->getcabang();
@@ -23,7 +23,7 @@ class C_cabang extends CI_Controller{
     function add()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
@@ -57,11 +57,11 @@ class C_cabang extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_cabang->tambahdata($id);
-        // $data = $this->M_suplier->cekkodesuplier();
-        // foreach ($data as $id) {
-        //     $id =$id;
-        //     $this->M_suplier->tambahakses($id);
-        // }
+        
+        $id_submenu = '32';
+        $ket = 'tambah data cabang';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_cabang');
     }
@@ -69,7 +69,7 @@ class C_cabang extends CI_Controller{
     function view($ida)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['cabang'] = $this->M_cabang->getspek($ida);
@@ -80,7 +80,7 @@ class C_cabang extends CI_Controller{
     function edit($iduser)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
@@ -95,6 +95,11 @@ class C_cabang extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_cabang->edit($id);
+
+        $id_submenu = '32';
+        $ket = 'edit data cabang';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_cabang');
     }
@@ -102,6 +107,11 @@ class C_cabang extends CI_Controller{
     function hapus($id){
         $where = array('id_cabang' => $id);
         $this->M_Setting->delete($where,'tb_cabang');
+
+        $id_submenu = '32';
+        $ket = 'hapus data cabang'.$id;
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_cabang');
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Agu 2020 pada 12.44
+-- Waktu pembuatan: 22 Agu 2020 pada 17.10
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -78,7 +78,8 @@ INSERT INTO `tb_akses` (`id_akses`, `id_submenu`, `id_tipeuser`, `view`, `add`, 
 (92, 35, 1, '1', '1', '1', '1'),
 (93, 36, 1, '1', '1', '1', '1'),
 (94, 37, 1, '1', '1', '1', '1'),
-(95, 38, 1, '1', '1', '1', '1');
+(95, 38, 1, '1', '1', '1', '1'),
+(96, 39, 1, '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -7391,7 +7392,9 @@ CREATE TABLE `tb_kode` (
 --
 
 INSERT INTO `tb_kode` (`id_kode`, `modultransaksi`, `kodefinal`) VALUES
-(12, 'staf', 'username-ST-tanggal-no');
+(12, 'staf', 'username-ST-tanggal-no'),
+(13, 'sales', 'username-M-tanggal-no'),
+(14, 'suplier', 'username-SU-tanggal-no');
 
 -- --------------------------------------------------------
 
@@ -8124,14 +8127,25 @@ CREATE TABLE `tb_returjual` (
 CREATE TABLE `tb_sales` (
   `id_sales` int(11) NOT NULL,
   `nopegawai` varchar(20) NOT NULL,
+  `id_tipeuser` int(11) NOT NULL,
   `namasales` varchar(100) NOT NULL,
   `alamat` varchar(200) NOT NULL,
+  `id_provinsi` char(2) NOT NULL,
+  `id_kota` char(4) NOT NULL,
+  `id_kecamatan` char(7) NOT NULL,
   `tlp` char(12) NOT NULL,
   `jabatan` varchar(100) NOT NULL,
   `id_cabang` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `tglupdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_sales`
+--
+
+INSERT INTO `tb_sales` (`id_sales`, `nopegawai`, `id_tipeuser`, `namasales`, `alamat`, `id_provinsi`, `id_kota`, `id_kecamatan`, `tlp`, `jabatan`, `id_cabang`, `id_user`, `tglupdate`) VALUES
+(1, 'administrator-M-2208', 14, 'alief', 'asddsad', '51', '5108', '5108080', '122222222222', 'dsad', 1, 1, '2020-08-22');
 
 -- --------------------------------------------------------
 
@@ -8258,7 +8272,7 @@ INSERT INTO `tb_submenu` (`id_submenu`, `id_menus`, `submenu`, `linksubmenu`, `s
 (6, 5, 'Laporan Kas', 'C_Kas/laporan', 'aktif'),
 (7, 1, 'Data Barang', '', 'aktif'),
 (8, 1, 'Data Pelanggan', '', 'aktif'),
-(9, 1, 'Data Suplier', '', 'aktif'),
+(9, 1, 'Data Suplier', 'C_Suplier', 'aktif'),
 (10, 2, 'Pre Order', '', 'aktif'),
 (11, 2, 'Surat Jalan', '', 'aktif'),
 (12, 5, 'Laporan Piutang', 'C_penjualan/piutang', 'aktif'),
@@ -8281,13 +8295,14 @@ INSERT INTO `tb_submenu` (`id_submenu`, `id_menus`, `submenu`, `linksubmenu`, `s
 (29, 4, 'Stok Retur', 'C_Stok/retur', 'aktif'),
 (30, 8, 'Absensi', '', 'aktif'),
 (31, 7, 'User Log', 'C_User/userlog', 'aktif'),
-(32, 1, 'Data Cabang', '', 'aktif'),
+(32, 1, 'Data Cabang', 'C_cabang', 'aktif'),
 (33, 1, 'Data Sales', 'C_Sales', 'aktif'),
 (34, 1, 'Data Warna', '', 'aktif'),
 (35, 1, 'Data Voucher', '', 'aktif'),
 (36, 3, 'Invoice', '', 'aktif'),
 (37, 3, 'Retur Pembelian', '', 'aktif'),
-(38, 2, 'Retur Penjualan', '', 'aktif');
+(38, 2, 'Retur Penjualan', '', 'aktif'),
+(39, 1, 'Data Gudang', 'C_gudang', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -8298,7 +8313,7 @@ INSERT INTO `tb_submenu` (`id_submenu`, `id_menus`, `submenu`, `linksubmenu`, `s
 CREATE TABLE `tb_suplier` (
   `id_suplier` int(11) NOT NULL,
   `nama_suplier` varchar(100) NOT NULL,
-  `nosuplier` varchar(20) NOT NULL,
+  `nosuplier` varchar(50) NOT NULL,
   `alamat` varchar(200) NOT NULL,
   `id_kota` char(4) NOT NULL,
   `id_provinsi` char(4) NOT NULL,
@@ -8327,7 +8342,8 @@ CREATE TABLE `tb_tipeuser` (
 INSERT INTO `tb_tipeuser` (`id_tipeuser`, `tipeuser`) VALUES
 (1, 'administrator'),
 (14, 'marketing'),
-(20, 'admin');
+(20, 'admin'),
+(22, 'gudang');
 
 -- --------------------------------------------------------
 
@@ -8352,7 +8368,28 @@ INSERT INTO `tb_userlog` (`id_userlog`, `id_user`, `waktu`, `id_submenu`, `ket`)
 (27, 1, '2020-08-22 05:42:18', 2, 'edit tipe user'),
 (28, 1, '2020-08-22 17:42:29', 0, 'Logout'),
 (29, 1, '2020-08-22 17:42:39', 0, 'Login'),
-(30, 1, '2020-08-22 17:43:23', 0, 'Login');
+(30, 1, '2020-08-22 17:43:23', 0, 'Login'),
+(31, 8, '2020-08-22 19:25:48', 0, 'Logout'),
+(32, 1, '2020-08-22 19:25:54', 0, 'Login'),
+(33, 1, '2020-08-22 07:53:13', 2, 'tambah data tipe user'),
+(34, 1, '2020-08-22 20:11:46', 0, 'Login'),
+(35, 1, '2020-08-22 20:24:07', 0, 'Login'),
+(36, 1, '2020-08-22 20:40:04', 0, 'Logout'),
+(37, 1, '2020-08-22 20:40:08', 0, 'Login'),
+(38, 1, '2020-08-22 20:45:18', 0, 'Logout'),
+(39, 1, '2020-08-22 20:45:21', 0, 'Login'),
+(40, 1, '2020-08-22 20:45:40', 0, 'Logout'),
+(41, 1, '2020-08-22 20:45:44', 0, 'Login'),
+(42, 1, '2020-08-22 09:05:43', 9, 'hapus data suplier 1'),
+(43, 8, '2020-08-22 21:18:12', 0, 'Logout'),
+(44, 1, '2020-08-22 21:18:16', 0, 'Login'),
+(45, 1, '2020-08-22 21:18:39', 0, 'Login'),
+(46, 1, '2020-08-22 21:20:15', 0, 'Login'),
+(47, 1, '2020-08-22 21:25:58', 0, 'Logout'),
+(48, 1, '2020-08-22 21:26:02', 0, 'Login'),
+(49, 8, '2020-08-22 09:42:02', 39, 'edit data gudang'),
+(50, 8, '2020-08-22 09:42:48', 39, 'edit data gudang'),
+(51, 2, '2020-08-22 09:42:49', 39, 'hapus data gudang');
 
 -- --------------------------------------------------------
 
@@ -8590,7 +8627,7 @@ ALTER TABLE `tb_warna`
 -- AUTO_INCREMENT untuk tabel `tb_akses`
 --
 ALTER TABLE `tb_akses`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_barang`
@@ -8626,7 +8663,7 @@ ALTER TABLE `tb_dtlreturjual`
 -- AUTO_INCREMENT untuk tabel `tb_gudang`
 --
 ALTER TABLE `tb_gudang`
-  MODIFY `id_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_harga`
@@ -8650,7 +8687,7 @@ ALTER TABLE `tb_kategori`
 -- AUTO_INCREMENT untuk tabel `tb_kode`
 --
 ALTER TABLE `tb_kode`
-  MODIFY `id_kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_konversi`
@@ -8692,7 +8729,7 @@ ALTER TABLE `tb_returjual`
 -- AUTO_INCREMENT untuk tabel `tb_sales`
 --
 ALTER TABLE `tb_sales`
-  MODIFY `id_sales` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_satuan`
@@ -8728,25 +8765,25 @@ ALTER TABLE `tb_stokopname`
 -- AUTO_INCREMENT untuk tabel `tb_submenu`
 --
 ALTER TABLE `tb_submenu`
-  MODIFY `id_submenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_submenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_suplier`
 --
 ALTER TABLE `tb_suplier`
-  MODIFY `id_suplier` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_suplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_tipeuser`
 --
 ALTER TABLE `tb_tipeuser`
-  MODIFY `id_tipeuser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_tipeuser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_userlog`
 --
 ALTER TABLE `tb_userlog`
-  MODIFY `id_userlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_userlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_voucher`

@@ -62,7 +62,6 @@ class C_sales extends CI_Controller{
         }else{
             echo '2';
         }
-         
     }
 
     function cek_sales(){

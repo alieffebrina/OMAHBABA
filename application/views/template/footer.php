@@ -609,6 +609,35 @@
 
 <script type='text/javascript'>
     var error = 1; 
+    function cek_suplierkode(){
+        $("#pesankodesuplier").hide();
+        var nosuplier = $("#nosuplier").val();
+        if(nosuplier != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_sales/cek_suplierkode'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'nosuplier='+nosuplier,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesankodesuplier").css("color","#fc5d32");
+                        $("#nosuplier").css("border-color","#fc5d32");
+                        $("#pesankodesuplier").html("Kode Suplier sudah digunakan !");
+ 
+                        error = 1;
+                    }else{
+                        $("#pesankodesuplier").css("color","#59c113");
+                        $("#nosuplier").css("border-color","#59c113");
+                        $("#pesankodesuplier").html("");
+                        error = 0;
+                    }
+                    $("#pesankodesuplier").fadeIn(1000);
+                }
+            });
+        }       
+    }
+</script>
+<script type='text/javascript'>
+    var error = 1; 
     function cek_saleskode(){
         $("#pesankodeSales").hide();
         var nopegawai = $("#nopegawai").val();
