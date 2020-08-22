@@ -101,7 +101,7 @@
                     <select class="form-control select2" id="tipeuser" name="tipeuser" style="width: 100%;">
                       <option value="">--Pilih--</option>
                       <?php foreach ($tipeuser as $tipeuser) { ?>
-                      <option value="<?php echo $tipeuser->id_tipeuser ?>"><?php echo $tipeuser->tipeuser ?></option>
+                      <option value="<?php echo $tipeuser->id_tipeuser?>"><?php echo $tipeuser->tipeuser ?></option>
                       <?php } ?>
                     </select>
                         <span class="input-group-btn">

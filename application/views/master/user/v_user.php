@@ -40,14 +40,12 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>NIK</th>
+                  <th>No Pegawai</th>
                   <th>Nama</th>
                   <th>Cabang</th>
                   <th>Alamat</th>
                   <th>Telepon</th>
                   <th>Jabatan</th>
-                  <th>Username</th>
-                  <th>Password</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -57,19 +55,17 @@
                   foreach ($user as $user) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
-                  <td><?php echo $user->id_user; ?></td>
+                  <td><?php echo $user->nopegawai; ?></td>
                   <td><?php echo $user->nama; ?></td>
                   <td><?php echo $user->namacabang; ?></td>
-                  <td><?php echo $user->alamat; ?></td>
+                  <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
                   <td><?php echo $user->tlp; ?></td>
                   <td><?php echo $user->jabatan; ?></td>
-                  <td><?php echo $user->username; ?></td>
-                  <td><?php echo $user->password; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_User/view/'.$user->id_user); ?>"><button type="button" class="btn btn-success">Lihat</button></a>
-                      <a href="<?php echo site_url('C_User/edit/'.$user->id_user); ?>"><button type="button" class="btn btn-info">Edit</button></a>
-                      <a href="<?php echo site_url('C_User/hapus/'.$user->id_user); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
+                      <a href="<?php echo site_url('C_User/view/'.$user->id_user); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('C_User/edit/'.$user->id_user); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('C_User/hapus/'.$user->id_user); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>

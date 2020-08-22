@@ -20,6 +20,17 @@ class C_User extends CI_Controller{
         $this->load->view('template/footer');
     }
 
+    function tipeuser()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('tipeuser');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['tipe'] = $this->M_User->gettipeuser();
+        $this->load->view('master/user/v_tipeuser',$data); 
+        $this->load->view('template/footer');
+    }
+
     function add()
     {
         $this->load->view('template/header');
@@ -76,6 +87,12 @@ class C_User extends CI_Controller{
     public function tambah()
     {   
         $this->M_User->tambahdata();
+
+        $id = $this->session->userdata('id_user');
+        $id_submenu = '1';
+        $ket = 'tambah data staf';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_User');
     }
@@ -83,6 +100,12 @@ class C_User extends CI_Controller{
     public function tambahtipeuser()
     {   
         $this->M_User->tambahtipeuser();
+
+        $id = $this->session->userdata('id_user');
+        $id_submenu = '2';
+        $ket = 'tambah data tipe user';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $data = $this->M_User->gettipeuser();
             $lists = "<option value=''>Pilih</option>";
         foreach($data as $data){
@@ -91,6 +114,18 @@ class C_User extends CI_Controller{
         $callback = array('list_tipeuser'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
         echo json_encode($callback); // konversi varibael $callback menjadi JSON
 
+    }
+
+    public function tambahtipeuserindex(){   
+        $this->M_User->tambahtipeuser();
+
+        $id = $this->session->userdata('id_user');
+        $id_submenu = '1';
+        $ket = 'tambah data tipe user';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        redirect('C_User/tipeuser');
     }
 
     function view($ida)
@@ -112,23 +147,74 @@ class C_User extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['cabang'] = $this->M_Setting->getcabangss();
+        $data['tipeuser'] = $this->M_User->gettipeuser();
         $data['user'] = $this->M_User->getspek($iduser);
         $this->load->view('master/user/v_euser',$data); 
+        $this->load->view('template/footer');
+    }
+
+    function edittipe($tipe)
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('tipeuser');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['tipeedit'] = $this->M_User->gettipe($tipe);
+        $data['tipe'] = $this->M_User->gettipeuser();
+        $this->load->view('master/user/v_etipeuser',$data); 
         $this->load->view('template/footer');
     }
 
     function edituser()
     {   
         $this->M_User->edit();
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+
+        $id = $this->session->userdata('id_user');
+        $id_submenu = '2';
+        $ket = 'edit data user';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $this->session->set_flashdata('SUCCESS', "Record Update Successfully!!");
         redirect('C_User');
+    }
+
+    function edittipeuser()
+    {   
+        $this->M_User->edittipeuser();
+
+        $id = $this->session->userdata('id_user');
+        $id_submenu = '2';
+        $ket = 'edit tipe user';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $this->session->set_flashdata('SUCCESS', "Record Update Successfully!!");
+        redirect('C_User/tipeuser');
     }
 
     function hapus($id){
         $where = array('id_user' => $id);
+
+        $ida = $this->session->userdata('id_user');
+        $id_submenu = '2';
+        $ket = 'hapus data user '.$id;
+        $this->M_Setting->userlog($ida, $id_submenu, $ket);
+
         $this->M_Setting->delete($where,'tb_staf');
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        $this->session->set_flashdata('SUCCESS', "Record Delete Successfully!!");
         redirect('C_User');
+    }
+
+    function hapustipeuser($id){
+        $where = array('id_tipeuser' => $id);
+
+        $ida = $this->session->userdata('id_user');
+        $id_submenu = '2';
+        $ket = 'hapus tipe user '.$id;
+        $this->M_Setting->userlog($ida, $id_submenu, $ket);
+
+        $this->M_Setting->delete($where,'tb_tipeuser');
+        $this->session->set_flashdata('SUCCESS', "Record Delete Successfully!!");
+        redirect('C_User/tipeuser');
     }
 
 }

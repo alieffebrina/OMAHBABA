@@ -3,10 +3,12 @@
 class M_User extends CI_Model {
 
 	function getuser(){
+        $this->db->select('tb_staf.*, tb_provinsi.name_prov, tb_kota.name_kota, tb_kecamatan.kecamatan, tb_cabang.namacabang, tb_tipeuser.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_staf.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_staf.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_staf.id_kecamatan');
         $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_staf.id_cabang');
+        $this->db->join('tb_tipeuser', 'tb_tipeuser.id_tipeuser = tb_staf.id_tipeuser');
         $query = $this->db->get('tb_staf');
     	return $query->result();
     }
@@ -16,6 +18,13 @@ class M_User extends CI_Model {
             'id_user' => $ida
         );
         return $this->db->get_where('tb_staf',$where)->result();
+    }
+
+    function gettipe($ida){
+        $where = array(
+            'id_tipeuser' => $ida
+        );
+        return $this->db->get_where('tb_tipeuser',$where)->result();
     }
 
      function gettipeuser(){
@@ -43,6 +52,7 @@ class M_User extends CI_Model {
             'jabatan' => $this->input->post('jabatan'),
             'username' => $this->input->post('username'),
             'password' => $this->input->post('password'),
+            'id_tipeuser' => $this->input->post('tipeuser'),
             'tglupdate' => date('Y-m-d')
         );
         
@@ -67,10 +77,12 @@ class M_User extends CI_Model {
     }
 
     function getspek($ida){
-		$this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_staf.id_provinsi');
+        $this->db->select('tb_staf.*, tb_provinsi.name_prov, tb_kota.name_kota, tb_kecamatan.kecamatan, tb_cabang.namacabang, tb_tipeuser.*');
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_staf.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_staf.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_staf.id_kecamatan');
         $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_staf.id_cabang');
+        $this->db->join('tb_tipeuser', 'tb_tipeuser.id_tipeuser = tb_staf.id_tipeuser');
         $where = array(
             'tb_staf.id_user' => $ida
         );
@@ -80,7 +92,6 @@ class M_User extends CI_Model {
 
     function edit(){
         $user = array(
-            'id_user' => $id,
             'nama' => $this->input->post('nama'),
             'id_cabang' => $this->input->post('namacabang'),
             'id_provinsi' => $this->input->post('prov'),
@@ -103,5 +114,18 @@ class M_User extends CI_Model {
         $this->db->update('tb_staf',$user);
     }
 
+    function edittipeuser(){
+        $user = array(
+            'tipeuser' => $this->input->post('tipeusermodal'),
+            
+        );
+
+        $where = array(
+            'id_tipeuser' =>  $this->input->post('idtipeuser'),
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_tipeuser',$user);
+    }
     
 }

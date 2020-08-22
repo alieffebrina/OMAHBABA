@@ -306,6 +306,23 @@ class M_Setting extends CI_Model {
         $this->db->insert('tb_kode', $kode);
     }
 
+     function userlog($id, $id_submenu, $ket){
+
+        date_default_timezone_set('Asia/Jakarta');
+        $kode = array(
+            'id_user' => $id,
+            'waktu' => date('Y-m-d h:i:s'),
+            'id_submenu' => $id_submenu,
+            'ket' => $ket
+        );
+        
+        $this->db->insert('tb_userlog', $kode);
+
+        $day = date('d');
+        $this->db->where_not_in('day(waktu)', $day);
+        $this->db->delete('tb_userlog');
+    }
+
     function cekkode($modul){        
         $this->db->select('kodefinal');
         $where = array(

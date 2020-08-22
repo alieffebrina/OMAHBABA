@@ -36,6 +36,7 @@ class C_Login extends CI_Controller {
 		          'tipeuser'=>$user->id_tipeuser
 		        );
 		        $this->session->set_userdata($session); // Buat session sesuai $session
+		        $this->M_login->userlog();
 		        redirect('Welcome'); // Redirect ke halaman welcome
 		    }else{
 		        $this->session->set_flashdata('message', 'Password salah'); // Buat session flashdata
@@ -45,7 +46,8 @@ class C_Login extends CI_Controller {
    	}
 
 	public function logout(){
-    $this->session->sess_destroy(); // Hapus semua session
-    redirect('C_Login'); // Redirect ke halaman login
+		$this->M_login->logout();
+	    $this->session->sess_destroy(); // Hapus semua session
+	    redirect('C_Login'); // Redirect ke halaman login
 	}
 }
