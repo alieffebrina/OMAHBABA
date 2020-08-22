@@ -16,7 +16,7 @@ class C_sales extends CI_Controller{
     function index()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['sales'] = $this->M_sales->getsales();
@@ -91,7 +91,7 @@ class C_sales extends CI_Controller{
         $id = $this->session->userdata('id_user');
         $this->M_sales->tambahdata($id);
         
-        $id_submenu = '1';
+        $id_submenu = '33';
         $ket = 'tambah data sales';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
@@ -102,7 +102,7 @@ class C_sales extends CI_Controller{
     function view($ida)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['sales'] = $this->M_sales->getspek($ida);
@@ -113,7 +113,7 @@ class C_sales extends CI_Controller{
     function edit($iduser)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
@@ -130,7 +130,7 @@ class C_sales extends CI_Controller{
         $id = $this->session->userdata('id_user');
         $this->M_sales->edit($id);
 
-        $id_submenu = '2';
+        $id_submenu = '33';
         $ket = 'edit tipe sales';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
@@ -143,7 +143,7 @@ class C_sales extends CI_Controller{
         $this->M_Setting->delete($where,'tb_sales');
 
         $ida = $this->session->userdata('id_user');
-        $id_submenu = '2';
+        $id_submenu = '33';
         $ket = 'hapus data sales '.$id;
         $this->M_Setting->userlog($ida, $id_submenu, $ket);
 

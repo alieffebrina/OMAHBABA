@@ -39,11 +39,9 @@
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Kode Suplier</th>
                   <th>Nama Toko</th>
                   <th>Nama Suplier</th>
-                  <th>Provinsi</th>
-                  <th>Kabupaten/Kota</th>
-                  <th>Kecamatan</th>
                   <th>Alamat</th>
                   <th>Telepon</th>
                   <th>Limit Hutang</th>
@@ -56,19 +54,17 @@
                   foreach ($suplier as $suplier) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
+                  <td><?php echo $suplier->nosuplier; ?></td>
                   <td><?php echo $suplier->nama_toko; ?></td>
                   <td><?php echo $suplier->nama_suplier; ?></td>
-                  <td><?php echo $suplier->name_prov;?></td>
-                  <td><?php echo $suplier->name_kota;?></td>
-                  <td><?php echo $suplier->kecamatan;?></td>
-                  <td><?php echo $suplier->alamat;?></td>
+                  <td><?php echo $suplier->alamat.','.$suplier->name_kota.','.$suplier->name_prov;?></td>
                   <td><?php echo $suplier->tlp;?></td>
                   <td>Rp. <?php echo number_format($suplier->limit,0,",","."); ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_suplier/view/'.$suplier->id_suplier); ?>"><button type="button" class="btn btn-success">Lihat</button></a>
-                      <a href="<?php echo site_url('C_suplier/edit/'.$suplier->id_suplier); ?>"><button type="button" class="btn btn-info">Edit</button></a>
-                      <a href="<?php echo site_url('C_suplier/hapus/'.$suplier->id_suplier); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
+                      <a href="<?php echo site_url('C_suplier/view/'.$suplier->id_suplier); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('C_suplier/edit/'.$suplier->id_suplier); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('C_suplier/hapus/'.$suplier->id_suplier); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>

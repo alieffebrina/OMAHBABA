@@ -12,7 +12,7 @@ class C_suplier extends CI_Controller{
     function index()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['suplier'] = $this->M_suplier->getsuplier();
@@ -23,9 +23,23 @@ class C_suplier extends CI_Controller{
     function add()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+        $modul = 'suplier';
+        $kode = $this->M_Setting->cekkode($modul);
+        foreach ($kode as $modul) {
+            $a = $modul->kodefinal;
+            date_default_timezone_set('Asia/Jakarta');
+            $tgl = date('dmY');
+            $a = str_replace("tanggal", $tgl, $a);
+            $data = $this->M_suplier->getsuplier();
+            $id = count($data)+1;
+            $a = str_replace("no", $id, $a);
+        }
+        $idnama = $this->session->userdata('nama');
+        $name = str_replace("username", $idnama, $a);
+        $data['kode'] = $name;
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $this->load->view('master/suplier/v_addsuplier', $data); 
         $this->load->view('template/footer');
@@ -59,11 +73,11 @@ class C_suplier extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_suplier->tambahdata($id);
-        // $data = $this->M_suplier->cekkodesuplier();
-        // foreach ($data as $id) {
-        //     $id =$id;
-        //     $this->M_suplier->tambahakses($id);
-        // }
+        
+        $id_submenu = '9';
+        $ket = 'tambah data suplier';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_suplier');
     }
@@ -71,7 +85,7 @@ class C_suplier extends CI_Controller{
     function view($ida)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['suplier'] = $this->M_suplier->getspek($ida);
@@ -82,7 +96,7 @@ class C_suplier extends CI_Controller{
     function edit($iduser)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
@@ -96,6 +110,11 @@ class C_suplier extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_suplier->edit($id);
+
+        $id_submenu = '9';
+        $ket = 'edit tipe suplier';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_suplier');
     }
@@ -103,6 +122,12 @@ class C_suplier extends CI_Controller{
     function hapus($id){
         $where = array('id_suplier' => $id);
         $this->M_Setting->delete($where,'tb_suplier');
+
+        $ida = $this->session->userdata('id_user');
+        $id_submenu = '9';
+        $ket = 'hapus data suplier '.$id;
+        $this->M_Setting->userlog($ida, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_suplier');
     }

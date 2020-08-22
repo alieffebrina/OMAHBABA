@@ -29,6 +29,12 @@
               <div class="box-body">
                 <?php foreach ($suplier as $suplier) { ?>
                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Kode Suplier</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nosuplier" name="nosuplier" readonly value="<?php echo $suplier->nosuplier ?>">
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Toko</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="1nama_toko" name="nama_toko" value="<?php echo $suplier->nama_toko ?>">
@@ -57,14 +63,6 @@
                   <div class="col-sm-9">
                   <select class="form-control select2" id="kota" name="kota" style="width: 100%;">
                       <option value="<?php echo $suplier->id_kota ?>"><?php echo $suplier->name_kota ?></option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
-                  <div class="col-sm-9">
-                  <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;">
-                      <option value="<?php echo $suplier->id_kecamatan ?>"><?php echo $suplier->kecamatan ?></option>
                     </select>
                   </div>
                 </div>

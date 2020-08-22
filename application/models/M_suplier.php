@@ -6,7 +6,6 @@ class M_suplier extends CI_Model {
 		$this->db->select('*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_suplier.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_suplier.id_kota');
-        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_suplier.id_kecamatan');
         $query = $this->db->get('tb_suplier');
     	return $query->result();
     }
@@ -26,10 +25,9 @@ class M_suplier extends CI_Model {
             'id_user' => $id,
             'nama_toko' => $this->input->post('nama_toko'),
             'nama_suplier' => $this->input->post('nama_suplier'),
-            
+            'nosuplier' => $this->input->post('nosuplier'),
             'id_provinsi' => $this->input->post('prov'),
             'id_kota' => $this->input->post('kota'),
-            'id_kecamatan' => $this->input->post('kecamatan'),
             'alamat' => $this->input->post('alamat'),
             'tlp' => $this->input->post('tlp'),
             'limit' => $harga_str,
@@ -46,22 +44,10 @@ class M_suplier extends CI_Model {
         return $idsuplier->row();
     }
 
-    //function tambahakses($id){
-    //    $total = $this->db->count_all_results('tb_submenu');
-
-    //    for($i=0; $i<$total; $i++){
-    //        $fungsi = array('id_submenu' => $i+1 , 
-    //            'id_user' => $id);
-
-    //        $this->db->insert('tb_akses', $fungsi);            
-    //    }
-    //}
-
     function getspek($iduser){
 		$this->db->select('*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_suplier.id_provinsi');
-        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_suplier.id_kota');
-        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_suplier.id_kecamatan');  
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_suplier.id_kota'); 
         $where = array(
             'id_suplier' => $iduser
         );
@@ -80,7 +66,6 @@ class M_suplier extends CI_Model {
             
             'id_provinsi' => $this->input->post('prov'),
             'id_kota' => $this->input->post('kota'),
-            'id_kecamatan' => $this->input->post('kecamatan'),
             'alamat' => $this->input->post('alamat'),
             'tlp' => $this->input->post('tlp'),
             'limit' => $harga_str,

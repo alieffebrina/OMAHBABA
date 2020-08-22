@@ -27,6 +27,14 @@
             <!-- form start -->
             <form class="form-horizontal" method="POST" action="<?php echo site_url('C_suplier/tambah')?>">
               <div class="box-body">
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Kode Suplier</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nosuplier" name="nosuplier" placeholder="No Suplier" value="<?php echo $kode ?>" onkeyup="cek_suplierkode()">
+                  <span id="pesankodesuplier"></span>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Toko</label>
                   <div class="col-sm-9">
@@ -39,8 +47,6 @@
                     <input type="text" class="form-control" id="nama_suplier" name="nama_suplier" placeholder="Nama Suplier">
                   </div>
                 </div>
-                
-                
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
@@ -60,13 +66,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
-                  <div class="col-sm-9">
-                  <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;">
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Alamat</label>
                   <div class="col-sm-9">
                     <textarea class="form-control" rows="3" id="alamat" name="alamat"></textarea>
@@ -75,11 +74,11 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Telepon</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon"  maxlength="12" minlength="12" placeholder="Telepons">
+                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon"  maxlength="12"  minlength="6" onkeypress="return Angkasaja(event)">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Limit</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Limit Hutang</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="rupiah" name="rupiah" >
                   </div>

@@ -34,6 +34,7 @@
                       <option value=''>Pilih</option>
                       <option value='staf'>Kode Staf</option>
                       <option value='sales'>Kode Sales</option>
+                      <option value='suplier'>Kode Suplier</option>
                     </select>
                   </div>
                 </div>
