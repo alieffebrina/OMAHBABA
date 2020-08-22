@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Agu 2020 pada 18.23
+-- Waktu pembuatan: 22 Agu 2020 pada 18.30
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -8268,12 +8268,12 @@ CREATE TABLE `tb_submenu` (
 INSERT INTO `tb_submenu` (`id_submenu`, `id_menus`, `submenu`, `linksubmenu`, `statusmenu`) VALUES
 (1, 1, ' Data Staf', 'C_User', 'aktif'),
 (2, 1, 'Data Tipe User', 'C_User/tipeuser', 'aktif'),
-(3, 1, 'Data Konversi', '', 'aktif'),
-(4, 1, 'Data Kategori', '', 'aktif'),
-(5, 1, 'Data Satuan', '', 'aktif'),
+(3, 1, 'Data Konversi', 'C_konversi', 'aktif'),
+(4, 1, 'Data Kategori', 'C_kategori', 'aktif'),
+(5, 1, 'Data Satuan', 'C_satuan', 'aktif'),
 (6, 5, 'Laporan Kas', 'C_Kas/laporan', 'aktif'),
-(7, 1, 'Data Barang', '', 'aktif'),
-(8, 1, 'Data Pelanggan', '', 'aktif'),
+(7, 1, 'Data Barang', 'C_barang', 'aktif'),
+(8, 1, 'Data Pelanggan', 'C_Pelanggan', 'aktif'),
 (9, 1, 'Data Suplier', 'C_Suplier', 'aktif'),
 (10, 2, 'Pre Order', '', 'aktif'),
 (11, 2, 'Surat Jalan', '', 'aktif'),
@@ -8293,14 +8293,14 @@ INSERT INTO `tb_submenu` (`id_submenu`, `id_menus`, `submenu`, `linksubmenu`, `s
 (25, 7, 'Data Kode', 'C_Setting/vkode', 'aktif'),
 (26, 3, 'Surat Jalan', '', 'aktif'),
 (27, 4, 'Stock Opname', 'C_Stok/so', 'aktif'),
-(28, 1, 'Data Harga', '', 'aktif'),
+(28, 1, 'Data Harga', 'C_harga', 'aktif'),
 (29, 4, 'Stok Retur', 'C_Stok/retur', 'aktif'),
 (30, 8, 'Absensi', '', 'aktif'),
 (31, 7, 'User Log', 'C_User/userlog', 'aktif'),
 (32, 1, 'Data Cabang', 'C_cabang', 'aktif'),
 (33, 1, 'Data Sales', 'C_Sales', 'aktif'),
-(34, 1, 'Data Warna', '', 'aktif'),
-(35, 1, 'Data Voucher', '', 'aktif'),
+(34, 1, 'Data Warna', 'C_warna', 'aktif'),
+(35, 1, 'Data Voucher', 'C_voucher', 'aktif'),
 (36, 3, 'Invoice', '', 'aktif'),
 (37, 3, 'Retur Pembelian', '', 'aktif'),
 (38, 2, 'Retur Penjualan', '', 'aktif'),
