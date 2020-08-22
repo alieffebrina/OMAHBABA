@@ -606,6 +606,36 @@
     }
      
 </script>
+
+<script type='text/javascript'>
+    var error = 1; 
+    function cek_saleskode(){
+        $("#pesankodeSales").hide();
+        var nopegawai = $("#nopegawai").val();
+        if(nopegawai != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_sales/cek_saleskode'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'nopegawai='+nopegawai,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesankodeSales").css("color","#fc5d32");
+                        $("#nopegawai").css("border-color","#fc5d32");
+                        $("#pesankodeSales").html("Username sudah digunakan !");
+ 
+                        error = 1;
+                    }else{
+                        $("#pesankodeSales").css("color","#59c113");
+                        $("#nopegawai").css("border-color","#59c113");
+                        $("#pesankodeSales").html("");
+                        error = 0;
+                    }
+                    $("#pesankodeSales").fadeIn(1000);
+                }
+            });
+        }       
+    }
+</script>
 <script type='text/javascript'>
     var error = 1; // nilai default untuk error 1
  

@@ -33,6 +33,7 @@
                     <select class="form-control select2" id="modultransaksi" name="modultransaksi" style="width: 100%;">
                       <option value=''>Pilih</option>
                       <option value='staf'>Kode Staf</option>
+                      <option value='sales'>Kode Sales</option>
                     </select>
                   </div>
                 </div>

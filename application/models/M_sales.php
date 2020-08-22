@@ -3,11 +3,12 @@
 class M_sales extends CI_Model {
 
     function getsales(){
-        $this->db->select('*');
+        $this->db->select('tb_sales.*, tb_provinsi.name_prov, tb_kota.name_kota, tb_kecamatan.kecamatan, tb_cabang.namacabang, tb_tipeuser.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_sales.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_sales.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_sales.id_kecamatan');
         $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_sales.id_cabang');
+        $this->db->join('tb_tipeuser', 'tb_tipeuser.id_tipeuser = tb_sales.id_tipeuser');
         $query = $this->db->get('tb_sales');
         return $query->result();
     }
@@ -23,6 +24,8 @@ class M_sales extends CI_Model {
 
         $sales = array(
             'id_user' => $id,
+            'nopegawai' => $this->input->post('nopegawai'),
+            'id_tipeuser' => $this->input->post('tipeuser'),
             'namasales' => $this->input->post('namasales'),
             'id_cabang' => $this->input->post('namacabang'),
             'id_provinsi' => $this->input->post('prov'),
@@ -44,10 +47,12 @@ class M_sales extends CI_Model {
     }
 
     function getspek($iduser){
+        $this->db->select('tb_sales.*, tb_provinsi.name_prov, tb_kota.name_kota, tb_kecamatan.kecamatan, tb_cabang.namacabang, tb_tipeuser.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_sales.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_sales.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_sales.id_kecamatan');
         $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_sales.id_cabang');
+        $this->db->join('tb_tipeuser', 'tb_tipeuser.id_tipeuser = tb_sales.id_tipeuser');
         $where = array(
             'id_sales' => $iduser
         );

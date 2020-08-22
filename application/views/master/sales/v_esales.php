@@ -39,20 +39,18 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="namacabang" name="namacabang" style="width: 100%;">
-                      <option value="<?php echo $sales->id_cabang ?>"><?php echo $sales->namacabang ?></option>
                       <?php foreach ($cabang as $cabang) { ?>
-                      <option value="<?php echo $cabang->id_cabang ?>"><?php echo $cabang->namacabang ?></option>
+                      <option value="<?php echo $cabang->id_cabang; ?>" <?php if ($cabang->id_cabang == $sales->id_cabang ){ echo "selected"; } ?> ><?php echo $cabang->namacabang ?></option>
                       <?php } ?>
                     </select>
                   </div>
-                </div>
+                </div>                
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="prov" name="prov" style="width: 100%;">
-                      <option value="<?php echo $sales->id_provinsi ?>"><?php echo $sales->name_prov ?></option>
                       <?php foreach ($provinsi as $provinsi) { ?>
-                      <option value="<?php echo $provinsi->id_provinsi ?>"><?php echo $provinsi->name_prov ?></option>
+                      <option value="<?php echo $provinsi->id_provinsi; ?>" <?php if ($provinsi->id_provinsi == $sales->id_provinsi ){ echo "selected"; } ?> ><?php echo $provinsi->name_prov ?></option>
                       <?php } ?>
                     </select>
                   </div>
@@ -88,8 +86,17 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Jabatan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?php echo $user->jabatan ?>">
-                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $user->id_user ?>">
+                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?php echo $sales->jabatan ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Tipe User</label>
+                  <div class="col-sm-9">
+                  <select class="form-control select2" id="tipeuser" name="tipeuser" style="width: 100%;">
+                      <?php foreach ($tipeuser as $tipeuser) { ?>
+                      <option value="<?php echo $tipeuser->id_tipeuser; ?>" <?php if ($sales->id_tipeuser == $tipeuser->id_tipeuser ){ echo "selected"; } ?> ><?php echo $tipeuser->tipeuser ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
                 </div>
               </div>

@@ -39,11 +39,9 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama sales</th>
+                  <th>No Pegawai</th>
+                  <th>Nama</th>
                   <th>Cabang</th>
-                  <th>Provinsi</th>
-                  <th>Kabupaten/Kota</th>
-                  <th>Kecamatan</th>
                   <th>Alamat</th>
                   <th>Telepon</th>
                   <th>Jabatan</th>
@@ -56,18 +54,17 @@
                   foreach ($sales as $sales) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
+                  <td><?php echo $sales->nopegawai; ?></td>
                   <td><?php echo $sales->namasales; ?></td>
-                  <td><?php echo $sales->name_prov;?></td>
-                  <td><?php echo $sales->name_kota;?></td>
-                  <td><?php echo $sales->kecamatan;?></td>
-                  <td><?php echo $sales->alamat;?></td>
-                  <td><?php echo $sales->tlp;?></td>
-                  <td><?php echo $sales->jabatan;?></td>
+                  <td><?php echo $sales->namacabang; ?></td>
+                  <td><?php echo $sales->alamat.', '.$sales->name_kota.', '.$sales->name_prov; ?></td>
+                  <td><?php echo $sales->tlp; ?></td>
+                  <td><?php echo $sales->jabatan; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_sales/view/'.$sales->id_sales); ?>"><button type="button" class="btn btn-success">Lihat</button></a>
-                      <a href="<?php echo site_url('C_sales/edit/'.$sales->id_sales); ?>"><button type="button" class="btn btn-info">Edit</button></a>
-                      <a href="<?php echo site_url('C_sales/hapus/'.$sales->id_sales); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
+                      <a href="<?php echo site_url('C_sales/view/'.$sales->id_user); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('C_sales/edit/'.$sales->id_user); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('C_sales/hapus/'.$sales->id_user); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>

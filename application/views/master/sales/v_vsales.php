@@ -75,6 +75,12 @@
                     <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?php echo $sales->jabatan ?>" readonly>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tipe User</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="tipeuser" name="tipeuser" value="<?php echo $sales->tipeuser ?>" readonly>
+                  </div>
+                </div>
               </div>
               <?php } ?>
               <!-- /.box-body -->

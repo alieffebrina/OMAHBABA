@@ -7,6 +7,9 @@ class C_User extends CI_Controller{
         $this->load->library('session');
         $this->load->model('M_User');
         $this->load->model('M_Setting');
+        if(!$this->session->userdata('id_user')){
+            redirect('C_Login');
+        }
     }
 
     function index()
@@ -55,6 +58,7 @@ class C_User extends CI_Controller{
         $data['cabang'] = $this->M_Setting->getcabangss();
         $data['tipeuser'] = $this->M_User->gettipeuser();
         $this->load->view('master/user/v_adduser', $data); 
+        $this->load->view('master/user/v_modal');
         $this->load->view('template/footer');
     }
 

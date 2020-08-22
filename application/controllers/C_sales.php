@@ -6,6 +6,7 @@ class C_sales extends CI_Controller{
         $this->load->helper(array('form','url'));
         $this->load->library('session');
         $this->load->model('M_sales');
+        $this->load->model('M_User');
         $this->load->model('M_Setting');
         if(!$this->session->userdata('id_user')){
             redirect('C_Login');
@@ -26,13 +27,42 @@ class C_sales extends CI_Controller{
     function add()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+        $modul = 'sales';
+        $kode = $this->M_Setting->cekkode($modul);
+        foreach ($kode as $modul) {
+            $a = $modul->kodefinal;
+            date_default_timezone_set('Asia/Jakarta');
+            $tgl = date('dmY');
+            $a = str_replace("tanggal", $tgl, $a);
+            $data = $this->M_sales->getsales();
+            $id = count($data)+1;
+            $a = str_replace("no", $id, $a);
+        }
+        $idnama = $this->session->userdata('nama');
+        $name = str_replace("username", $idnama, $a);
+        $data['kode'] = $name;
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['cabang'] = $this->M_Setting->getcabangss();
+        $data['tipeuser'] = $this->M_User->gettipeuser();
         $this->load->view('master/sales/v_addsales', $data); 
+        $this->load->view('master/user/v_modal');
         $this->load->view('template/footer');
+    }
+
+    function cek_saleskode(){
+        $tabel = 'tb_sales';
+        $cek = 'nopegawai';
+        $kode = $this->input->post('nopegawai');
+        $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
+        if(count($hasil_kode)!=0){ 
+            echo '1';
+        }else{
+            echo '2';
+        }
+         
     }
 
     function cek_sales(){
@@ -60,11 +90,11 @@ class C_sales extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_sales->tambahdata($id);
-        // $data = $this->M_sales->cekkodesales();
-        // foreach ($data as $id) {
-        //     $id =$id;
-        //     $this->M_sales->tambahakses($id);
-        // }
+        
+        $id_submenu = '1';
+        $ket = 'tambah data sales';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_sales');
     }
@@ -89,6 +119,7 @@ class C_sales extends CI_Controller{
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['cabang'] = $this->M_Setting->getcabangss();
         $data['sales'] = $this->M_sales->getspek($iduser);
+        $data['tipeuser'] = $this->M_User->gettipeuser();
         $this->load->view('master/sales/v_esales',$data); 
         $this->load->view('template/footer');
     }
@@ -98,6 +129,11 @@ class C_sales extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_sales->edit($id);
+
+        $id_submenu = '2';
+        $ket = 'edit tipe sales';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_sales');
     }
@@ -105,6 +141,12 @@ class C_sales extends CI_Controller{
     function hapus($id){
         $where = array('id_sales' => $id);
         $this->M_Setting->delete($where,'tb_sales');
+
+        $ida = $this->session->userdata('id_user');
+        $id_submenu = '2';
+        $ket = 'hapus data sales '.$id;
+        $this->M_Setting->userlog($ida, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_sales');
     }

@@ -1,15 +1,15 @@
-<!-- Content Wrapper. Contains page content -->
+ <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data sales
+        Data Sales
         <small>Tambah</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
-        <li><a href="<?php echo site_url('C_sales'); ?>">Data sales</a></li>>
-        <li class="active">Tambah Data sales</li>
+        <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i>Data Master</a></li>
+        <li><a href="<?php echo site_url('C_sales'); ?>">Data Sales</a></li>
+        <li class="active">Tambah Data Sales</li>
       </ol>
     </section>
 
@@ -21,16 +21,23 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tambah Data sales</h3>
+              <h3 class="box-title">Tambah Data Sales</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" method="POST" action="<?php echo site_url('C_sales/tambah')?>">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama sales</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">No Pegawai</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="namasales" name="namasales" placeholder="Nama sales">
+                    <input type="text" class="form-control" id="nopegawai" name="nopegawai" placeholder="No Pegawai" value="<?php echo $kode ?>" onkeyup="cek_saleskode()">
+                  <span id="pesankodeSales"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="namasales" name="namasales" placeholder="Nama Sales">
                   </div>
                 </div>
                 <div class="form-group">
@@ -78,7 +85,7 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Telepon</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon"  maxlength="12" minlength="12" placeholder="Telepons">
+                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon" maxlength="12" minlength="6" onkeypress="return Angkasaja(event)">
                   </div>
                 </div>
                 <div class="form-group">
@@ -87,12 +94,30 @@
                     <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan Pegawai">
                   </div>
                 </div>
-              </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Tipe Sales</label>
+                  <div class="col-sm-9">
+                  <div class="input-group input-group-sm">
+                    <select class="form-control select2" id="tipeuser" name="tipeuser" style="width: 100%;">
+                      <option value="">--Pilih--</option>
+                      <?php foreach ($tipeuser as $tipeuser) { ?>
+                      <option value="<?php echo $tipeuser->id_tipeuser?>"><?php echo $tipeuser->tipeuser ?></option>
+                      <?php } ?>
+                    </select>
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modaltipeuser">
+                            Tambah
+                          </button>
+                        </span>
+                  </div>
+                    
+                  </div>
+                </div>
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
                     <a href="<?php echo site_url('C_sales/index'); ?>" class="btn btn-default">Batal</a>
-                    <button type="submit" class="btn btn-info">Simpan Data</button>
+                    <button type="submit" class="btn btn-info">Tambah Data</button>
                   </div>
               </div>
               <!-- /.box-footer -->
