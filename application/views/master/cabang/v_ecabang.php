@@ -33,15 +33,15 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama cabang</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="namacabang" name="namacabang" value="<?php echo $cabang->namacabang ?>">
+                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $cabang->id_cabang ?>">
                   </div>
                 </div>
                  <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="gudang" name="gudang" style="width: 100%;">
-                      <option value="<?php echo $cabang->id_gudang ?>"><?php echo $cabang->gudang ?></option>
                       <?php foreach ($gudang as $gudang) { ?>
-                      <option value="<?php echo $gudang->id_gudang ?>"><?php echo $gudang->gudang ?></option>
+                      <option value="<?php echo $gudang->id_gudang; ?>" <?php if ($cabang->id_gudang == $gudang->id_gudang ){ echo "selected"; } ?> ><?php echo $gudang->gudang ?></option>
                       <?php } ?>
                     </select>
                   </div>
@@ -50,9 +50,8 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="prov" name="prov" style="width: 100%;">
-                      <option value="<?php echo $cabang->id_provinsi ?>"><?php echo $cabang->name_prov ?></option>
                       <?php foreach ($provinsi as $provinsi) { ?>
-                      <option value="<?php echo $provinsi->id_provinsi ?>"><?php echo $provinsi->name_prov ?></option>
+                      <option value="<?php echo $provinsi->id_provinsi; ?>" <?php if ($cabang->id_provinsi == $provinsi->id_provinsi ){ echo "selected"; } ?> ><?php echo $provinsi->name_prov ?></option>
                       <?php } ?>
                     </select>
                   </div>

@@ -3,7 +3,7 @@
 class M_cabang extends CI_Model {
 
 	function getcabang(){
-		$this->db->select('*');
+		$this->db->select('tb_cabang.*, tb_gudang.gudang, tb_kecamatan.*, tb_kota.name_kota,tb_provinsi.name_prov');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_cabang.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_cabang.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_cabang.id_kecamatan');
@@ -24,7 +24,6 @@ class M_cabang extends CI_Model {
         $harga_str = preg_replace("/[^0-9]/", "", $harga);
 
         $cabang = array(
-            'id_user' => $id,
             'namacabang' => $this->input->post('namacabang'),
             'id_gudang' => $this->input->post('gudang'),
             'id_provinsi' => $this->input->post('prov'),
@@ -33,7 +32,7 @@ class M_cabang extends CI_Model {
             'alamat' => $this->input->post('alamat'),
             'tlf' => $this->input->post('tlf'),
             'email' => $this->input->post('email'),
-            'id_user' => $id,
+            'user' => $id,
             'tglupdate' => date('Y-m-d')
         );
         
@@ -58,7 +57,7 @@ class M_cabang extends CI_Model {
     //}
 
     function getspek($iduser){
-		$this->db->select('*');
+        $this->db->select('tb_cabang.*, tb_gudang.gudang, tb_kecamatan.*, tb_kota.name_kota,tb_provinsi.name_prov');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_cabang.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_cabang.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_cabang.id_kecamatan');
@@ -72,8 +71,6 @@ class M_cabang extends CI_Model {
 
     function edit($id){
         $cabang = array(
-
-            'id_user' => $id,
             'namacabang' => $this->input->post('namacabang'),
             'id_gudang' => $this->input->post('gudang'),
             'id_provinsi' => $this->input->post('prov'),
@@ -82,7 +79,7 @@ class M_cabang extends CI_Model {
             'alamat' => $this->input->post('alamat'),
             'tlf' => $this->input->post('tlf'),
             'email' => $this->input->post('email'),
-            'id_user' => $id,
+            'user' => $id,
             'tglupdate' => date('Y-m-d')
         );
 

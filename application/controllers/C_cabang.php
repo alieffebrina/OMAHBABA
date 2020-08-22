@@ -29,6 +29,7 @@ class C_cabang extends CI_Controller{
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['gudang'] = $this->M_Setting->getgudang();
         $this->load->view('master/cabang/v_addcabang', $data); 
+        $this->load->view('master/user/v_modal');
         $this->load->view('template/footer');
     }
 

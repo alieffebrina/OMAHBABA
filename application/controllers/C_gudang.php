@@ -69,6 +69,25 @@ class C_gudang extends CI_Controller{
         redirect('C_gudang');
     }
 
+    public function tambahgudang()
+    {   
+        $id = $this->session->userdata('id_user');
+        $this->M_gudang->tambahdata($id);
+
+        $id_submenu = '39';
+        $ket = 'tambah data gudang';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $data = $this->M_gudang->getgudang();
+            $lists = "<option value=''>Pilih</option>";
+        foreach($data as $data){
+              $lists .= "<option value=".$data->id_gudang.">".$data->gudang."</option>"; // Tambahkan tag option ke variabel $lists
+            }
+        $callback = array('list_gudang'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+        echo json_encode($callback); // konversi varibael $callback menjadi JSON
+
+    }
+
     function view($ida)
     {
         $this->load->view('template/header');

@@ -130,6 +130,41 @@
 })
 </script>
 <script>
+  $(document).ready(function(){
+  
+  $('#btnsimpangudang').click(function(){ // Ketika tombol simpan di klik
+    $.ajax({
+      url: "<?php echo base_url("index.php/C_gudang/tambahgudang"); ?>", // Isi dengan url/path file php yang dituju
+      type: 'POST', // Tentukan type nya POST atau GET
+      data: {gudang : $("#gudang").val(),
+      prov: $("#provmodal").val(),
+      kota: $("#kotamodal").val(),
+      kecamatan: $("#kecmodal").val(),
+      alamat: $("#alamatgudang").val(),
+      tlf: $("#tlfgudang").val(),
+      email: $("#emailgudang").val(),
+      }, // Ambil semua data yang ada didalam tag form
+      dataType: 'json',
+      beforeSend: function(e) {
+        if(e && e.overrideMimeType) {
+          e.overrideMimeType('application/jsoncharset=UTF-8')
+        }
+      },
+      success: function(response){ // Ketika proses pengiriman berhasil
+          $('.close').click(); // Close / Tutup Modal Dialog
+          $("#modalgudang").html(response.list_gudang).show();
+      },
+      error: function (xhr, ajaxOptions, thrownError) { // Ketika terjadi error
+        alert(xhr.responseText) // munculkan alert
+      }
+    })
+  })
+  $('#modaladdgudang').on('hidden.bs.modal', function (e){ // Ketika Modal Dialog di Close / tertutup
+    $('#modaladdgudang input').val('') // Clear inputan menjadi kosong
+  })
+})
+</script>
+<script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
     $("#prov").change(function(){ // Ketika user mengganti atau memilih data provinsi
@@ -156,7 +191,6 @@
     });
   });
   </script>
-
 <script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
@@ -176,6 +210,62 @@
           // set isi dari combobox kota
           // lalu munculkan kembali combobox kotanya
           $("#kecamatan").html(response.list_kec).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+        }
+      });
+    });
+  });
+  </script>
+
+<script>
+  $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
+    // Kita sembunyikan dulu untuk loadingnya
+    $("#provmodal").change(function(){ // Ketika user mengganti atau memilih data provinsi
+    
+      $.ajax({
+        type: "POST", // Method pengiriman data bisa dengan GET atau POST
+        url: "<?php echo base_url("index.php/C_Setting/get_kota"); ?>", // Isi dengan url/path file php yang dituju
+        data: {id_provinsi : $("#provmodal").val()}, // data yang akan dikirim ke file yang dituju
+        dataType: "json",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ // Ketika proses pengiriman berhasil
+          // set isi dari combobox kota
+          // lalu munculkan kembali combobox kotanya
+          $("#kotamodal").html(response.list_kota).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+        }
+      });
+    });
+  });
+  </script>
+
+<script>
+  $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
+    // Kita sembunyikan dulu untuk loadingnya
+    $("#kotamodal").change(function(){ // Ketika user mengganti atau memilih data provinsi
+    
+      $.ajax({
+        type: "POST", // Method pengiriman data bisa dengan GET atau POST
+        url: "<?php echo base_url("index.php/C_Setting/get_kecamatan"); ?>", // Isi dengan url/path file php yang dituju
+        data: {id_kota : $("#kotamodal").val()}, // data yang akan dikirim ke file yang dituju
+        dataType: "json",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ // Ketika proses pengiriman berhasil
+          // set isi dari combobox kota
+          // lalu munculkan kembali combobox kotanya
+          $("#kecmodal").html(response.list_kec).show();
         },
         error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
           alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error

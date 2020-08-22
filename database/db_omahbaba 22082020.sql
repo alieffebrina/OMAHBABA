@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Agu 2020 pada 17.10
+-- Waktu pembuatan: 22 Agu 2020 pada 18.23
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.31
 
@@ -128,7 +128,8 @@ CREATE TABLE `tb_cabang` (
 --
 
 INSERT INTO `tb_cabang` (`id_cabang`, `namacabang`, `id_gudang`, `id_kota`, `id_kecamatan`, `id_provinsi`, `alamat`, `tlf`, `email`, `user`, `tglupdate`) VALUES
-(1, 'cabang brebes', 1, '5107', '5107040', '51', 'bali', '1232112', 'asd@asd', 1, '2020-08-20');
+(1, 'cabang brebes', 1, '5107', '5107040', '51', 'bali', '1232112', 'asd@asd', 1, '2020-08-20'),
+(2, 'cabang b ', 3, '5101', '5101030', '51', 'sad', '13123123', 'asda@asd', 1, '2020-08-22');
 
 -- --------------------------------------------------------
 
@@ -214,7 +215,8 @@ CREATE TABLE `tb_gudang` (
 --
 
 INSERT INTO `tb_gudang` (`id_gudang`, `gudang`, `alamat`, `tlf`, `email`, `id_kota`, `id_kecamatan`, `id_provinsi`, `id_user`, `tglupdate`) VALUES
-(1, 'pusat', 'brebes', '1232112', 'ad@ads', '3329', '3329170', '33', 1, '2020-08-20');
+(1, 'pusat', 'brebes', '1232112', 'ad@ads', '3329', '3329170', '33', 1, '2020-08-20'),
+(3, 'gudang a', '', '', '', '3171', '3171050', '31', 1, '2020-08-22');
 
 -- --------------------------------------------------------
 
@@ -8389,7 +8391,19 @@ INSERT INTO `tb_userlog` (`id_userlog`, `id_user`, `waktu`, `id_submenu`, `ket`)
 (48, 1, '2020-08-22 21:26:02', 0, 'Login'),
 (49, 8, '2020-08-22 09:42:02', 39, 'edit data gudang'),
 (50, 8, '2020-08-22 09:42:48', 39, 'edit data gudang'),
-(51, 2, '2020-08-22 09:42:49', 39, 'hapus data gudang');
+(51, 2, '2020-08-22 09:42:49', 39, 'hapus data gudang'),
+(52, 8, '2020-08-22 22:15:58', 0, 'Logout'),
+(53, 1, '2020-08-22 22:16:02', 0, 'Login'),
+(54, 1, '2020-08-22 11:11:01', 39, 'tambah data gudang'),
+(55, 1, '2020-08-22 11:12:36', 32, 'tambah data cabang'),
+(56, 1, '2020-08-22 11:12:50', 32, 'edit data cabang'),
+(57, 1, '2020-08-22 11:13:41', 32, 'edit data cabang'),
+(58, 1, '2020-08-22 11:13:56', 32, 'tambah data cabang'),
+(59, 1, '2020-08-22 11:16:50', 32, 'edit data cabang'),
+(60, 1, '2020-08-22 11:16:55', 32, 'edit data cabang'),
+(61, 1, '2020-08-22 11:17:15', 32, 'edit data cabang'),
+(62, 1, '2020-08-22 11:22:40', 32, 'edit data cabang'),
+(63, 3, '2020-08-22 11:22:43', 32, 'hapus data cabang3');
 
 -- --------------------------------------------------------
 
@@ -8639,7 +8653,7 @@ ALTER TABLE `tb_barang`
 -- AUTO_INCREMENT untuk tabel `tb_cabang`
 --
 ALTER TABLE `tb_cabang`
-  MODIFY `id_cabang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cabang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_dtljual`
@@ -8663,7 +8677,7 @@ ALTER TABLE `tb_dtlreturjual`
 -- AUTO_INCREMENT untuk tabel `tb_gudang`
 --
 ALTER TABLE `tb_gudang`
-  MODIFY `id_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_gudang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_harga`
@@ -8783,7 +8797,7 @@ ALTER TABLE `tb_tipeuser`
 -- AUTO_INCREMENT untuk tabel `tb_userlog`
 --
 ALTER TABLE `tb_userlog`
-  MODIFY `id_userlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_userlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_voucher`
