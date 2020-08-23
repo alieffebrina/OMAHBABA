@@ -93,9 +93,9 @@
                   <td><?php echo $satuan->satuan; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_satuan/view/'.$satuan->id_satuan); ?>"><button type="button" class="btn btn-success">Lihat</button></a>
-                      <a href="<?php echo site_url('C_satuan/edit/'.$satuan->id_satuan); ?>"><button type="button" class="btn btn-info">Edit</button></a>
-                      <a href="<?php echo site_url('C_satuan/hapus/'.$satuan->id_satuan); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
+                      <a href="<?php echo site_url('C_satuan/view/'.$satuan->id_satuan); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('C_satuan/edit/'.$satuan->id_satuan); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('C_satuan/hapus/'.$satuan->id_satuan); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>
