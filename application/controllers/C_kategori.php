@@ -7,15 +7,12 @@ class C_kategori extends CI_Controller{
         $this->load->library('session');
         $this->load->model('M_kategori');
         $this->load->model('M_Setting');
-        if(!$this->session->userdata('id_user')){
-            redirect('C_Login');
-        }
     }
 
     function index()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kategori'] = $this->M_kategori->getkategori();
@@ -26,7 +23,7 @@ class C_kategori extends CI_Controller{
     function add()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kategori'] = $this->M_Setting->getkategori();
@@ -58,24 +55,43 @@ class C_kategori extends CI_Controller{
     {   
 
         $id = $this->session->userdata('id_user');
-        $cek= $this->M_kategori->tambahdata($id);
-        // $data = $this->M_satuan->cekkodesatuan();
-        // foreach ($data as $id) {
-        //     $id =$id;
-        //     $this->M_satuan->tambahakses($id);
-        // }
+        $cek = $this->M_kategori->tambahdata($id);
+
+        $id_submenu = '4';
+        $ket = 'tambah data kategori';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         if($cek){
-            $this->session->set_flashdata('Sukses', "Data Kategori Berhasil Di Tambahkan.");
-        }else{
             $this->session->set_flashdata('Sukses', "Data Kategori Tidak Boleh Sama Ataupun Kosong.");
+        }else{
+            $this->session->set_flashdata('Sukses', "Data Kategori Berhasil Di Tambahkan.");
         }
-        redirect('C_kategori/add');
+        redirect('C_kategori');
+    }
+
+    public function tambahkategori()
+    {   
+        $id = $this->session->userdata('id_user');
+        $this->M_kategori->tambahdata($id);
+
+        $id_submenu = '4';
+        $ket = 'tambah data kategori';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $data = $this->M_kategori->getkategori();
+            $lists = "<option value=''>Pilih</option>";
+        foreach($data as $data){
+              $lists .= "<option value=".$data->id_kategori.">".$data->kategori."</option>"; // Tambahkan tag option ke variabel $lists
+            }
+        $callback = array('list_kategori'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+        echo json_encode($callback); // konversi varibael $callback menjadi JSON
+
     }
 
     function view($ida)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kategori'] = $this->M_kategori->getspek($ida);
@@ -86,10 +102,9 @@ class C_kategori extends CI_Controller{
     function edit($iduser)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        //$data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['kategori'] = $this->M_kategori->getspek($iduser);
         $this->load->view('master/kategori/v_ekategori',$data); 
         $this->load->view('template/footer');
@@ -100,15 +115,25 @@ class C_kategori extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_kategori->edit($id);
-        $this->session->set_flashdata('Sukses', "Data Kategori Berhasil Di Perbarui.");
-        redirect('C_kategori/add');
+
+        $id_submenu = '4';
+        $ket = 'edit data kategori';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $this->session->set_flashdata('Sukses', "Data Kategori Berhasil Di Perbarui");
+        redirect('C_kategori');
     }
 
     function hapus($id){
         $where = array('id_kategori' => $id);
         $this->M_Setting->delete($where,'tb_kategori');
-        $this->session->set_flashdata('Sukses', "Data Kategori Berhasil Di Hapus.");
-        redirect('C_kategori/add');
+
+        $id_submenu = '4';
+        $ket = 'hapus data kategori'.$id;
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $this->session->set_flashdata('Sukses', "Data Kategori Berhasil Di Hapus");
+        redirect('C_kategori');
     }
 
 }

@@ -57,11 +57,11 @@ class C_harga extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_harga->tambahdata($id);
-        // $data = $this->M_pelanggan->cekkodepelanggan();
-        // foreach ($data as $id) {
-        //     $id =$id;
-        //     $this->M_pelanggan->tambahakses($id);
-        // }
+        
+        $id_submenu = '28';
+        $ket = 'tambah data harga';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_harga');
     }
@@ -93,6 +93,11 @@ class C_harga extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_harga->edit($id);
+
+        $id_submenu = '28';
+        $ket = 'edit data harga';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_harga');
     }
@@ -100,6 +105,11 @@ class C_harga extends CI_Controller{
     function hapus($id){
         $where = array('id_harga' => $id);
         $this->M_Setting->delete($where,'tb_harga');
+
+        $id_submenu = '28';
+        $ket = 'hapus data harga'.$id;
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_harga');
     }
