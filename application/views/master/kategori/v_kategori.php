@@ -13,10 +13,10 @@
       </ol>
     </section>
     <div class="box-body">
-    <?php if ($this->session->flashdata('SUCCESS')) { ?>
+    <?php if ($this->session->flashdata('Sukses')) { ?>
        <div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h5><i class="icon fa fa-check"></i> Success!</h5>
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
           Data berhasil di perbarui.
         </div>                 
       <?php } ?>
@@ -28,6 +28,9 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Kategori Barang</h3>
+            </div>
+            <div class="box-header">
+              <a href="<?php echo site_url('C_kategori/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
             </div>
             <!-- /.box-header -->
 
