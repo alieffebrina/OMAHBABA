@@ -164,6 +164,161 @@
   })
 })
 </script>
+
+<script>
+  $(document).ready(function(){
+  
+  $('#btnsimpancabang').click(function(){ // Ketika tombol simpan di klik
+    $.ajax({
+      url: "<?php echo base_url("index.php/C_cabang/tambahcabang"); ?>", // Isi dengan url/path file php yang dituju
+      type: 'POST', // Tentukan type nya POST atau GET
+      data: {namacabang : $("#namacabang").val(),
+      gudang: $("#gudangmodal").val(),
+      prov: $("#provmodal").val(),
+      kota: $("#kotamodal").val(),
+      kecamatan: $("#kecmodal").val(),
+      alamat: $("#alamatcabang").val(),
+      tlf: $("#tlfcabang").val(),
+      email: $("#emailcabang").val(),
+      }, // Ambil semua data yang ada didalam tag form
+      dataType: 'json',
+      beforeSend: function(e) {
+        if(e && e.overrideMimeType) {
+          e.overrideMimeType('application/jsoncharset=UTF-8')
+        }
+      },
+      success: function(response){ // Ketika proses pengiriman berhasil
+          $('.close').click(); // Close / Tutup Modal Dialog
+          $("#modalnamacabang").html(response.list_namacabang).show();
+      },
+      error: function (xhr, ajaxOptions, thrownError) { // Ketika terjadi error
+        alert(xhr.responseText) // munculkan alert
+      }
+    })
+  })
+  $('#modaladdnamacabang').on('hidden.bs.modal', function (e){ // Ketika Modal Dialog di Close / tertutup
+    $('#modaladdnamacabang input').val('') // Clear inputan menjadi kosong
+  })
+})
+ </script>
+
+<script>
+  $(document).ready(function(){
+  
+  $('#btnsimpankategori').click(function(){ // Ketika tombol simpan di klik
+    $.ajax({
+      url: "<?php echo base_url("index.php/C_kategori/tambahkategori"); ?>", // Isi dengan url/path file php yang dituju
+      type: 'POST', // Tentukan type nya POST atau GET
+      data: {kategori : $("#kategori").val(),
+      }, // Ambil semua data yang ada didalam tag form
+      dataType: 'json',
+      beforeSend: function(e) {
+        if(e && e.overrideMimeType) {
+          e.overrideMimeType('application/jsoncharset=UTF-8')
+        }
+      },
+      success: function(response){ // Ketika proses pengiriman berhasil
+          $('.close').click(); // Close / Tutup Modal Dialog
+          $("#modalkategori").html(response.list_kategori).show();
+      },
+      error: function (xhr, ajaxOptions, thrownError) { // Ketika terjadi error
+        alert(xhr.responseText) // munculkan alert
+      }
+    })
+  })
+  $('#modaladdkategori').on('hidden.bs.modal', function (e){ // Ketika Modal Dialog di Close / tertutup
+    $('#modaladdkategori input').val('') // Clear inputan menjadi kosong
+  })
+})
+</script>
+
+<script>
+  $(document).ready(function(){
+  
+  $('#btnsimpansatuan').click(function(){ // Ketika tombol simpan di klik
+    $.ajax({
+      url: "<?php echo base_url("index.php/C_satuan/tambahsatuan"); ?>", // Isi dengan url/path file php yang dituju
+      type: 'POST', // Tentukan type nya POST atau GET
+      data: {satuan : $("#satuan").val(),
+      }, // Ambil semua data yang ada didalam tag form
+      dataType: 'json',
+      beforeSend: function(e) {
+        if(e && e.overrideMimeType) {
+          e.overrideMimeType('application/jsoncharset=UTF-8')
+        }
+      },
+      success: function(response){ // Ketika proses pengiriman berhasil
+          $('.close').click(); // Close / Tutup Modal Dialog
+          $("#modalsatuan").html(response.list_satuan).show();
+      },
+      error: function (xhr, ajaxOptions, thrownError) { // Ketika terjadi error
+        alert(xhr.responseText) // munculkan alert
+      }
+    })
+  })
+  $('#modaladdsatuan').on('hidden.bs.modal', function (e){ // Ketika Modal Dialog di Close / tertutup
+    $('#modaladdsatuan input').val('') // Clear inputan menjadi kosong
+  })
+})
+</script>
+
+<script>
+  $(document).ready(function(){
+  
+  $('#btnsimpanwarna').click(function(){ // Ketika tombol simpan di klik
+    $.ajax({
+      url: "<?php echo base_url("index.php/C_warna/tambahwarna"); ?>", // Isi dengan url/path file php yang dituju
+      type: 'POST', // Tentukan type nya POST atau GET
+      data: {warna : $("#warna").val(),
+      }, // Ambil semua data yang ada didalam tag form
+      dataType: 'json',
+      beforeSend: function(e) {
+        if(e && e.overrideMimeType) {
+          e.overrideMimeType('application/jsoncharset=UTF-8')
+        }
+      },
+      success: function(response){ // Ketika proses pengiriman berhasil
+          $('.close').click(); // Close / Tutup Modal Dialog
+          $("#modalwarna").html(response.list_kategori).show();
+      },
+      error: function (xhr, ajaxOptions, thrownError) { // Ketika terjadi error
+        alert(xhr.responseText) // munculkan alert
+      }
+    })
+  })
+  $('#modaladdwarna').on('hidden.bs.modal', function (e){ // Ketika Modal Dialog di Close / tertutup
+    $('#modaladdwarna input').val('') // Clear inputan menjadi kosong
+  })
+})
+</script>
+
+<script>
+  $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
+    // Kita sembunyikan dulu untuk loadingnya
+    $("#gudang").change(function(){ // Ketika user mengganti atau memilih data provinsi
+    
+      $.ajax({
+        type: "POST", // Method pengiriman data bisa dengan GET atau POST
+        url: "<?php echo base_url("index.php/C_Setting/get_cabang"); ?>", // Isi dengan url/path file php yang dituju
+        data: {id_gudang : $("#gudang").val()}, // data yang akan dikirim ke file yang dituju
+        dataType: "json",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ // Ketika proses pengiriman berhasil
+          // set isi dari combobox kota
+          // lalu munculkan kembali combobox kotanya
+          $("#namacabang").html(response.list_namacabang).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+        }
+      });
+    });
+  });
+  </script>
 <script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
@@ -218,6 +373,10 @@
     });
   });
   </script>
+
+<script>
+
+</script>
 
 <script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
@@ -326,6 +485,7 @@
           if($("#kredit").is(':checked')){
             $('#limit').val(response.limit_pelanggan);
           }
+          // $("#nama").html(response.list_pelanggan).show();
           $("#alamat").html(response.list_alamat).show();
         },
         error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
@@ -695,6 +855,66 @@
          
     }
      
+</script>
+
+<script type='text/javascript'>
+    var error = 1; 
+    function cek_pelanggankode(){
+        $("#pesankodepelanggan").hide();
+        var nopelanggan = $("#nopelanggan").val();
+        if(nopelanggan != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_pelanggan/cek_pelanggankode'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'nopelanggan='+nopelanggan,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesankodepelanggan").css("color","#fc5d32");
+                        $("#nopelanggan").css("border-color","#fc5d32");
+                        $("#pesankodepelanggan").html("Kode Suplier sudah digunakan !");
+ 
+                        error = 1;
+                    }else{
+                        $("#pesankodepelanggan").css("color","#59c113");
+                        $("#nopelanggan").css("border-color","#59c113");
+                        $("#pesankodepelanggan").html("");
+                        error = 0;
+                    }
+                    $("#pesankodepelanggan").fadeIn(1000);
+                }
+            });
+        }       
+    }
+</script>
+
+<script type='text/javascript'>
+    var error = 1; 
+    function cek_voucherkode(){
+        $("#pesankodevoucher").hide();
+        var kodevoucher = $("#kodevoucher").val();
+        if(kodevoucher != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_voucher/cek_voucherkode'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'kodevoucher='+kodevoucher,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesankodevoucher").css("color","#fc5d32");
+                        $("#kodevoucher").css("border-color","#fc5d32");
+                        $("#pesankodevoucher").html("Username sudah digunakan !");
+ 
+                        error = 1;
+                    }else{
+                        $("#pesankodevoucher").css("color","#59c113");
+                        $("#kodevoucher").css("border-color","#59c113");
+                        $("#pesankodevoucher").html("");
+                        error = 0;
+                    }
+                    $("#pesankodevoucher").fadeIn(1000);
+                }
+            });
+        }       
+    }
 </script>
 
 <script type='text/javascript'>
@@ -1185,6 +1405,15 @@ function toggle(source) {
       //   // tambahkan 'Rp.' pada saat form di ketik
       //   // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
         rupiah.value = formatRupiah(this.value, 'Rp. ');
+      });
+    }
+
+    var rupiahh = document.getElementById('rupiahh');
+    if(rupiahh){
+      rupiahh.addEventListener('keyup', function(e){
+      //   // tambahkan 'Rp.' pada saat form di ketik
+      //   // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+        rupiahh.value = formatRupiah(this.value, 'Rp. ');
       });
     }
 
