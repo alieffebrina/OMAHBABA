@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data pelanggan
+        Data Voucher
         <small>Edit</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
-        <li><a href="<?php echo site_url('C_Pelanggan'); ?>">Data pelanggan</a></li>>
-        <li class="active">Lihat Data pelanggan</li>
+        <li><a href="<?php echo site_url('C_voucher'); ?>">Data Voucher</a></li>>
+        <li class="active">Lihat Data Voucher</li>
       </ol>
     </section>
 
@@ -21,64 +21,56 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Lihat Data pelanggan</h3>
+              <h3 class="box-title">Lihat Data Voucher</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="<?php echo site_url('C_Pelanggan/editpelanggan')?>">
+            <form class="form-horizontal" method="POST" action="<?php echo site_url('C_voucher/editvoucher')?>">
               <div class="box-body">
-                <?php foreach ($pelanggan as $pelanggan) { ?>
+                <?php foreach ($voucher as $voucher) { ?>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pelanggan</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Kode Voucher</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $pelanggan->nama ?>">
-                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $pelanggan->id_pelanggan ?>">
+                    <input type="text" class="form-control" id="kodevoucher" name="kodevoucher" readonly value="<?php echo $voucher->kodevoucher ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Voucher</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="namavoucher" name="nama" value="<?php echo $voucher->nama ?>">
+                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $voucher->id_voucher ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Keterangan</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" rows="3" id="ket" name="ket"><?php echo $voucher->ket ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Min. Pembelian</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="rupiah" name="rupiah" value=" Rp. <?php echo number_format($voucher->minpembelian,0,",","."); ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Mulai</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="tglmulai" name="tglmulai" value="<?php echo date($voucher->tglmulai); ?>">
+                    <!-- <input type="date" class="form-control" id="tglmulai" name="tglmulai" value="<?php echo date('d-m-Y')?>"> -->
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Akhir</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="tglakhir" name="tglakhir" value="<?php echo date($voucher->tglakhir); ?>">
                   </div>
                 </div>
                 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">DisKon</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="prov" name="prov" style="width: 100%;">
-                      <option value="<?php echo $pelanggan->id_provinsi ?>"><?php echo $pelanggan->name_prov ?></option>
-                      <?php foreach ($provinsi as $provinsi) { ?>
-                      <option value="<?php echo $provinsi->id_provinsi ?>"><?php echo $provinsi->name_prov ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kota/Kabupaten</label>
-                  <div class="col-sm-9">
-                  <select class="form-control select2" id="kota" name="kota" style="width: 100%;">
-                      <option value="<?php echo $pelanggan->id_kota ?>"><?php echo $pelanggan->name_kota ?></option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
-                  <div class="col-sm-9">
-                  <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;">
-                      <option value="<?php echo $pelanggan->id_kecamatan ?>"><?php echo $pelanggan->kecamatan ?></option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Alamat</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" id="alamat" name="alamat"><?php echo $pelanggan->alamat ?></textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Telepon</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon"  maxlength="12" minlength="12" value="<?php echo $pelanggan->tlp ?>">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Limit</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="rupiah" name="rupiah" value=" Rp. <?php echo number_format($pelanggan->limit,0,",","."); ?>">
+                    <input type="text" class="form-control" id="rupiahh" name="rupiahh" value=" Rp. <?php echo number_format($voucher->discount,0,",","."); ?>">
                   </div>
                 </div>
               </div>
@@ -86,7 +78,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('C_Pelanggan/index'); ?>" class="btn btn-default">Batal</a>
+                    <a href="<?php echo site_url('C_voucher/index'); ?>" class="btn btn-default">Batal</a>
                     <button type="submit" class="btn btn-info">Simpan Data</button>
                   </div>
               </div>

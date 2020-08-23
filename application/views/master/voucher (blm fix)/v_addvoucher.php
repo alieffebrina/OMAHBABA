@@ -1,15 +1,15 @@
-<!-- Content Wrapper. Contains page content -->
+ <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Pelanggan
+        Data Voucher
         <small>Tambah</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
-        <li><a href="<?php echo site_url('C_Pelanggan'); ?>">Data Pelanggan</a></li>>
-        <li class="active">Tambah Data Pelanggan</li>
+        <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i>Data Master</a></li>
+        <li><a href="<?php echo site_url('C_voucher'); ?>">Data Voucher</a></li>
+        <li class="active">Tambah Data Voucher</li>
       </ol>
     </section>
 
@@ -21,68 +21,65 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tambah Data Pelanggan</h3>
+              <h3 class="box-title">Tambah Data Voucher</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="<?php echo site_url('C_Pelanggan/tambah')?>">
+            <form class="form-horizontal" method="POST" action="<?php echo site_url('C_voucher/tambah')?>">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pelanggan</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Kode Voucher</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Pelanggan">
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
-                  <div class="col-sm-9">
-                    <select class="form-control select2" id="prov" name="prov" style="width: 100%;">
-                      <option value="">--Pilih--</option>
-                      <?php foreach ($provinsi as $provinsi) { ?>
-                      <option value="<?php echo $provinsi->id_provinsi ?>"><?php echo $provinsi->name_prov ?></option>
-                      <?php } ?>
-                    </select>
+                    <input type="text" class="form-control" id="kodevoucher" name="kodevoucher" placeholder="Kode Voucher" value="<?php echo $kode ?>" onkeyup="cek_voucherkode()" readonly>
+                  <span id="pesankodevoucher"></span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kota/Kabupaten</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Voucher</label>
                   <div class="col-sm-9">
-                  <select class="form-control select2" id="kota" name="kota" style="width: 100%;">
-                    </select>
+                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama voucher">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Keterangan</label>
                   <div class="col-sm-9">
-                  <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;">
-                    </select>
+                    <textarea class="form-control" rows="3" id="ket" name="ket"></textarea>
                   </div>
                 </div>
+
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Alamat</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" id="alamat" name="alamat"></textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Telepon</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon"  maxlength="12" minlength="12" placeholder="Telepons">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Limit</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Min. Pembelian</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="rupiah" name="rupiah" >
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Mulai</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="tglmulai" name="tglmulai" value="<?php echo date('d-m-Y')?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Akhir</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="tglakhir" name="tglakhir" value="<?php echo date('d-m-Y')?>">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Diskon</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="rupiahh" name="rupiahh" >
+                  </div>
+                </div>
+
               </div>
+
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('C_Pelanggan/index'); ?>" class="btn btn-default">Batal</a>
-                    <button type="submit" class="btn btn-info">Simpan Data</button>
+                    <a href="<?php echo site_url('C_voucher/index'); ?>" class="btn btn-default">Batal</a>
+                    <button type="submit" class="btn btn-info">Tambah Data</button>
                   </div>
               </div>
               <!-- /.box-footer -->
