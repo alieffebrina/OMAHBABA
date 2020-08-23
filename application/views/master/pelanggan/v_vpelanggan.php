@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data pelanggan
+        Data Pelanggan
         <small>Lihat</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
-        <li><a href="<?php echo site_url('C_pelanggan'); ?>">Data pelanggan</a></li>>
-        <li class="active">Lihat Data pelanggan</li>
+        <li><a href="<?php echo site_url('C_pelanggan'); ?>">Data Pelanggan</a></li>>
+        <li class="active">Lihat Data Pelanggan</li>
       </ol>
     </section>
 
@@ -21,7 +21,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Lihat Data pelanggan</h3>
+              <h3 class="box-title">Lihat Data Pelanggan</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -29,7 +29,13 @@
               <div class="box-body">
                 <?php foreach ($pelanggan as $pelanggan) { ?>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pelanggan</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Kode pelanggan</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" readonly value="<?php echo $pelanggan->nopelanggan ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama pelanggan</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $pelanggan->nama ?>" readonly>
                   </div>
@@ -38,6 +44,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
+
                     <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" value="<?php echo $pelanggan->name_prov ?>" readonly>
                   </div>
                 </div>
@@ -46,7 +53,6 @@
                   <div class="col-sm-9"><input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" value="<?php echo $pelanggan->name_kota ?>" readonly>
                   </div>
                 </div>
-
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
                   <div class="col-sm-9"><input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" value="<?php echo $pelanggan->kecamatan ?>" readonly>
@@ -75,7 +81,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('C_Pelanggan/index'); ?>" class="btn btn-default">Kembali</a>
+                    <a href="<?php echo site_url('C_pelanggan/index'); ?>" class="btn btn-default">Kembali</a>
                   </div>
               </div>
               <!-- /.box-footer -->

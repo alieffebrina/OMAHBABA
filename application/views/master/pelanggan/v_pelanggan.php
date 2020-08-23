@@ -3,12 +3,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Pelanggan
+        Data pelanggan
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_Pelanggan'); ?>">Data Master</a></li>
+        <li><a href="<?php echo site_url('C_pelanggan'); ?>">Data Master</a></li>
         <li class="active">Data Pelanggan</li>
       </ol>
     </section>
@@ -29,6 +29,9 @@
             <div class="box-header">
               <h3 class="box-title">Data Pelanggan</h3>
             </div>
+            <div class="box-header">
+              <a href="<?php echo site_url('C_pelanggan/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
+            </div>
             <!-- /.box-header -->
 
             <div class="box-body">
@@ -36,13 +39,11 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama Pelanggan</th>
-                  <th>Provinsi</th>
-                  <th>Kabupaten/Kota</th>
-                  <th>Kecamatan</th>
+                  <th>Kode pelanggan</th>
+                  <th>Nama pelanggan</th>
                   <th>Alamat</th>
                   <th>Telepon</th>
-                  <th>Limit Piutang</th>
+                  <th>Limit Hutang</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -52,25 +53,22 @@
                   foreach ($pelanggan as $pelanggan) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
+                  <td><?php echo $pelanggan->nopelanggan; ?></td>
                   <td><?php echo $pelanggan->nama; ?></td>
-                  <td><?php echo $pelanggan->name_prov;?></td>
-                  <td><?php echo $pelanggan->name_kota;?></td>
-                  <td><?php echo $pelanggan->kecamatan;?></td>
-                  <td><?php echo $pelanggan->alamat;?></td>
+                  <td><?php echo $pelanggan->alamat.','.$pelanggan->kecamatan.','.$pelanggan->name_kota.','.$pelanggan->name_prov;?></td>
                   <td><?php echo $pelanggan->tlp;?></td>
                   <td>Rp. <?php echo number_format($pelanggan->limit,0,",","."); ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_Pelanggan/view/'.$pelanggan->id_pelanggan); ?>"><button type="button" class="btn btn-success">Lihat</button></a>
-                      <a href="<?php echo site_url('C_Pelanggan/edit/'.$pelanggan->id_pelanggan); ?>"><button type="button" class="btn btn-info">Edit</button></a>
-                      <a href="<?php echo site_url('C_Pelanggan/hapus/'.$pelanggan->id_pelanggan); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
+                      <a href="<?php echo site_url('C_pelanggan/view/'.$pelanggan->id_pelanggan); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('C_pelanggan/edit/'.$pelanggan->id_pelanggan); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('C_pelanggan/hapus/'.$pelanggan->id_pelanggan); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>
                   <?php } ?>
                 </tbody>
               </table>
-              <a href="<?php echo site_url('C_Pelanggan/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
             </div>
             <!-- /.box-body -->
           </div>

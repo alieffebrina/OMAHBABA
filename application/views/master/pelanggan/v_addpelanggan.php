@@ -8,7 +8,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
-        <li><a href="<?php echo site_url('C_Pelanggan'); ?>">Data Pelanggan</a></li>>
+        <li><a href="<?php echo site_url('C_pelanggan'); ?>">Data Pelanggan</a></li>>
         <li class="active">Tambah Data Pelanggan</li>
       </ol>
     </section>
@@ -25,15 +25,32 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="<?php echo site_url('C_Pelanggan/tambah')?>">
+            <form class="form-horizontal" method="POST" action="<?php echo site_url('C_pelanggan/tambah')?>">
               <div class="box-body">
+
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pelanggan</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Kode Pelanggan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Pelanggan">
+                    <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" placeholder="No pelanggan" value="<?php echo $kode ?>" readonly onkeyup="cek_pelanggankode()">
+                  <span id="pesankodepelanggan"></span>
                   </div>
                 </div>
-                
+
+                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama pelanggan</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nama_pelanggan" name="nama" placeholder="Nama pelanggan">
+                  </div>
+                </div>
+
+                <!-- <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pelanggan</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nama_pelanggan" name="nama" placeholder="Nama Pelanggan" onkeyup="cek_namapelanggan()">
+                  <span id="pesan_pelanggan"></span>
+                  </div>
+                </div> -->
+
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
@@ -68,11 +85,11 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Telepon</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon"  maxlength="12" minlength="12" placeholder="Telepons">
+                    <input type="text" class="form-control" id="tlp" name="tlp" placeholder="Telepon"  maxlength="12"  minlength="6" onkeypress="return Angkasaja(event)">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Limit</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Limit Hutang</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="rupiah" name="rupiah" >
                   </div>
@@ -81,7 +98,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('C_Pelanggan/index'); ?>" class="btn btn-default">Batal</a>
+                    <a href="<?php echo site_url('C_pelanggan/index'); ?>" class="btn btn-default">Batal</a>
                     <button type="submit" class="btn btn-info">Simpan Data</button>
                   </div>
               </div>
