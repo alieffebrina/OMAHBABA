@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Barang
+        Data barang
         <small>Lihat</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
-        <li><a href="<?php echo site_url('C_barang'); ?>">Data Barang</a></li>>
-        <li class="active">Lihat Data Barang</li>
+        <li><a href="<?php echo site_url('C_barang'); ?>">Data barang</a></li>>
+        <li class="active">Lihat Data barang</li>
       </ol>
     </section>
 
@@ -21,7 +21,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Lihat Data Barang</h3>
+              <h3 class="box-title">Lihat Data barang</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -29,52 +29,78 @@
               <div class="box-body">
                 <?php foreach ($barang as $barang) { ?>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Barang</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama barang</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="barang" name="barang" value="<?php echo $barang->barang ?>" readonly>
                   </div>
                 </div>
+
+                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Barcode</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="barcode" name="barcode" value="<?php echo $barang->barcode?>" readonly>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-1 control-label">Expaid</label>
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control" id="expaid" name="expaid" value="<?php echo $barang->expaid?>" readonly>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="gudang" name="gudang" value="<?php echo $barang->gudang ?>" readonly>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
+                  <div class="col-sm-9"><input type="text" class="form-control" id="namacabang" name="namacabang" value="<?php echo $barang->namacabang ?>" readonly>
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Satuan</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="satuan" name="satuan" value="<?php echo $barang->satuan ?>" readonly>
                   </div>
                 </div>
+
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Jenis Barang</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Kategori</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jenisbarang" name="jenisbarang" value="<?php echo $barang->jenisbarang ?>" readonly>
+                    <input type="text" class="form-control" id="kategori" name="kategori" value="<?php echo $barang->kategori ?>" readonly>
                   </div>
                 </div>
-                
+
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Stok</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Merk</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="stok" name="stok" value="<?php echo $barang->stok ?>" readonly>
+                    <input type="text" class="form-control" id="merk" name="merk" value="<?php echo $barang->merk ?>" readonly>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Stok Min.</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="stokmin" name="stokmin" value="<?php echo $barang->stokmin ?>" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
+
+                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Harga Beli</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="rupiah" name="rupiah" value=" Rp. <?php echo number_format($barang->hargabeli,0,",","."); ?>" readonly>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Konversi</label>
+
+                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Ukuran</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="qttkonversi" name="qttkonversi" value="<?php echo $barang->qttkonversi ?>" readonly>
+                    <input type="text" class="form-control" id="ukuran" name="ukuran" value="<?php echo $barang->ukuran ?>" readonly>
                   </div>
                 </div>
+
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Hasil Konversi</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Warna</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="hasil_konversi" name="hasil_konversi" value="<?php echo $barang->qttkonversi ?>" readonly>
+                    <input type="text" class="form-control" id="warna" name="warna" value="<?php echo $barang->warna ?>" readonly>
                   </div>
                 </div>
               </div>
