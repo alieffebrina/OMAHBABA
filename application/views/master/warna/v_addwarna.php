@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data warna Barang
+        Data Warna Barang
         <small>Tambah</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
         <li><a href="<?php echo site_url('C_warna'); ?>">Data warna Barang</a></li>>
-        <li class="active">Tambah Data warna Barang</li>
+        <li class="active">Tambah Data Warna Barang</li>
       </ol>
     </section>
 
@@ -29,7 +29,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tambah Data warna</h3>
+              <h3 class="box-title">Tambah Data Warna</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -85,9 +85,9 @@
                   <td><?php echo $warna->warna; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_warna/view/'.$warna->id_warna); ?>"><button type="button" class="btn btn-success">Lihat</button></a>
-                      <a href="<?php echo site_url('C_warna/edit/'.$warna->id_warna); ?>"><button type="button" class="btn btn-info">Edit</button></a>
-                      <a href="<?php echo site_url('C_warna/hapus/'.$warna->id_warna); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
+                      <a href="<?php echo site_url('C_warna/view/'.$warna->id_warna); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('C_warna/edit/'.$warna->id_warna); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('C_warna/hapus/'.$warna->id_warna); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>

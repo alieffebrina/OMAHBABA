@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data warna Barang
+        Data Warna Barang
         <small>Lihat</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
         <li><a href="<?php echo site_url('C_warna'); ?>">Data warna Barang</a></li>>
-        <li class="active">Lihat Data warna Barang</li>
+        <li class="active">Lihat Data Warna Barang</li>
       </ol>
     </section>
 
@@ -21,7 +21,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Lihat Data warna Barang</h3>
+              <h3 class="box-title">Lihat Data Warna Barang</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->

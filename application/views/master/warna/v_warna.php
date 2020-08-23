@@ -3,20 +3,20 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Kategori Barang
+        Data Warna Barang
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_kategori'); ?>">Data Master</a></li>
-        <li class="active">Data Kategori Barang</li>
+        <li><a href="<?php echo site_url('C_warna'); ?>">Data Master</a></li>
+        <li class="active">Data Warna Barang</li>
       </ol>
     </section>
     <div class="box-body">
-    <?php if ($this->session->flashdata('SUCCESS')) { ?>
+    <?php if ($this->session->flashdata('Sukses')) { ?>
        <div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h5><i class="icon fa fa-check"></i> Success!</h5>
+          <h5><i class="icon fa fa-check"></i>Sukses!</h5>
           Data berhasil di perbarui.
         </div>                 
       <?php } ?>
@@ -27,7 +27,11 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Kategori Barang</h3>
+              <h3 class="box-title">Data Warna Barang</h3>
+            </div>
+
+            <div class="box-header">
+              <a href="<?php echo site_url('C_warna/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
             </div>
             <!-- /.box-header -->
 
@@ -43,15 +47,15 @@
                 <tbody>
                   <?php 
                   $no=1;
-                  foreach ($kategori as $kategori) { ?>
+                  foreach ($warna as $warna) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
-                  <td><?php echo $kategori->kategori; ?></td>
+                  <td><?php echo $warna->warna; ?></td>
                   <td>
                     <div class="btn-group">
-                      <!--<a href="<?php echo site_url('C_kategori/view/'.$jenisbarang->id_jenisbarang); ?>"><button type="button" class="btn btn-success">Lihat</button></a>-->
-                      <a href="<?php echo site_url('C_kategori/edit/'.$kategori->id_kategori); ?>"><button type="button" class="btn btn-info">Edit</button></a>
-                      <a href="<?php echo site_url('C_kategori/hapus/'.$kategori->id_kategori); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
+                      <!--<a href="<?php echo site_url('C_warna/view/'.$jenisbarang->id_jenisbarang); ?>"><button type="button" class="btn btn-success">Lihat</button></a>-->
+                      <a href="<?php echo site_url('C_warna/edit/'.$warna->id_warna); ?>"><button type="button" class="btn btn-info">Edit</button></a>
+                      <a href="<?php echo site_url('C_warna/hapus/'.$warna->id_warna); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
                     </div>
                   </td>
                 </tr>
