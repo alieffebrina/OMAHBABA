@@ -32,6 +32,12 @@ class M_warna extends CI_Model {
         }
     }
 
+    function cekkodewarna(){
+        $this->db->select_max('id_warna');
+        $idwarna = $this->db->get('tb_warna');
+        return $idwarna->row();
+    }
+
     function getspek($iduser){
         $this->db->select('*');
         $where = array(

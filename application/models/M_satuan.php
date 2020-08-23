@@ -22,14 +22,20 @@ class M_satuan extends CI_Model {
             return false;
         }else{
             $satuan = array(
-                'id_user' => $id,
                 'satuan' => $st,
+                'id_user' => $id,
                 'tgl_update' => date('Y-m-d')
             );
             
             $this->db->insert('tb_satuan', $satuan);
             return true;
         }
+    }
+
+    function cekkodesatuan(){
+        $this->db->select_max('id_satuan');
+        $idsatuan = $this->db->get('tb_satuan');
+        return $idsatuan->row();
     }
 
     function getspek($iduser){
@@ -46,8 +52,8 @@ class M_satuan extends CI_Model {
         $harga_str = preg_replace("/[^0-9]/", "", $harga);
         $satuan = array(
 
-            'id_user' => $id,
             'satuan' => $this->input->post('satuan'),
+            'id_user' => $id,
             'tgl_update' => date('Y-m-d')
         );
 

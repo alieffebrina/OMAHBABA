@@ -16,21 +16,42 @@ class M_kategori extends CI_Model {
     }
 
     function tambahdata($id){
+
         $st=$this->input->post('kategori');
         $query = $this->db->query("SELECT kategori FROM tb_kategori where kategori='".$st."'");
         if($query->num_rows()>0){
             return false;
         }else{
             $kategori = array(
-                'id_user' => $id,
                 'kategori' => $st,
-                'tgl_update' => date('Y-m-d')
+                'id_user' => $id,
+                'tglupdate' => date('Y-m-d')
             );
             
             $this->db->insert('tb_kategori', $kategori);
             return true;
         }
+        
+        $this->db->insert('tb_kategori', $kategori);
+
     }
+
+    function cekkodekategori(){
+        $this->db->select_max('id_kategori');
+        $idkategori = $this->db->get('tb_kategori');
+        return $idkategori->row();
+    }
+
+    //function tambahakses($id){
+    //    $total = $this->db->count_all_results('tb_submenu');
+
+    //    for($i=0; $i<$total; $i++){
+    //        $fungsi = array('id_submenu' => $i+1 , 
+    //            'id_user' => $id);
+
+    //        $this->db->insert('tb_akses', $fungsi);            
+    //    }
+    //}
 
     function getspek($iduser){
         $this->db->select('*');
@@ -43,10 +64,9 @@ class M_kategori extends CI_Model {
 
     function edit($id){
         $kategori = array(
-
-            'id_user' => $id,
             'kategori' => $this->input->post('kategori'),
-            'tgl_update' => date('Y-m-d')
+            'id_user' => $id,
+            'tglupdate' => date('Y-m-d')
         );
 
         $where = array(

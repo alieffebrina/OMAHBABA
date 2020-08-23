@@ -4,7 +4,7 @@ class M_voucher extends CI_Model {
 
     function getvoucher(){
         $this->db->select('*');
-        $query = $this->db->get('tb_kategori');
+        $query = $this->db->get('tb_voucher');
         return $query->result();
     }
 
@@ -16,16 +16,21 @@ class M_voucher extends CI_Model {
     }
 
     function tambahdata($id){
+        $harga = $this->input->post('rupiah');
+        $hargar = $this->input->post('rupiahh');
+        $minpembelian_str = preg_replace("/[^0-9]/", "", $harga);
+        $diskon_str = preg_replace("/[^0-9]/", "", $hargar);
 
         $voucher = array(
-            'id_user' => $id,
+            
             'kodevoucher' => $this->input->post('kodevoucher'),
             'nama' => $this->input->post('nama'),
             'ket' => $this->input->post('ket'),
-            'minpembelian' => $this->input->post('minpembelian'),
+            'minpembelian' => $minpembelian_str,
             'tglmulai' => date('Y-m-d'),
             'tglakhir' => date('Y-m-d'),
-            'discount' => $this->input->post('discount'),
+            'discount' => $diskon_str,
+            'id_user' => $id,
             'tglupdate' => date('Y-m-d')
         );
         
@@ -38,17 +43,6 @@ class M_voucher extends CI_Model {
         return $idvoucher->row();
     }
 
-    //function tambahakses($id){
-    //    $total = $this->db->count_all_results('tb_submenu');
-
-    //    for($i=0; $i<$total; $i++){
-    //        $fungsi = array('id_submenu' => $i+1 , 
-    //            'id_user' => $id);
-
-    //        $this->db->insert('tb_akses', $fungsi);            
-    //    }
-    //}
-
     function getspek($iduser){
         $this->db->select('*');
         $where = array(
@@ -59,17 +53,21 @@ class M_voucher extends CI_Model {
     }
 
     function edit($id){
+        $harga = $this->input->post('rupiah');
+        $hargar = $this->input->post('rupiahh');
+        $minpembelian_str = preg_replace("/[^0-9]/", "", $harga);
+        $diskon_str = preg_replace("/[^0-9]/", "", $hargar);
 
         $voucher = array(
-
-            'id_user' => $id,
+            
             'kodevoucher' => $this->input->post('kodevoucher'),
             'nama' => $this->input->post('nama'),
             'ket' => $this->input->post('ket'),
-            'minpembelian' => $this->input->post('minpembelian'),
+            'minpembelian' => $minpembelian_str,
             'tglmulai' => date('Y-m-d'),
             'tglakhir' => date('Y-m-d'),
-            'discount' => $this->input->post('discount'),
+            'discount' => $diskon_str,
+            'id_user' => $id,
             'tglupdate' => date('Y-m-d')
         );
 

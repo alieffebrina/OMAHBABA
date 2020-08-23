@@ -6,7 +6,7 @@ class M_harga extends CI_Model {
         $this->db->select('*');
         $this->db->join('tb_barang', 'tb_barang.id_barang = tb_harga.id_barang');
         $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_barang.id_satuan');
-        $this->db->join('tb_jenisbarang', 'tb_jenisbarang.id_jenisbarang = tb_barang.id_jenisbarang');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_barang.id_kategori');
         $query = $this->db->get('tb_harga');
         return $query->result();
     }
@@ -26,35 +26,24 @@ class M_harga extends CI_Model {
             'id_user' => $id,
             'id_barang' => $this->input->post('id_barang'),
             'harga' => $harga_str,
-            'minqtt' => $this->input->post('minqtt'),
-            'tgl_update' => date('Y-m-d')
+            // 'minqtt' => $this->input->post('minqtt'),
+            'tglupdate' => date('Y-m-d')
         );
         
         $this->db->insert('tb_harga', $harga);
     }
 
-    // function cekkodepelanggan(){
-    //     $this->db->select_max('id_pelanggan');
-    //     $idpelanggan = $this->db->get('tb_pelanggan');
-    //     return $idpelanggan->row();
-    // }
-
-    //function tambahakses($id){
-    //    $total = $this->db->count_all_results('tb_submenu');
-
-    //    for($i=0; $i<$total; $i++){
-    //        $fungsi = array('id_submenu' => $i+1 , 
-    //            'id_user' => $id);
-
-    //        $this->db->insert('tb_akses', $fungsi);            
-    //    }
-    //}
+    function cekkodeharga(){
+        $this->db->select_max('id_harga');
+        $idharga = $this->db->get('tb_harga');
+        return $idharga->row();
+    }
 
     function getspek($iduser){
         $this->db->select('*');
         $this->db->join('tb_barang', 'tb_barang.id_barang = tb_harga.id_barang');
-        $this->db->join('tb_jenisbarang', 'tb_jenisbarang.id_jenisbarang = tb_barang.id_jenisbarang');
-        // $query = $this->db->get('tb_harga');
+        $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_barang.id_satuan');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_barang.id_kategori');
         $where = array(
             'id_harga' => $iduser
         );
@@ -70,8 +59,8 @@ class M_harga extends CI_Model {
             'id_user' => $id,
             'id_barang' => $this->input->post('id_barang'),
             'harga' => $harga_str,
-            'minqtt' => $this->input->post('minqtt'),
-            'tgl_update' => date('Y-m-d')
+            // 'minqtt' => $this->input->post('minqtt'),
+            'tglupdate' => date('Y-m-d')
         );
 
         $where = array(

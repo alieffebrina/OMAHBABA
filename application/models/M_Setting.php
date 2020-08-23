@@ -83,8 +83,19 @@ class M_Setting extends CI_Model {
 
     function getgudang(){
         $this->db->select('*');
+        // $this->db->order_by('gudang', 'ASC');
         $this->db->from('tb_gudang');
         $query = $this->db->get();
+        return $query->result();
+    }
+
+    function getcabanger($id){
+        $this->db->select('*');
+        $this->db->order_by('namacabang', 'ASC');
+        $where = array(
+            'id_gudang' => $id
+        );
+        $query = $this->db->get_where('tb_cabang', $where);
         return $query->result();
     }
 
@@ -144,7 +155,8 @@ class M_Setting extends CI_Model {
         $this->db->from('tb_kategori');
         $this->db->from('tb_warna');
         $this->db->from('tb_gudang');
-        $this->db->from('tb_konversi');
+        $this->db->from('tb_cabang');
+        // $this->db->from('tb_konversi');
         $query = $this->db->get();
         return $query->result();
     }
