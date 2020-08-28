@@ -6,6 +6,8 @@ class C_barang extends CI_Controller{
         $this->load->helper(array('form','url'));
         $this->load->library('session');
         $this->load->model('M_barang');
+        $this->load->model('M_warna');
+        $this->load->model('M_kategori');
         $this->load->model('M_Setting');
     }
 
@@ -30,8 +32,8 @@ class C_barang extends CI_Controller{
         $data['gudang'] = $this->M_Setting->getgudang();
         $data['cabang'] = $this->M_Setting->getcabang();
         $data['satuan'] = $this->M_Setting->getsatuan();
-        $data['kategori'] = $this->M_Setting->getkategori();
-        $data['warna'] = $this->M_Setting->getwarna();
+        $data['kategori'] = $this->M_kategori->getkategori();
+        $data['warna'] = $this->M_warna->getwarna();
         $this->load->view('master/barang/v_addbarang', $data); 
         $this->load->view('master/user/v_modal');
         $this->load->view('master/user/v_modalcabang');
