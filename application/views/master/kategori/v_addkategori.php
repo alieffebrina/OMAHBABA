@@ -12,7 +12,6 @@
         <li class="active">Tambah Data Kategori Barang</li>
       </ol>
     </section>
-
     <div class="box-body">
     <?php if ($this->session->flashdata('Sukses')) { ?>
         <div class="alert alert-success alert-dismissible">
@@ -21,18 +20,17 @@
           <?=$this->session->flashdata('Sukses')?>.
         </div>                 
       <?php } ?>
+    </div>
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-          <!-- Horizontal Form -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Tambah Data Kategori</h3>
-            </div>
+
+        <div class='col-lg-12'>
+          <div class="box">
+            <div class="box-header"> <h3 class="box-title">Tambah Data Kategori</h3> </div>
             <!-- /.box-header -->
-            <!-- form start -->
+
+            <div class="box-body">
             <form class="form-horizontal" method="POST" action="<?php echo site_url('C_kategori/tambah')?>">
               <div class="box-body">
                 <div class="form-group">
@@ -52,11 +50,10 @@
               </div>
               <!-- /.box-footer -->
             </form>
+            </div>
           </div>
-          <!-- /.box -->
         </div>
-      </div>
-      <div class="row">
+
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
