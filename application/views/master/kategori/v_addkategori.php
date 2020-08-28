@@ -56,10 +56,7 @@
           <!-- /.box -->
         </div>
       </div>
-
-
       <div class="row">
-         <form class="form-horizontal" method="POST" action="<?php echo site_url('C_kategori/add')?>">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
@@ -85,17 +82,15 @@
                   <td><?php echo $kategori->kategori; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_kategori/view/'.$kategori->id_kategori); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
-                      <a href="<?php echo site_url('C_kategori/edit/'.$kategori->id_kategori); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <a href="<?php echo site_url('C_kategori/hapus/'.$kategori->id_kategori); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                      <!--<a href="<?php echo site_url('C_kategori/view/'.$jenisbarang->id_jenisbarang); ?>"><button type="button" class="btn btn-success">Lihat</button></a>-->
+                      <a href="<?php echo site_url('C_kategori/edit/'.$kategori->id_kategori); ?>"><button type="button" class="btn btn-info">Edit</button></a>
+                      <a href="<?php echo site_url('C_kategori/hapus/'.$kategori->id_kategori); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
                     </div>
                   </td>
                 </tr>
                   <?php } ?>
                 </tbody>
               </table>
-              <!-- <a href="<?php echo site_url('C_barang/view'); ?>"><button type="submit" class="btn btn-default">Kembali</button></a>
-              <!--<a href="<?php echo site_url('C_kategori/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>--> -->
             </div>
             <!-- /.box-body -->
           </div>
@@ -103,10 +98,7 @@
         </div>
         <!-- /.col -->
       </div>
-    </form>
       <!-- /.row -->
     </section>
-      <!-- /.row -->
-    <!-- </section> -->
     <!-- /.content -->
   </div>

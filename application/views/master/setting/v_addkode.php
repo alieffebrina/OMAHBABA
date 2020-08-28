@@ -35,6 +35,8 @@
                       <option value='staf'>Kode Staf</option>
                       <option value='sales'>Kode Sales</option>
                       <option value='suplier'>Kode Suplier</option>
+                      <option value='pelanggan'>Kode Pelanggan</option>
+                      <option value='voucher'>Kode Voucher</option>
                     </select>
                   </div>
                 </div>
