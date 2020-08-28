@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class C_pelanggan extends CI_Controller{
+class C_Pelanggan extends CI_Controller{
     
     public function __construct(){
         parent::__construct();
@@ -15,7 +15,7 @@ class C_pelanggan extends CI_Controller{
     function index()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('tipeuser');
+        $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['pelanggan'] = $this->M_pelanggan->getpelanggan();
@@ -26,61 +26,32 @@ class C_pelanggan extends CI_Controller{
     function add()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('tipeuser');
+        $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $modul = 'pelanggan';
-        $kode = $this->M_Setting->cekkode($modul);
-        foreach ($kode as $modul) {
-            $a = $modul->kodefinal;
-            date_default_timezone_set('Asia/Jakarta');
-            $tgl = date('dmY');
-            $a = str_replace("tanggal", $tgl, $a);
-            $data = $this->M_pelanggan->getpelanggan();
-            $id = count($data)+1;
-            $a = str_replace("no", $id, $a);
-        }
-        $idnama = $this->session->userdata('nama');
-        $name = str_replace("username", $idnama, $a);
-        $data['kode'] = $name;
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $this->load->view('master/pelanggan/v_addpelanggan', $data); 
         $this->load->view('template/footer');
     }
 
     function cek_pelanggan(){
-            // Ambil data ID Provinsi yang dikirim via ajax post
-            $iduser = $this->input->post('id_pelanggan');
-            
-            $hasil_kode = $this->M_pelanggan->getspek($iduser);
-            
-            // Buat variabel untuk menampung tag-tag option nya
-            // Set defaultnya dengan tag option Pilih
-            // $lists = " <input type='text' class='form-control' id='nama_pelanggan' name='nama_pelanggan' readonly>";
-            
-            foreach($hasil_kode as $data){
-              $lists = " <input type='text' class='form-control' id='nama_pelanggan' name='nama_pelanggan' value='".$data->nama_pelanggan."' readonly>"; // Tambahkan tag option ke variabel $lists
-              $ala = $data->alamat;
-              $limit = $data->limit;
-              // $lists = "ok";
-            }
-            
-            // $lists = " <input type='text' class='form-control' id='nama_pelanggan' name='nama_pelanggan' value='".$hasil_kode."' readonly>";
-
-            $callback = array('list_pelanggan'=>$lists, 'list_alamat'=>$ala, 'limit'=>$limit); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
-            echo json_encode($callback); // konversi varibael $callback menjadi JSON
-    }
-
-    function cek_pelanggankode(){
-        $tabel = 'tb_pelanggan';
-        $cek = 'nopelanggan';
-        $kode = $this->input->post('nopelanggan');
-        $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
-        if(count($hasil_kode)!=0){ 
-            echo '1';
+        # ambil Kualifikasiname dari form
+        
+        $kode = $this->input->post('id_pelanggan');
+                # select ke model member Kualifikasiname yang diinput Kualifikasi
+        $hasil_kode = $this->M_pelanggan->getspek($kode);
+         
+                # pengecekan value $hasil_Kualifikasiname
+        if(count($hasil_kode)!=0){
+          # kalu value $hasil_Kualifikasiname tidak 0
+                  # echo 1 untuk pertanda Kualifikasiname sudah ada pada db    
+                       echo json_encode((object) array('list_alamat'=>$hasil_kode[0]->alamat,'limit_pelanggan'=>$hasil_kode[0]->limit_pelanggan));
         }else{
+                  # kalu value $hasil_Kualifikasiname = 0
+                  # echo 2 untuk pertanda Kualifikasiname belum ada pada db
             echo '2';
         }
+         
     }
 
     public function tambah()
@@ -88,11 +59,11 @@ class C_pelanggan extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_pelanggan->tambahdata($id);
-        
-        $id_submenu = '8';
-        $ket = 'tambah data pelanggan';
-        $this->M_Setting->userlog($id, $id_submenu, $ket);
-
+        // $data = $this->M_pelanggan->cekkodepelanggan();
+        // foreach ($data as $id) {
+        //     $id =$id;
+        //     $this->M_pelanggan->tambahakses($id);
+        // }
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_pelanggan');
     }
@@ -100,7 +71,7 @@ class C_pelanggan extends CI_Controller{
     function view($ida)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('tipeuser');
+        $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['pelanggan'] = $this->M_pelanggan->getspek($ida);
@@ -111,12 +82,11 @@ class C_pelanggan extends CI_Controller{
     function edit($iduser)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('tipeuser');
+        $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['pelanggan'] = $this->M_pelanggan->getspek($iduser);
-        // $data['tipeuser'] = $this->M_User->gettipeuser();
         $this->load->view('master/pelanggan/v_epelanggan',$data); 
         $this->load->view('template/footer');
     }
@@ -126,11 +96,6 @@ class C_pelanggan extends CI_Controller{
 
         $id = $this->session->userdata('id_user');
         $this->M_pelanggan->edit($id);
-
-        $id_submenu = '8';
-        $ket = 'edit tipe pelanggan';
-        $this->M_Setting->userlog($id, $id_submenu, $ket);
-
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_pelanggan');
     }
@@ -138,14 +103,11 @@ class C_pelanggan extends CI_Controller{
     function hapus($id){
         $where = array('id_pelanggan' => $id);
         $this->M_Setting->delete($where,'tb_pelanggan');
-
-        $ida = $this->session->userdata('id_user');
-        $id_submenu = '8';
-        $ket = 'hapus data pelanggan '.$id;
-        $this->M_Setting->userlog($ida, $id_submenu, $ket);
-
         $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
         redirect('C_pelanggan');
     }
 
+    function get_limit(){
+        echo json_encode($this->M_pelanggan->get_limit($this->input->post('id')));
+    }
 }
