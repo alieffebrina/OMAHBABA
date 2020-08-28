@@ -29,20 +29,6 @@ class C_Pelanggan extends CI_Controller{
         $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $modul = 'pelanggan';
-        $kode = $this->M_Setting->cekkode($modul);
-        foreach ($kode as $modul) {
-            $a = $modul->kodefinal;
-            date_default_timezone_set('Asia/Jakarta');
-            $tgl = date('dmY');
-            $a = str_replace("tanggal", $tgl, $a);
-            $data = $this->M_pelanggan->getpelanggan();
-            $id = count($data)+1;
-            $a = str_replace("no", $id, $a);
-        }
-        $idnama = $this->session->userdata('nama');
-        $name = str_replace("username", $idnama, $a);
-        $data['kode'] = $name;
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $this->load->view('master/pelanggan/v_addpelanggan', $data); 
         $this->load->view('template/footer');
