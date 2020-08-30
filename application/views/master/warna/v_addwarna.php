@@ -21,6 +21,7 @@
           <?=$this->session->flashdata('Sukses')?>.
         </div>                 
       <?php } ?>
+    </div>
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -95,7 +96,7 @@
                 </tbody>
               </table>
               <!-- <a href="<?php echo site_url('C_barang/view'); ?>"><button type="submit" class="btn btn-default">Kembali</button></a>
-              <!--<a href="<?php echo site_url('C_warna/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>--> -->
+              <!--<a href="<?php echo site_url('C_warna/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>--> 
             </div>
             <!-- /.box-body -->
           </div>
