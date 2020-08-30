@@ -3,21 +3,21 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Harga Jual
+        Data harga
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="<?php echo site_url('C_harga'); ?>">Data Master</a></li>
-        <li class="active">Data Harga Jual</li>
+        <li class="active">Data harga</li>
       </ol>
     </section>
     <div class="box-body">
-    <?php if ($this->session->flashdata('SUCCESS')) { ?>
-       <div class="alert alert-success alert-dismissible">
+    <?php if ($this->session->flashdata('Sukses')) { ?>
+        <div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h5><i class="icon fa fa-check"></i> Success!</h5>
-          Data berhasil di perbarui.
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
+          <?=$this->session->flashdata('Sukses')?>.
         </div>                 
       <?php } ?>
     </div>
@@ -27,10 +27,10 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Harga Jual</h3>
+              <h3 class="box-title">Data harga</h3>
             </div>
             <div class="box-header">
-              <a href="<?php echo site_url('C_harga/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
+              <a href="<?php echo site_url('C_harga/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data Harga</button></a>
             </div>
             <!-- /.box-header -->
 
@@ -40,10 +40,8 @@
                 <tr>
                   <th>No</th>
                   <th>Nama Barang</th>
-                  <th>Jenis Barang</th>
-                  <th>Satuan</th>
-                  <th>Min. Quantity</th>
                   <th>Harga Jual</th>
+                  <th>Min. Quantity</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -53,12 +51,11 @@
                   foreach ($harga as $harga) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
-                  <td><?php echo $harga->barang; ?></td>
-                  <td><?php echo $harga->jenisbarang; ?></td>
-                  <td><?php echo $harga->satuan; ?></td>
-                  <td><?php echo $harga->minqtt;?></td>
+                  <!-- <td><?php echo $harga->barang; ?></td> -->
+                  <td><?php echo $harga->barang.' / '.$harga->merk.' / '.$harga->ukuran.' '.$harga->satuan;?></td>
                   <td>Rp. <?php echo number_format($harga->harga,0,",","."); ?></td>
-                  
+                  <td><?php echo $harga->minqtt; ?></td>
+
                   <td>
                     <div class="btn-group">
                       <a href="<?php echo site_url('C_harga/view/'.$harga->id_harga); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>

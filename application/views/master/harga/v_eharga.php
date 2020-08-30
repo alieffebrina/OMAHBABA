@@ -3,15 +3,25 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Harga Jual
+        Data harga
         <small>Edit</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
-        <li><a href="<?php echo site_url('C_harga'); ?>">Data Harga Jual</a></li>>
-        <li class="active">Lihat Data Harga Jual</li>
+        <li><a href="<?php echo site_url('C_harga'); ?>">Data harga</a></li>>
+        <li class="active">Lihat Data harga</li>
       </ol>
     </section>
+
+    <div class="box-body">
+    <?php if ($this->session->flashdata('Sukses')) { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
+          <?=$this->session->flashdata('Sukses')?>.
+        </div>                 
+      <?php } ?>
+    </div>
 
     <!-- Main content -->
     <section class="content">
@@ -21,27 +31,27 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Lihat Data Harga Jual</h3>
+              <h3 class="box-title">Lihat Data harga</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" method="POST" action="<?php echo site_url('C_harga/editharga')?>">
               <div class="box-body">
                 <?php foreach ($harga as $harga) { ?>
+                
+                
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Id Barang</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Nama Barang</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="id_barang" name="id_barang" value="<?php echo $harga->id_barang ?>" readonly>
-                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $harga->id_harga ?>">
+                    <select class="form-control select2" id="barang" name="barang" style="width: 100%;">
+                      <option value="<?php echo $harga->id_barang ?>"><?php echo $harga->barang.' / '.$harga->merk.' / '.$harga->ukuran.' '.$harga->satuan ?></option>
+                      <?php foreach ($barang as $barang) { ?>
+                      <option value="<?php echo $barang->id_barang ?>"><?php echo $barang->barang.' / '.$barang->merk.' / '.$barang->ukuran.' '.$barang->satuan?></option>
+                      <?php } ?>
+                    </select>
                   </div>
                 </div>
                 
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Barang</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" value="<?php echo $harga->barang.' / '.$harga->jenisbarang ?>" readonly>
-                  </div>
-                </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Harga Jual</label>
                   <div class="col-sm-9">
@@ -52,10 +62,9 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Min. Quantity</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="minqtt" name="minqtt" placeholder="Min. Quantity" value="<?php echo $harga->minqtt ?>">
+                    <input type="text" class="form-control" id="minqtt" name="minqtt" value="<?php echo $harga->minqtt ?>">
                   </div>
                 </div>
-                
               </div>
               <?php } ?>
               <!-- /.box-body -->
