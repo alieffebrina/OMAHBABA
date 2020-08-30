@@ -16,7 +16,7 @@ class C_satuan extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['satuan'] = $this->M_satuan->getsatuan();
-        $this->load->view('master/satuan/v_satuan',$data); 
+        $this->load->view('master/satuan/v_addsatuan',$data); 
         $this->load->view('template/footer');
     }
 
@@ -62,9 +62,10 @@ class C_satuan extends CI_Controller{
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
         if($cek){
-            $this->session->set_flashdata('Sukses', "Data Satuan Tidak Boleh Sama Ataupun Kosong.");
-        }else{
             $this->session->set_flashdata('Sukses', "Data Satuan Berhasil Di Tambahkan.");
+            
+        }else{
+            $this->session->set_flashdata('Sukses', "Data Satuan Tidak Boleh Sama Ataupun Kosong.");
         }
         redirect('C_satuan');
     }

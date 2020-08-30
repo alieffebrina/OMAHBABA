@@ -6,13 +6,14 @@ class C_harga extends CI_Controller{
         $this->load->helper(array('form','url'));
         $this->load->library('session');
         $this->load->model('M_harga');
+        $this->load->model('M_barang');
         $this->load->model('M_Setting');
     }
 
     function index()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['harga'] = $this->M_harga->getharga();
@@ -23,11 +24,11 @@ class C_harga extends CI_Controller{
     function add()
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+        
         $data['barang'] = $this->M_Setting->gethargabarang();
-        // echo '<pre>';print_r($data['barang']);exit;
         $this->load->view('master/harga/v_addharga', $data); 
         $this->load->view('template/footer');
     }
@@ -62,17 +63,18 @@ class C_harga extends CI_Controller{
         $ket = 'tambah data harga';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        $this->session->set_flashdata('Sukses', "Data harga Berhasil Di Tambahkan.");
         redirect('C_harga');
     }
 
     function view($ida)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['harga'] = $this->M_harga->getspek($ida);
+        $data['barang'] = $this->M_Setting->gethargabarang();
         $this->load->view('master/harga/v_vharga',$data); 
         $this->load->view('template/footer');
     }
@@ -80,9 +82,10 @@ class C_harga extends CI_Controller{
     function edit($iduser)
     {
         $this->load->view('template/header');
-        $id = $this->session->userdata('id_user');
+        $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
+        $data['barang'] = $this->M_Setting->gethargabarang();
         $data['harga'] = $this->M_harga->getspek($iduser);
         $this->load->view('master/harga/v_eharga',$data); 
         $this->load->view('template/footer');
@@ -98,7 +101,7 @@ class C_harga extends CI_Controller{
         $ket = 'edit data harga';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        $this->session->set_flashdata('Sukses', "Data harga Berhasil Di Perbarui.");
         redirect('C_harga');
     }
 
@@ -110,7 +113,7 @@ class C_harga extends CI_Controller{
         $ket = 'hapus data harga'.$id;
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        $this->session->set_flashdata('Sukses', "Data harga Berhasil Di Hapus.");
         redirect('C_harga');
     }
 

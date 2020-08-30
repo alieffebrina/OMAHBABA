@@ -8,6 +8,9 @@ class C_barang extends CI_Controller{
         $this->load->model('M_barang');
         $this->load->model('M_warna');
         $this->load->model('M_kategori');
+        // $this->load->model('M_satuan');
+        // $this->load->model('M_gudang');
+        // $this->load->model('M_cabang');
         $this->load->model('M_Setting');
     }
 
@@ -35,8 +38,8 @@ class C_barang extends CI_Controller{
         $data['kategori'] = $this->M_kategori->getkategori();
         $data['warna'] = $this->M_warna->getwarna();
         $this->load->view('master/barang/v_addbarang', $data); 
-        $this->load->view('master/user/v_modal');
-        $this->load->view('master/user/v_modalcabang');
+        // $this->load->view('master/user/v_modal');
+        // $this->load->view('master/user/v_modalcabang');
         $this->load->view('master/user/v_modalkategori');
         $this->load->view('master/user/v_modalsatuan');
         $this->load->view('master/user/v_modalwarna');
@@ -73,7 +76,7 @@ class C_barang extends CI_Controller{
         $ket = 'tambah data barang';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        $this->session->set_flashdata('Sukses', "Data Barang Berhasil Di Tambahkan.");
         redirect('C_barang');
     }
 
@@ -84,10 +87,10 @@ class C_barang extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['barang'] = $this->M_barang->getspek($ida);
-        // $data['gudang'] = $this->M_Setting->getgudang();
-        // $data['satuan'] = $this->M_Setting->getsatuan();
-        // $data['kategori'] = $this->M_Setting->getkategori();
-        // $data['warna'] = $this->M_Setting->getwarna();
+        $data['gudang'] = $this->M_Setting->getgudang();
+        $data['satuan'] = $this->M_Setting->getsatuan();
+        $data['kategori'] = $this->M_Setting->getkategori();
+        $data['warna'] = $this->M_Setting->getwarna();
         $this->load->view('master/barang/v_vbarang',$data); 
         $this->load->view('template/footer');
     }
@@ -98,7 +101,7 @@ class C_barang extends CI_Controller{
         $id = $this->session->userdata('tipeuser');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        // $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['gudang'] = $this->M_Setting->getgudang();
         $data['satuan'] = $this->M_Setting->getsatuan();
         $data['kategori'] = $this->M_Setting->getkategori();
@@ -118,7 +121,7 @@ class C_barang extends CI_Controller{
         $ket = 'edit data barang';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        $this->session->set_flashdata('Sukses', "Data Barang Berhasil Di Perbarui.");
         redirect('C_barang');
     }
 
@@ -130,7 +133,7 @@ class C_barang extends CI_Controller{
         $ket = 'hapus data barang'.$id;
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        $this->session->set_flashdata('Sukses', "Data Barang Berhasil Di Hapus.");
         redirect('C_barang');
     }
 

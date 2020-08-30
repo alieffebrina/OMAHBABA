@@ -16,7 +16,7 @@ class C_warna extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['warna'] = $this->M_warna->getwarna();
-        $this->load->view('master/warna/v_warna',$data); 
+        $this->load->view('master/warna/v_addwarna',$data); 
         $this->load->view('template/footer');
     }
 
@@ -62,9 +62,10 @@ class C_warna extends CI_Controller{
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
         if($cek){
-            $this->session->set_flashdata('Sukses', "Data warna Tidak Boleh Sama Ataupun Kosong.");
-        }else{
             $this->session->set_flashdata('Sukses', "Data warna Berhasil Di Tambahkan.");
+            
+        }else{
+            $this->session->set_flashdata('Sukses', "Data warna Tidak Boleh Sama Ataupun Kosong.");
         }
         redirect('C_warna');
     }

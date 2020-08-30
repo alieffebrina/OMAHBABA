@@ -62,9 +62,10 @@ class C_kategori extends CI_Controller{
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
         if($cek){
-            $this->session->set_flashdata('Sukses', "Data Kategori Tidak Boleh Sama Ataupun Kosong.");
-        }else{
             $this->session->set_flashdata('Sukses', "Data Kategori Berhasil Di Tambahkan.");
+           
+        }else{
+             $this->session->set_flashdata('Sukses', "Data Kategori Tidak Boleh Sama Ataupun Kosong.");
         }
         redirect('C_kategori');
     }

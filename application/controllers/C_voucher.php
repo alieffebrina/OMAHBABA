@@ -92,7 +92,7 @@ class C_voucher extends CI_Controller{
         $ket = 'tambah data voucher';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        $this->session->set_flashdata('Sukses', "Data Voucher Berhasil Di Tambahkan.");
         redirect('C_voucher');
     }
 
@@ -129,7 +129,7 @@ class C_voucher extends CI_Controller{
         $ket = 'edit tipe voucher';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        $this->session->set_flashdata('Sukses', "Data Voucher Berhasil Di Perbarui.");
         redirect('C_voucher');
     }
 
@@ -142,7 +142,7 @@ class C_voucher extends CI_Controller{
         $ket = 'hapus data voucher '.$id;
         $this->M_Setting->userlog($ida, $id_submenu, $ket);
 
-        $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
+        $this->session->set_flashdata('Sukses', "Data Voucher Berhasil Di Hapus.");
         redirect('C_voucher');
     }
 }
