@@ -497,6 +497,41 @@
   });
   </script>
 
+  // <script>
+  // $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
+  //   // Kita sembunyikan dulu untuk loadingnya
+  //   $("#nama_barang").change(function(){ // Ketika user mengganti atau memilih data provinsi
+  //   // var lastRowId = $('#tabelku tr:last').attr("id");
+  //   // var barang = new Array();
+  //   // var jumlah = parseInt($("#jumlahform").val());
+  //   // for (var i = 1; i <=lastRowId ; i++) {
+  //     $.ajax({
+  //       type: "POST", // Method pengiriman data bisa dengan GET atau POST
+  //       url: "<?php echo base_url("index.php/C_barang/ceksatuan"); ?>", // Isi dengan url/path file php yang dituju
+  //       data: {id_barang : $("#nama_barang").val()}, // data yang akan dikirim ke file yang dituju
+  //       dataType: "json",
+  //       beforeSend: function(e) {
+  //         if(e && e.overrideMimeType) {
+  //           e.overrideMimeType("application/json;charset=UTF-8");
+  //         }
+  //       },
+  //       success: function(response){ // Ketika proses pengiriman berhasil
+  //         // set isi dari combobox kota
+  //         // lalu munculkan kembali combobox kotanya
+  //         $("#tampilharga").html(response.list_harga).show();
+  //         $("#tampilsatuan").html(response.list_satuan).show();
+  //         $("#namashow").html(response.list_namabarang).show();
+  //         $("#jenisbarang").val(response.jenisbarang);
+  //       },
+  //       error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+  //         alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+  //       }
+  //     });
+  //   // }
+  //   });
+  // });
+  // </script>
+
   <script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
@@ -507,7 +542,7 @@
     // for (var i = 1; i <=lastRowId ; i++) {
       $.ajax({
         type: "POST", // Method pengiriman data bisa dengan GET atau POST
-        url: "<?php echo base_url("index.php/C_barang/ceksatuan"); ?>", // Isi dengan url/path file php yang dituju
+        url: "<?php echo base_url("index.php/C_baranggaram/ceksatuan"); ?>", // Isi dengan url/path file php yang dituju
         data: {id_barang : $("#nama_barang").val()}, // data yang akan dikirim ke file yang dituju
         dataType: "json",
         beforeSend: function(e) {
@@ -521,7 +556,7 @@
           $("#tampilharga").html(response.list_harga).show();
           $("#tampilsatuan").html(response.list_satuan).show();
           $("#namashow").html(response.list_namabarang).show();
-          $("#jenisbarang").val(response.jenisbarang);
+          $("#kategori").val(response.kategori);
         },
         error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
           alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
@@ -531,6 +566,7 @@
     });
   });
   </script>
+
   <script type="text/javascript">
     function returpembelian(){
       var d = (document.getElementById('diskonbawah').value==''?0:parseInt(document.getElementById('diskonbawah').value));
