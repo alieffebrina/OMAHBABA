@@ -12,12 +12,13 @@
         <li class="active">Data Voucher</li>
       </ol>
     </section>
+
     <div class="box-body">
-    <?php if ($this->session->flashdata('SUCCESS')) { ?>
-       <div class="alert alert-success alert-dismissible">
+    <?php if ($this->session->flashdata('Sukses')) { ?>
+        <div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h5><i class="icon fa fa-check"></i> Success!</h5>
-          Data berhasil di perbarui.
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
+          <?=$this->session->flashdata('Sukses')?>.
         </div>                 
       <?php } ?>
     </div>
@@ -43,8 +44,8 @@
                   <th>Nama Voucher</th>
                   <th>Keterangan</th>
                   <th>Min. Pembelian</th>
-                  <th>Tanggal Mulai</th>
-                  <th>Tanggal Akhir</th>
+                  <!-- <th>Tanggal Mulai</th> -->
+                  <th>Tanggal Berlaku Sampai</th>
                   <th>Diskon</th>
                   <th>Action</th>
                 </tr>
@@ -59,7 +60,7 @@
                   <td><?php echo $voucher->nama; ?></td>
                   <td><?php echo $voucher->ket; ?></td>
                   <td>Rp. <?php echo number_format($voucher->minpembelian,0,",","."); ?></td>
-                  <td><?php echo $voucher->tglmulai; ?></td>
+                  <!-- <td><?php echo $voucher->tglmulai; ?></td> -->
                   <td><?php echo $voucher->tglakhir; ?></td>
                   <td>Rp. <?php echo number_format($voucher->discount,0,",","."); ?></td>
                   <td>

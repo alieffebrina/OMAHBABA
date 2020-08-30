@@ -53,14 +53,14 @@
                     <input type="text" class="form-control" id="rupiah" name="rupiah" value=" Rp. <?php echo number_format($voucher->minpembelian,0,",","."); ?>" readonly>
                   </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="inputEmail3" class="col-sm-1 control-label">Tanggal Mulai</label>
                   <div class="col-sm-10">
                     <input type="date" class="form-control" id="tglmulai" name="tglmulai" value="<?php echo $voucher->tglmulai?>" readonly>
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-1 control-label">Tanggal Akhir</label>
+                  <label for="inputEmail3" class="col-sm-1 control-label">Tanggal Berlaku Sampai</label>
                   <div class="col-sm-10">
                     <input type="date" class="form-control" id="tglakhir" name="tglakhir" value="<?php echo $voucher->tglakhir?>" readonly>
                   </div>

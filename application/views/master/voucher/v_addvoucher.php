@@ -13,6 +13,16 @@
       </ol>
     </section>
 
+    <div class="box-body">
+    <?php if ($this->session->flashdata('Sukses')) { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
+          <?=$this->session->flashdata('Sukses')?>.
+        </div>                 
+      <?php } ?>
+    </div>
+
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -53,14 +63,14 @@
                     <input type="text" class="form-control" id="rupiah" name="rupiah" >
                   </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Mulai</label>
                   <div class="col-sm-9">
                     <input type="date" class="form-control" id="tglmulai" name="tglmulai" value="<?php echo date('d-m-Y')?>">
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Akhir</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Berlaku Sampai</label>
                   <div class="col-sm-9">
                     <input type="date" class="form-control" id="tglakhir" name="tglakhir" value="<?php echo date('d-m-Y')?>">
                   </div>
