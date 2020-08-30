@@ -13,6 +13,16 @@
       </ol>
     </section>
 
+    <div class="box-body">
+    <?php if ($this->session->flashdata('Sukses')) { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
+          <?=$this->session->flashdata('Sukses')?>.
+        </div>                 
+      <?php } ?>
+    </div>
+
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -31,14 +41,14 @@
                  <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama barang</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="barang" name="barang" placeholder="Nama barang">
+                    <input type="text" class="form-control" id="barang" name="barang" placeholder="Nama Barang">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Barcode</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Nama barang">
+                    <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Barcode Barang">
                   </div>
                 </div>
 
@@ -49,7 +59,27 @@
                   </div>
                 </div>
 
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
+                  <div class="col-sm-9">
+                    <select class="form-control select2" id="gudang" name="gudang" style="width: 100%;">
+                      <option value="">--Pilih--</option>
+                      <?php foreach ($gudang as $gudang) { ?>
+                      <option value="<?php echo $gudang->id_gudang ?>"><?php echo $gudang->gudang ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
+                  <div class="col-sm-9">
+                  <select class="form-control select2" id="namacabang" name="namacabang" style="width: 100%;">
+                    </select>
+                  </div>
+                </div>
+
+                <!-- <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
                   <div class="col-sm-9">
                   <div class="input-group input-group-sm">
@@ -84,16 +114,8 @@
                         </span>
                   </div>
                   </div>
-                </div> 
+                </div>  -->
                 
-                <!-- <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
-                  <div class="col-sm-9">
-                  <select class="form-control select2" id="namacabang" name="namacabang" style="width: 100%;">
-                    </select>
-                  </div>
-                </div> -->
-
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Satuan</label>
                   <div class="col-sm-9">
@@ -132,28 +154,7 @@
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Merk</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="merk" name="merk" placeholder="Merk barang">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Harga Beli</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="rupiah" name="rupiah" >
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Ukuran</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ukuran" name="ukuran" placeholder="Ukuran barang">
-                  </div>
-                </div>
-
-                <div class="form-group">
+                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Warna</label>
                   <div class="col-sm-9">
                   <div class="input-group input-group-sm">
@@ -169,6 +170,27 @@
                           </button>
                         </span>
                   </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Ukuran</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ukuran" name="ukuran" placeholder="Ukuran barang">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Merk</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="merk" name="merk" placeholder="Merk barang">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Harga Beli</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="rupiah" name="rupiah" >
                   </div>
                 </div>
               </div>

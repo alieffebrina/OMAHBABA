@@ -13,11 +13,11 @@
       </ol>
     </section>
     <div class="box-body">
-    <?php if ($this->session->flashdata('SUCCESS')) { ?>
-       <div class="alert alert-success alert-dismissible">
+    <?php if ($this->session->flashdata('Sukses')) { ?>
+        <div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h5><i class="icon fa fa-check"></i> Success!</h5>
-          Data berhasil di perbarui.
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
+          <?=$this->session->flashdata('Sukses')?>.
         </div>                 
       <?php } ?>
     </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="box-header">
               <a href="<?php echo site_url('C_barang/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data Barang</button></a>
-              <a href="<?php echo site_url('C_gudang/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Gudang</button></a>
+             <!--  <a href="<?php echo site_url('C_gudang/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Gudang</button></a> -->
               <a href="<?php echo site_url('C_satuan/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Satuan</button></a>
               <a href="<?php echo site_url('C_kategori/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Kategori</button></a>
               <a href="<?php echo site_url('C_warna/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Warna</button></a>
@@ -50,10 +50,10 @@
                   <th>Cabang</th>
                   <th>Satuan</th>
                   <th>Kategori</th>
+                  <th>Warna</th>
+                  <th>Ukuran</th>
                   <th>Merk</th>
                   <th>Harga Beli</th>
-                  <th>Ukuran</th>
-                  <th>Warna</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -70,15 +70,17 @@
                   <td><?php echo $barang->namacabang; ?></td>
                   <td><?php echo $barang->satuan; ?></td>
                   <td><?php echo $barang->kategori; ?></td>
-                  <td><?php echo $barang->merk; ?></td>
-                  <td>Rp. <?php echo number_format($voucher->hargabeli,0,",","."); ?></td>
-                  <td><?php echo $barang->ukuran; ?></td>
                   <td><?php echo $barang->warna; ?></td>
+                  <td><?php echo $barang->ukuran; ?></td>
+                  <td><?php echo $barang->merk; ?></td>
+                  <td>Rp. <?php echo number_format($barang->hargabeli,0,",","."); ?></td>
+                  
+                  
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_barang/view/'.$barang->id_barang); ?>"><button type="button" class="btn btn-success">Lihat</button></a>
-                      <a href="<?php echo site_url('C_barang/edit/'.$barang->id_barang); ?>"><button type="button" class="btn btn-info">Edit</button></a>
-                      <a href="<?php echo site_url('C_barang/hapus/'.$barang->id_barang); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
+                      <a href="<?php echo site_url('C_barang/view/'.$barang->id_barang); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('C_barang/edit/'.$barang->id_barang); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('C_barang/hapus/'.$barang->id_barang); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>

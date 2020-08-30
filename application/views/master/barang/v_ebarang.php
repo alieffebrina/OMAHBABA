@@ -13,6 +13,16 @@
       </ol>
     </section>
 
+    <div class="box-body">
+    <?php if ($this->session->flashdata('Sukses')) { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
+          <?=$this->session->flashdata('Sukses')?>.
+        </div>                 
+      <?php } ?>
+    </div>
+
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -32,7 +42,7 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama barang</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $barang->nama ?>">
+                    <input type="text" class="form-control" id="barang" name="barang" value="<?php echo $barang->barang ?>">
                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $barang->id_barang ?>">
                   </div>
                 </div>
@@ -40,18 +50,38 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Barcode</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="barcode" name="barcode" value="<?php echo $barang->namabarang ?>">
+                    <input type="text" class="form-control" id="barcode" name="barcode" value="<?php echo $barang->barcode ?>">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Expaid</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="expaid" name="expaid" value="<?php echo date($expaid->expaid); ?>">
+                    <input type="text" class="form-control" id="expaid" name="expaid" value="<?php echo date($barang->expaid); ?>">
                   </div>
                 </div>
 
                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
+                  <div class="col-sm-9">
+                    <select class="form-control select2" id="gudang" name="gudang" style="width: 100%;">
+                      <option value="<?php echo $barang->id_gudang ?>"><?php echo $barang->gudang ?></option>
+                      <?php foreach ($gudang as $gudang) { ?>
+                      <option value="<?php echo $gudang->id_gudang ?>"><?php echo $gudang->gudang?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
+                  <div class="col-sm-9">
+                  <select class="form-control select2" id="namacabang" name="namacabang" style="width: 100%;">
+                      <option value="<?php echo $barang->id_cabang ?>"><?php echo $barang->namacabang ?></option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="gudang" name="gudang" style="width: 100%;">
@@ -69,7 +99,7 @@
                       <option value="<?php echo $barang->id_cabang ?>"><?php echo $barang->namacabang ?></option>
                     </select>
                   </div>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Satuan</label>
@@ -94,6 +124,24 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Warna</label>
+                  <div class="col-sm-9">
+                    <select class="form-control select2" id="warna" name="warna" style="width: 100%;">
+                      <?php foreach ($warna as $warna) { ?>
+                      <option value="<?php echo $warna->id_warna; ?>" <?php if ($barang->id_warna == $warna->id_warna ){ echo "selected"; } ?> ><?php echo $warna->warna ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Ukuran</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ukuran" name="ukuran" value="<?php echo $barang->ukuran ?>">
+                  </div>
+                </div>
+
+                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Merk</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="merk" name="merk" value="<?php echo $barang->merk ?>">
@@ -104,24 +152,6 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">Harga Beli</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="rupiah" name="rupiah" value=" Rp. <?php echo number_format($barang->hargabeli,0,",","."); ?>">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Ukuran</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ukuran" name="ukuran" value="<?php echo $barang->ukuran ?>">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Warna</label>
-                  <div class="col-sm-9">
-                    <select class="form-control select2" id="warna" name="warna" style="width: 100%;">
-                      <?php foreach ($warna as $warna) { ?>
-                      <option value="<?php echo $warna->id_warna; ?>" <?php if ($barang->id_warna == $warna->id_warna ){ echo "selected"; } ?> ><?php echo $warna->warna ?></option>
-                      <?php } ?>
-                    </select>
                   </div>
                 </div>
 

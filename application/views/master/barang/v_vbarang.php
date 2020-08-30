@@ -52,6 +52,19 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
                   <div class="col-sm-9">
+
+                    <input type="text" class="form-control" id="barang" name="barang" value="<?php echo $barang->gudang ?>" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
+                  <div class="col-sm-9"><input type="text" class="form-control" id="barang" name="barang" value="<?php echo $barang->namacabang ?>" readonly>
+                  </div>
+                </div>
+
+                <!-- <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
+                  <div class="col-sm-9">
                     <input type="text" class="form-control" id="gudang" name="gudang" value="<?php echo $barang->gudang ?>" readonly>
                   </div>
                 </div>
@@ -60,7 +73,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
                   <div class="col-sm-9"><input type="text" class="form-control" id="namacabang" name="namacabang" value="<?php echo $barang->namacabang ?>" readonly>
                   </div>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Satuan</label>
@@ -77,20 +90,13 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Merk</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Warna</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="merk" name="merk" value="<?php echo $barang->merk ?>" readonly>
+                    <input type="text" class="form-control" id="warna" name="warna" value="<?php echo $barang->warna ?>" readonly>
                   </div>
                 </div>
 
-                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Harga Beli</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="rupiah" name="rupiah" value=" Rp. <?php echo number_format($barang->hargabeli,0,",","."); ?>" readonly>
-                  </div>
-                </div>
-
-                 <div class="form-group">
+                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Ukuran</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="ukuran" name="ukuran" value="<?php echo $barang->ukuran ?>" readonly>
@@ -98,11 +104,19 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Warna</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Merk</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="warna" name="warna" value="<?php echo $barang->warna ?>" readonly>
+                    <input type="text" class="form-control" id="merk" name="merk" value="<?php echo $barang->merk ?>" readonly>
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Harga Beli</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="rupiah" name="rupiah" value=" Rp. <?php echo number_format($barang->hargabeli,0,",","."); ?>" readonly>
+                  </div>
+                </div>
+
               </div>
               <?php } ?>
               <!-- /.box-body -->
