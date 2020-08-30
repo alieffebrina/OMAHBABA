@@ -46,13 +46,16 @@
                   <th>Nama barang</th>
                   <th>Barcode</th>
                   <th>Expaid</th>
-                  <th>Gudang</th>
-                  <th>Cabang</th>
-                  <th>Satuan</th>
+                  <th>Lokasi</th>
+                  <!-- <th>Cabang</th> -->
+                  <!-- <th>Satuan</th> -->
                   <th>Kategori</th>
-                  <th>Warna</th>
+                  <th>Keterangan</th>
+                  <!-- <th>Warna</th>
                   <th>Ukuran</th>
-                  <th>Merk</th>
+                  <th>Merk</th> -->
+                  <th>Stok</th>
+                  <th>Stok Min.</th>
                   <th>Harga Beli</th>
                   <th>Action</th>
                 </tr>
@@ -66,13 +69,16 @@
                   <td><?php echo $barang->barang; ?></td>
                   <td><?php echo $barang->barcode; ?></td>
                   <td><?php echo $barang->expaid; ?></td>
-                  <td><?php echo $barang->gudang; ?></td>
-                  <td><?php echo $barang->namacabang; ?></td>
-                  <td><?php echo $barang->satuan; ?></td>
+                  <td><?php echo $barang->gudang.' / '.$barang->namacabang;?></td>
+                  <!-- <td><?php echo $barang->gudang; ?></td>
+                  <td><?php echo $barang->namacabang; ?></td> -->
                   <td><?php echo $barang->kategori; ?></td>
-                  <td><?php echo $barang->warna; ?></td>
+                  <td><?php echo $barang->merk.' / '.$barang->warna.' / '.$barang->ukuran.' '.$barang->satuan; ?></td>
+                  <!-- <td><?php echo $barang->warna; ?></td>
                   <td><?php echo $barang->ukuran; ?></td>
-                  <td><?php echo $barang->merk; ?></td>
+                  <td><?php echo $barang->merk; ?></td> -->
+                  <td><?php echo $barang->stok; ?></td>
+                  <td><?php echo $barang->stokmin; ?></td>
                   <td>Rp. <?php echo number_format($barang->hargabeli,0,",","."); ?></td>
                   
                   

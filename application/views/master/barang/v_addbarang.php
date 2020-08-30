@@ -188,6 +188,20 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Stok</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="stok" name="stok">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Stok Min.</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="stokmin" name="stokmin">
+                  </div>
+                </div>
+
+                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Harga Beli</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="rupiah" name="rupiah" >
