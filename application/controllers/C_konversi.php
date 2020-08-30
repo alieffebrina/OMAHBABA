@@ -7,9 +7,6 @@ class C_konversi extends CI_Controller{
         $this->load->library('session');
         $this->load->model('M_konversi');
         $this->load->model('M_Setting');
-        if(!$this->session->userdata('id_user')){
-            redirect('C_Login');
-        }
     }
 
     // function index()
@@ -22,6 +19,18 @@ class C_konversi extends CI_Controller{
     //     $this->load->view('master/konversi/v_konversi',$data); 
     //     $this->load->view('template/footer');
     // }
+
+    function index()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['konversi'] = $this->M_konversi->getkonversisatuan();
+        $data['satuan'] = $this->M_Setting->getsatuan();
+        $this->load->view('master/konversi/v_addkonversi',$data); 
+        $this->load->view('template/footer');
+    }
 
     function add()
     {
@@ -57,11 +66,15 @@ class C_konversi extends CI_Controller{
 
     public function tambah()
     {   
-
         $id = $this->session->userdata('id_user');
         $this->M_konversi->tambahdata($id);
-        $this->session->set_flashdata('Sukses', "Data Berhasil Ditambahkan.");
-        redirect('C_konversi/add');
+        
+        $id_submenu = '3';
+        $ket = 'tambah data konversi';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $this->session->set_flashdata('Sukses', "Data Konversi Berhasil Di Tambahkan.");
+        redirect('C_konversi');
     }
 
     // public function tambah()
@@ -89,6 +102,7 @@ class C_konversi extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['konversi'] = $this->M_konversi->getspek($ida);
+        $data['satuan'] = $this->M_Setting->getsatuan();
         $this->load->view('master/konversi/v_vkonversi',$data); 
         $this->load->view('template/footer');
     }
@@ -107,18 +121,27 @@ class C_konversi extends CI_Controller{
 
     function editkonversi()
     {   
-
         $id = $this->session->userdata('id_user');
         $this->M_konversi->edit($id);
-        $this->session->set_flashdata('Sukses', "Data Berhasil Di Perbarui.");
-        redirect('C_konversi/add');
+
+        $id_submenu = '3';
+        $ket = 'edit data konversi';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $this->session->set_flashdata('Sukses', "Data Konversi Berhasil Di Perbarui.");
+        redirect('C_konversi');
     }
 
     function hapus($id){
         $where = array('id_konversi' => $id);
         $this->M_Setting->delete($where,'tb_konversi');
-        $this->session->set_flashdata('Sukses', "Data Berhasil Di Hapus.");
-        redirect('C_konversi/add');
+
+        $id_submenu = '3';
+        $ket = 'hapus data konversi'.$id;
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $this->session->set_flashdata('Sukses', "Data Konversi Berhasil Di Hapus.");
+        redirect('C_konversi');
     }
 
 }
