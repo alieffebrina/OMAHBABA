@@ -32,10 +32,11 @@ class M_barang extends CI_Model {
             'id_cabang' => $this->input->post('namacabang'),
             'id_satuan' => $this->input->post('satuan'),
             'id_kategori' => $this->input->post('kategori'),
+            'id_warna' => $this->input->post('warna'),
+            'ukuran' => $this->input->post('ukuran'),
             'merk' => $this->input->post('merk'),
             'hargabeli' => $harga_str,
-            'ukuran' => $this->input->post('ukuran'),
-            'id_warna' => $this->input->post('warna'),
+            
             'id_user' => $id,
             'tglupdate' => date('Y-m-d')
         );
@@ -75,6 +76,9 @@ class M_barang extends CI_Model {
     }
 
     function edit($id){
+        $harga = $this->input->post('rupiah');
+        $harga_str = preg_replace("/[^0-9]/", "", $harga);
+
         $barang = array(
             'barang' => $this->input->post('barang'),
             'barcode' => $this->input->post('barcode'),
@@ -83,10 +87,11 @@ class M_barang extends CI_Model {
             'id_cabang' => $this->input->post('namacabang'),
             'id_satuan' => $this->input->post('satuan'),
             'id_kategori' => $this->input->post('kategori'),
+            'id_warna' => $this->input->post('warna'),
+            'ukuran' => $this->input->post('ukuran'),
             'merk' => $this->input->post('merk'),
             'hargabeli' => $harga_str,
-            'ukuran' => $this->input->post('ukuran'),
-            'id_warna' => $this->input->post('warna'),
+            
             'id_user' => $id,
             'tglupdate' => date('Y-m-d')
         );
