@@ -75,7 +75,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('C_barang/index'); ?>" class="btn btn-default">Batal</a>
+                    <a href="<?php echo site_url('C_baranggaram/index'); ?>" class="btn btn-default">Batal</a>
                     <button type="submit" class="btn btn-info">Simpan Data</button>
                   </div>
               </div>
@@ -120,9 +120,9 @@
                   
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_konversi/view/'.$konversi->id_konversi); ?>"><button type="button" class="btn btn-success">Lihat</button></a>
-                      <a href="<?php echo site_url('C_konversi/edit/'.$konversi->id_konversi); ?>"><button type="button" class="btn btn-info">Edit</button></a>
-                      <a href="<?php echo site_url('C_konversi/hapus/'.$konversi->id_konversi); ?>"><button type="button" class="btn btn-danger">Hapus</button></a>
+                      <a href="<?php echo site_url('C_konversi/view/'.$konversi->id_konversi); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('C_konversi/edit/'.$konversi->id_konversi); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('C_konversi/hapus/'.$konversi->id_konversi); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>
