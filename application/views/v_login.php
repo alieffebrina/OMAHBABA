@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Xmee | Login and Register Form Html Templates</title>
-    <meta name="description" content="">
+    <title>Sistem Poin Of Sales | Oemah Babah</title>
+    <meta name="Sistem Penjualan Oemah Babah" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url() ?>assets/login/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url() ?>assets/login/img/icon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/login/css/bootstrap.min.css">
     <!-- Fontawesome CSS -->
@@ -31,26 +31,15 @@
                     <div class="fxt-bg-img" data-bg-image="<?php echo base_url() ?>assets/login/img/figure/bg4-l.jpg">
                         <div class="fxt-header">
                             <div class="fxt-transformY-50 fxt-transition-delay-1">
-                                <a href="login-4.html" class="fxt-logo"><img src="<?php echo base_url() ?>assets/login/img/logo-4.png" alt="Logo"></a>
+                                <!-- <a href="login-4.html" class="fxt-logo"><img src="<?php echo base_url() ?>assets/login/img/logo-4.png" alt="Logo"></a> -->
                             </div>
                             <div class="fxt-transformY-50 fxt-transition-delay-2">
-                                <h1>Welcome To Omah Baba</h1>
+                                <!-- <h1>Halaman Login</h1> -->
                             </div>
-                            <div class="fxt-transformY-50 fxt-transition-delay-3">
+                            <!-- <div class="fxt-transformY-50 fxt-transition-delay-3">
                                 <p>Grursus mal suada faci lisis Lorem ipsum dolarorit more ametion consectetur elit. Vesti at bulum nec odio aea the dumm ipsumm ipsum that dolocons rsus mal suada and fadolorit to the dummy consectetur elit the Lorem Ipsum genera.</p>
-                            </div>
+                            </div> -->
                         </div>
-                        <ul class="fxt-socials">
-                            <li class="fxt-facebook fxt-transformY-50 fxt-transition-delay-4"><a href="#"
-                                    title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                            <li class="fxt-twitter fxt-transformY-50 fxt-transition-delay-5"><a href="#" title="twitter"><i
-                                        class="fab fa-twitter"></i></a></li>
-                            <li class="fxt-google fxt-transformY-50 fxt-transition-delay-6"><a href="#" title="google"><i
-                                        class="fab fa-google-plus-g"></i></a></li>
-                            <li class="fxt-linkedin fxt-transformY-50 fxt-transition-delay-7"><a href="#"
-                                    title="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li class="fxt-youtube fxt-transformY-50 fxt-transition-delay-8"><a href="#" title="youtube"><i class="fab fa-youtube"></i></a></li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-md-6 col-12 fxt-bg-color">
@@ -85,7 +74,7 @@
                                     </div>
                                 </div> -->
                                 <div class="form-group">
-                                    <button type="submit" class="fxt-btn-fill">Log in</button>
+                                    <button type="submit" class="fxt-btn-fill">Login Disini</button>
                                 </div>
                             </form>                            
                         </div> 
