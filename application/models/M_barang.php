@@ -35,6 +35,8 @@ class M_barang extends CI_Model {
             'id_warna' => $this->input->post('warna'),
             'ukuran' => $this->input->post('ukuran'),
             'merk' => $this->input->post('merk'),
+            'stok' => $this->input->post('stok'),
+            'stokmin' => $this->input->post('stokmin'),
             'hargabeli' => $harga_str,
             
             'id_user' => $id,
@@ -90,6 +92,8 @@ class M_barang extends CI_Model {
             'id_warna' => $this->input->post('warna'),
             'ukuran' => $this->input->post('ukuran'),
             'merk' => $this->input->post('merk'),
+            'stok' => $this->input->post('stok'),
+            'stokmin' => $this->input->post('stokmin'),
             'hargabeli' => $harga_str,
             
             'id_user' => $id,
