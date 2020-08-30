@@ -310,7 +310,7 @@
         success: function(response){ // Ketika proses pengiriman berhasil
           // set isi dari combobox kota
           // lalu munculkan kembali combobox kotanya
-          $("#namacabang").html(response.list_namacabang).show();
+          $("#namacabang").html(response.list_cabang).show();
         },
         error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
           alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
@@ -319,6 +319,7 @@
     });
   });
   </script>
+
 <script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
@@ -485,7 +486,7 @@
           if($("#kredit").is(':checked')){
             $('#limit').val(response.limit_pelanggan);
           }
-          // $("#nama").html(response.list_pelanggan).show();
+          //$("#nama").html(response.list_pelanggan).show();
           $("#alamat").html(response.list_alamat).show();
         },
         error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
@@ -859,36 +860,6 @@
 
 <script type='text/javascript'>
     var error = 1; 
-    function cek_pelanggankode(){
-        $("#pesankodepelanggan").hide();
-        var nopelanggan = $("#nopelanggan").val();
-        if(nopelanggan != ""){
-            $.ajax({
-                url: "<?php echo site_url() . '/C_pelanggan/cek_pelanggankode'; ?>", //arahkan pada proses_tambah di controller member
-                data: 'nopelanggan='+nopelanggan,
-                type: "POST",
-                success: function(msg){
-                    if(msg==1){
-                        $("#pesankodepelanggan").css("color","#fc5d32");
-                        $("#nopelanggan").css("border-color","#fc5d32");
-                        $("#pesankodepelanggan").html("Kode Suplier sudah digunakan !");
- 
-                        error = 1;
-                    }else{
-                        $("#pesankodepelanggan").css("color","#59c113");
-                        $("#nopelanggan").css("border-color","#59c113");
-                        $("#pesankodepelanggan").html("");
-                        error = 0;
-                    }
-                    $("#pesankodepelanggan").fadeIn(1000);
-                }
-            });
-        }       
-    }
-</script>
-
-<script type='text/javascript'>
-    var error = 1; 
     function cek_voucherkode(){
         $("#pesankodevoucher").hide();
         var kodevoucher = $("#kodevoucher").val();
@@ -941,6 +912,35 @@
                         error = 0;
                     }
                     $("#pesankodesuplier").fadeIn(1000);
+                }
+            });
+        }       
+    }
+</script>
+<script type='text/javascript'>
+    var error = 1; 
+    function cek_pelanggankode(){
+        $("#pesankodepelanggan").hide();
+        var nopelanggan = $("#nopelanggan").val();
+        if(nopelanggan != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_pelanggan/cek_pelanggankode'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'nopelanggan='+nopelanggan,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesankodepelanggan").css("color","#fc5d32");
+                        $("#nopelanggan").css("border-color","#fc5d32");
+                        $("#pesankodepelanggan").html("Username sudah digunakan !");
+ 
+                        error = 1;
+                    }else{
+                        $("#pesankodepelanggan").css("color","#59c113");
+                        $("#nopelanggan").css("border-color","#59c113");
+                        $("#pesankodepelanggan").html("");
+                        error = 0;
+                    }
+                    $("#pesankodepelanggan").fadeIn(1000);
                 }
             });
         }       
