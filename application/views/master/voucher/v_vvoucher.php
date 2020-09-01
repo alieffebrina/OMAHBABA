@@ -59,9 +59,9 @@
                     <input type="date" class="form-control" id="tglmulai" name="tglmulai" value="<?php echo $voucher->tglmulai?>" readonly>
                   </div>
                 </div> -->
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-1 control-label">Tanggal Berlaku Sampai</label>
-                  <div class="col-sm-10">
+								<div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Berlaku Sampai</label>
+                  <div class="col-sm-9">
                     <input type="date" class="form-control" id="tglakhir" name="tglakhir" value="<?php echo $voucher->tglakhir?>" readonly>
                   </div>
                 </div>
