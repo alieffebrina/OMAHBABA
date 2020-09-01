@@ -16,7 +16,7 @@ class C_satuangaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['satuan'] = $this->M_satuan->getsatuan();
-        $this->load->view('master/satuangaram/v_addsatuangaram',$data); 
+        $this->load->view('master/satuan/v_addsatuangaram',$data); 
         $this->load->view('template/footer');
     }
 
@@ -27,7 +27,7 @@ class C_satuangaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['satuan'] = $this->M_Setting->getsatuan();
-        $this->load->view('master/satuangaram/v_addsatuangaram', $data); 
+        $this->load->view('master/satuan/v_addsatuangaram', $data); 
         $this->load->view('template/footer');
     }
 
@@ -96,7 +96,7 @@ class C_satuangaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['satuan'] = $this->M_satuan->getspek($ida);
-        $this->load->view('master/satuangaram/v_vsatuangaram',$data); 
+        $this->load->view('master/satuan/v_vsatuangaram',$data); 
         $this->load->view('template/footer');
     }
 
@@ -107,7 +107,7 @@ class C_satuangaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['satuan'] = $this->M_satuan->getspek($iduser);
-        $this->load->view('master/satuangaram/v_esatuangaram',$data); 
+        $this->load->view('master/satuan/v_esatuangaram',$data); 
         $this->load->view('template/footer');
     }
 
