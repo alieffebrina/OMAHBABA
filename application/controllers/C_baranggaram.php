@@ -22,7 +22,7 @@ class C_baranggaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['barang'] = $this->M_baranggaram->getbaranggaram();
-        $this->load->view('master/baranggaram/v_baranggaram',$data); 
+        $this->load->view('master/barang/v_baranggaram',$data); 
         $this->load->view('template/footer');
     }
 
@@ -39,7 +39,7 @@ class C_baranggaram extends CI_Controller{
         $data['kategori'] = $this->M_Setting->getkategori();
         $data['warna'] = $this->M_Setting->getwarna();
         $data['konversi'] = $this->M_Setting->getkonversisatuan();
-        $this->load->view('master/baranggaram/v_addbaranggaram', $data); 
+        $this->load->view('master/barang/v_addbaranggaram', $data); 
         // $this->load->view('master/user/v_modal');
         // $this->load->view('master/user/v_modalcabang');
         $this->load->view('master/user/v_modalkategori');
@@ -121,7 +121,7 @@ class C_baranggaram extends CI_Controller{
         $data['kategori'] = $this->M_Setting->getkategori();
         $data['warna'] = $this->M_Setting->getwarna();
         $data['konversi'] = $this->M_Setting->getkonversisatuan();
-        $this->load->view('master/baranggaram/v_vbaranggaram',$data); 
+        $this->load->view('master/barang/v_vbaranggaram',$data); 
         $this->load->view('template/footer');
     }
 
@@ -138,7 +138,7 @@ class C_baranggaram extends CI_Controller{
         $data['warna'] = $this->M_Setting->getwarna();
         $data['konversi'] = $this->M_Setting->getkonversisatuan();
         $data['barang'] = $this->M_baranggaram->getspek($iduser);
-        $this->load->view('master/baranggaram/v_ebaranggaram',$data); 
+        $this->load->view('master/barang/v_ebaranggaram',$data); 
         $this->load->view('template/footer');
     }
 
