@@ -81,7 +81,7 @@
                     <div class="btn-group">
                       <a href="<?php echo site_url('C_kategorigaram/view/'.$kategori->id_kategori); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
                       <a href="<?php echo site_url('C_kategorigaram/edit/'.$kategori->id_kategori); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <a href="<?php echo site_url('C_kategorigaram/hapus/'.$kategori->id_kategori); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
+											<a href="<?php echo site_url('C_kategorigaram/hapus/'.$kategori->id_kategori); ?>" onclick="return confirm('Yakin Hapus?')"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>
