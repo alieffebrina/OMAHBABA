@@ -17,7 +17,7 @@ class C_hargagaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['harga'] = $this->M_hargagaram->gethargagaram();
-        $this->load->view('master/hargagaram/v_hargagaram',$data); 
+        $this->load->view('master/harga/v_hargagaram',$data); 
         $this->load->view('template/footer');
     }
 
@@ -29,7 +29,7 @@ class C_hargagaram extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         
         $data['barang'] = $this->M_Setting->gethargabaranggaram();
-        $this->load->view('master/hargagaram/v_addhargagaram', $data); 
+        $this->load->view('master/harga/v_addhargagaram', $data); 
         $this->load->view('template/footer');
     }
 
@@ -75,7 +75,7 @@ class C_hargagaram extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['harga'] = $this->M_hargagaram->getspek($ida);
         $data['barang'] = $this->M_Setting->gethargabaranggaram();
-        $this->load->view('master/hargagaram/v_vhargagaram',$data); 
+        $this->load->view('master/harga/v_vhargagaram',$data); 
         $this->load->view('template/footer');
     }
 
@@ -87,7 +87,7 @@ class C_hargagaram extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['barang'] = $this->M_Setting->gethargabaranggaram();
         $data['harga'] = $this->M_hargagaram->getspek($iduser);
-        $this->load->view('master/hargagaram/v_ehargagaram',$data); 
+        $this->load->view('master/harga/v_ehargagaram',$data); 
         $this->load->view('template/footer');
     }
 
