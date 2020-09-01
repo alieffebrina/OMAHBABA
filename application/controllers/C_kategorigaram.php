@@ -16,7 +16,7 @@ class C_kategorigaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kategori'] = $this->M_kategori->getkategori();
-        $this->load->view('master/kategorigaram/v_addkategorigaram',$data); 
+        $this->load->view('master/kategori/v_addkategorigaram',$data); 
         $this->load->view('template/footer');
     }
 
@@ -27,7 +27,7 @@ class C_kategorigaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kategori'] = $this->M_kategori->getkategori();
-        $this->load->view('master/kategorigaram/v_addkategorigaram', $data); 
+        $this->load->view('master/kategori/v_addkategorigaram', $data); 
         $this->load->view('template/footer');
     }
 
@@ -96,7 +96,7 @@ class C_kategorigaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kategori'] = $this->M_kategori->getspek($ida);
-        $this->load->view('master/kategorigaram/v_vkategorigaram',$data); 
+        $this->load->view('master/kategori/v_vkategorigaram',$data); 
         $this->load->view('template/footer');
     }
 
@@ -107,7 +107,7 @@ class C_kategorigaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['kategori'] = $this->M_kategori->getspek($iduser);
-        $this->load->view('master/kategorigaram/v_ekategorigaram',$data); 
+        $this->load->view('master/kategori/v_ekategorigaram',$data); 
         $this->load->view('template/footer');
     }
 
