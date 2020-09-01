@@ -466,36 +466,36 @@
   });
   </script>
 
-  <script>
-  $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
-    // Kita sembunyikan dulu untuk loadingnya
-    $("#nama").change(function(){ // Ketika user mengganti atau memilih data provinsi
+  <!-- <script>
+  // $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
+  //   // Kita sembunyikan dulu untuk loadingnya
+  //   $("#nama").change(function(){ // Ketika user mengganti atau memilih data provinsi
     
-      $.ajax({
-        type: "POST", // Method pengiriman data bisa dengan GET atau POST
-        url: "<?php echo base_url("index.php/C_pelanggan/cek_pelanggan"); ?>", // Isi dengan url/path file php yang dituju
-        data: {id_pelanggan : $("#nama").val()}, // data yang akan dikirim ke file yang dituju
-        dataType: "json",
-        beforeSend: function(e) {
-          if(e && e.overrideMimeType) {
-            e.overrideMimeType("application/json;charset=UTF-8");
-          }
-        },
-        success: function(response){ // Ketika proses pengiriman berhasil
-          console.log(response);
-          if($("#kredit").is(':checked')){
-            $('#limit').val(response.limit_pelanggan);
-          }
-          //$("#nama").html(response.list_pelanggan).show();
-          $("#alamat").html(response.list_alamat).show();
-        },
-        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
-          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
-        }
-      });
-    });
-  });
-  </script>
+  //     $.ajax({
+  //       type: "POST", // Method pengiriman data bisa dengan GET atau POST
+  //       url: "<?php echo base_url("index.php/C_pelanggan/cek_pelanggan"); ?>", // Isi dengan url/path file php yang dituju
+  //       data: {id_pelanggan : $("#nama").val()}, // data yang akan dikirim ke file yang dituju
+  //       dataType: "json",
+  //       beforeSend: function(e) {
+  //         if(e && e.overrideMimeType) {
+  //           e.overrideMimeType("application/json;charset=UTF-8");
+  //         }
+  //       },
+  //       success: function(response){ // Ketika proses pengiriman berhasil
+  //         console.log(response);
+  //         if($("#kredit").is(':checked')){
+  //           $('#limit').val(response.limit_pelanggan);
+  //         }
+  //         //$("#nama").html(response.list_pelanggan).show();
+  //         $("#alamat").html(response.list_alamat).show();
+  //       },
+  //       error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+  //         alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+  //       }
+  //     });
+  //   });
+  // });
+  // </script>-->
 
   // <script>
   // $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
@@ -1159,23 +1159,23 @@
     function cek_namapelanggan(){
         $("#pesan_pelanggan").hide();
  
-        var nama_pelanggan = $("#nama_pelanggan").val();
+        var nama = $("#nama").val();
  
-        if(nama_pelanggan != ""){
+        if(nama != ""){
             $.ajax({
-                url: "<?php echo site_url() . '/C_Pelanggan/cek_namapelanggan'; ?>", //arahkan pada proses_tambah di controller member
-                data: 'nama_pelanggan='+nama_pelanggan,
+                url: "<?php echo site_url() . '/C_pelanggan/cek_namapelanggan'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'nama='+nama,
                 type: "POST",
                 success: function(msg){
                     if(msg==1){
                         $("#pesan_pelanggan").css("color","#fc5d32");
-                        $("#nama_pelanggan").css("border-color","#fc5d32");
+                        $("#nama").css("border-color","#fc5d32");
                         $("#pesan_pelanggan").html("Nama Pelanggan sudah digunakan !");
  
                         error = 1;
                     }else{
                         $("#pesan_pelanggan").css("color","#59c113");
-                        $("#nama_pelanggan").css("border-color","#59c113");
+                        $("#nama").css("border-color","#59c113");
                         $("#pesan_pelanggan").html("");
                         error = 0;
                     }
@@ -1194,23 +1194,23 @@
     function cek_tlppelanggan(){
         $("#pesan_tlppelanggan").hide();
  
-        var tlp_pelanggan = $("#tlp_pelanggan").val();
+        var tlp = $("#tlp").val();
  
-        if(tlp_pelanggan != ""){
+        if(tlp != ""){
             $.ajax({
-                url: "<?php echo site_url() . '/C_Pelanggan/cek_tlppelanggan'; ?>", //arahkan pada proses_tambah di controller member
-                data: 'tlp_pelanggan='+tlp_pelanggan,
+                url: "<?php echo site_url() . '/C_pelanggan/cek_tlppelanggan'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'tlp='+tlp,
                 type: "POST",
                 success: function(msg){
                     if(msg==1){
                         $("#pesan_tlppelanggan").css("color","#fc5d32");
-                        $("#tlp_pelanggan").css("border-color","#fc5d32");
+                        $("#tlp").css("border-color","#fc5d32");
                         $("#pesan_tlppelanggan").html("Tlp Pelanggan sudah digunakan !");
  
                         error = 1;
                     }else{
                         $("#pesan_tlppelanggan").css("color","#59c113");
-                        $("#tlp_pelanggan").css("border-color","#59c113");
+                        $("#tlp").css("border-color","#59c113");
                         $("#pesan_tlppelanggan").html("");
                         error = 0;
                     }
