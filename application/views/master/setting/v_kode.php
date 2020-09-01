@@ -54,7 +54,7 @@
                   <td><?php echo $kode->kodefinal; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_Setting/hapuskode/'.$kode->id_kode); ?>"><button type="button" class="btn btn-success">Hapus</button></a>
+                      <a href="<?php echo site_url('C_Setting/hapuskode/'.$kode->id_kode); ?>" onclick="return confirm('Yakin Hapus?')"><button type="button" class="btn btn-success">Hapus</button></a>
                     </div>
                   </td>
                 </tr>

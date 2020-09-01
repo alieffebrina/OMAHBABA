@@ -67,7 +67,7 @@
                     <div class="btn-group">
                       <a href="<?php echo site_url('C_voucher/view/'.$voucher->id_voucher); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
                       <a href="<?php echo site_url('C_voucher/edit/'.$voucher->id_voucher); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <a href="<?php echo site_url('C_voucher/hapus/'.$voucher->id_voucher); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                      <a href="<?php echo site_url('C_voucher/hapus/'.$voucher->id_voucher); ?>" onclick="return confirm('Yakin Hapus?')"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>

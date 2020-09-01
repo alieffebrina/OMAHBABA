@@ -64,7 +64,7 @@
                     <div class="btn-group">
                       <a href="<?php echo site_url('C_suplier/view/'.$suplier->id_suplier); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
                       <a href="<?php echo site_url('C_suplier/edit/'.$suplier->id_suplier); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <a href="<?php echo site_url('C_suplier/hapus/'.$suplier->id_suplier); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                      <a href="<?php echo site_url('C_suplier/hapus/'.$suplier->id_suplier); ?>" onclick="return confirm('Yakin Hapus?')"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>
                 </tr>
