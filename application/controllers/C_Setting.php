@@ -49,20 +49,19 @@ class C_Setting extends CI_Controller{
             // Ambil data ID Provinsi yang dikirim via ajax post
             $id = $this->input->post('id_gudang');
             
-            $namacabang = $this->M_Setting->getcabanger($id);
+            $cabang = $this->M_Setting->getcabangg($id);
             
             // Buat variabel untuk menampung tag-tag option nya
             // Set defaultnya dengan tag option Pilih
             $lists = "<option value=''>Pilih</option>";
             
-            foreach($namacabang as $data){
+            foreach($cabang as $data){
               $lists .= "<option value='".$data->id_cabang."'>".$data->namacabang."</option>"; // Tambahkan tag option ke variabel $lists
             }
             
-            $callback = array('list_namacabang'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+            $callback = array('list_cabang'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
     }
-
 
     function index()
     {
