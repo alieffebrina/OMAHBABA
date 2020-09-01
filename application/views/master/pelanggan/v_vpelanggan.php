@@ -29,15 +29,16 @@
               <div class="box-body">
                 <?php foreach ($pelanggan as $pelanggan) { ?>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Kode pelanggan</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Kode Pelanggan</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" readonly value="<?php echo $pelanggan->nopelanggan ?>">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama pelanggan</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pelanggan</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $pelanggan->nama ?>" readonly>
+                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $pelanggan->id_pelanggan ?>" >
                   </div>
                 </div>
                 
@@ -45,17 +46,17 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
 
-                    <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" value="<?php echo $pelanggan->name_prov ?>" readonly>
+                    <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $pelanggan->name_prov ?>" readonly>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kota/Kabupaten</label>
-                  <div class="col-sm-9"><input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" value="<?php echo $pelanggan->name_kota ?>" readonly>
+                  <div class="col-sm-9"><input type="text" class="form-control" id="nama" name="nama" value="<?php echo $pelanggan->name_kota ?>" readonly>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
-                  <div class="col-sm-9"><input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" value="<?php echo $pelanggan->kecamatan ?>" readonly>
+                  <div class="col-sm-9"><input type="text" class="form-control" id="nama" name="nama" value="<?php echo $pelanggan->kecamatan ?>" readonly>
                   </div>
                 </div>
                 <div class="form-group">
@@ -71,7 +72,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Limit</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Limit Piutang</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="rupiah" name="rupiah" value=" Rp. <?php echo number_format($pelanggan->limit,0,",","."); ?>" readonly>
                   </div>

@@ -13,6 +13,16 @@
       </ol>
     </section>
 
+    <div class="box-body">
+    <?php if ($this->session->flashdata('Sukses')) { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
+          <?=$this->session->flashdata('Sukses')?>.
+        </div>                 
+      <?php } ?>
+    </div>
+
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -31,26 +41,16 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Kode Pelanggan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" placeholder="No pelanggan" value="<?php echo $kode ?>" readonly onkeyup="cek_pelanggankode()">
+                    <input type="text" class="form-control" id="nopelanggan" name="nopelanggan" placeholder="No pelanggan" value="<?php echo $kode ?>" onkeyup="cek_pelanggankode()">
                   <span id="pesankodepelanggan"></span>
                   </div>
                 </div>
-
                  <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama pelanggan</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama_pelanggan" name="nama" placeholder="Nama pelanggan">
-                  </div>
-                </div>
-
-                <!-- <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Pelanggan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama_pelanggan" name="nama" placeholder="Nama Pelanggan" onkeyup="cek_namapelanggan()">
-                  <span id="pesan_pelanggan"></span>
+                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Pelanggan">
                   </div>
-                </div> -->
-
+                </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
@@ -69,7 +69,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="form-group">
+                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
                   <div class="col-sm-9">
                   <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;">
@@ -89,7 +89,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Limit Hutang</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Limit Piutang</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="rupiah" name="rupiah" >
                   </div>

@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data pelanggan
+        Data Pelanggan
         <small></small>
       </h1>
       <ol class="breadcrumb">
@@ -13,11 +13,11 @@
       </ol>
     </section>
     <div class="box-body">
-    <?php if ($this->session->flashdata('SUCCESS')) { ?>
-       <div class="alert alert-success alert-dismissible">
+    <?php if ($this->session->flashdata('Sukses')) { ?>
+        <div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h5><i class="icon fa fa-check"></i> Success!</h5>
-          Data berhasil di perbarui.
+          <h5><i class="icon fa fa-check"></i> Sukses!</h5>
+          <?=$this->session->flashdata('Sukses')?>.
         </div>                 
       <?php } ?>
     </div>
@@ -39,11 +39,11 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Kode pelanggan</th>
-                  <th>Nama pelanggan</th>
+                  <th>Kode Pelanggan</th>
+                  <th>Nama pPelanggan</th>
                   <th>Alamat</th>
                   <th>Telepon</th>
-                  <th>Limit Hutang</th>
+                  <th>Limit Piutang</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -55,7 +55,7 @@
                   <td><?php echo $no++; ?></td>
                   <td><?php echo $pelanggan->nopelanggan; ?></td>
                   <td><?php echo $pelanggan->nama; ?></td>
-                  <td><?php echo $pelanggan->alamat.','.$pelanggan->kecamatan.','.$pelanggan->name_kota.','.$pelanggan->name_prov;?></td>
+                  <td><?php echo $pelanggan->alamat.', '.$pelanggan->kecamatan.', '.$pelanggan->name_kota.', '.$pelanggan->name_prov;?></td>
                   <td><?php echo $pelanggan->tlp;?></td>
                   <td>Rp. <?php echo number_format($pelanggan->limit,0,",","."); ?></td>
                   <td>
