@@ -16,7 +16,7 @@ class C_warnagaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['warna'] = $this->M_warna->getwarna();
-        $this->load->view('master/warnagaram/v_addwarnagaram',$data); 
+        $this->load->view('master/warna/v_addwarnagaram',$data); 
         $this->load->view('template/footer');
     }
 
@@ -27,7 +27,7 @@ class C_warnagaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['warna'] = $this->M_Setting->getwarna();
-        $this->load->view('master/warnagaram/v_addwarnagaram', $data);
+        $this->load->view('master/warna/v_addwarnagaram', $data);
         $this->load->view('template/footer');
     }
 
@@ -96,7 +96,7 @@ class C_warnagaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['warna'] = $this->M_warna->getspek($ida);
-        $this->load->view('master/warnagaram/v_vwarnagaram',$data); 
+        $this->load->view('master/warna/v_vwarnagaram',$data); 
         $this->load->view('template/footer');
     }
 
@@ -107,7 +107,7 @@ class C_warnagaram extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['warna'] = $this->M_warna->getspek($iduser);
-        $this->load->view('master/warnagaram/v_ewarnagaram',$data); 
+        $this->load->view('master/warna/v_ewarnagaram',$data); 
         $this->load->view('template/footer');
     }
 
