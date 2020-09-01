@@ -6,6 +6,7 @@ class M_pelanggan extends CI_Model {
 		$this->db->select('*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_pelanggan.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_pelanggan.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_pelanggan.id_kecamatan');
         $query = $this->db->get('tb_pelanggan');
     	return $query->result();
     }
@@ -28,6 +29,7 @@ class M_pelanggan extends CI_Model {
             'nopelanggan' => $this->input->post('nopelanggan'),
             'id_provinsi' => $this->input->post('prov'),
             'id_kota' => $this->input->post('kota'),
+            'id_kecamatan' => $this->input->post('kecamatan'),
             'alamat' => $this->input->post('alamat'),
             'tlp' => $this->input->post('tlp'),
             'limit' => $harga_str,
@@ -48,6 +50,7 @@ class M_pelanggan extends CI_Model {
 		$this->db->select('*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_pelanggan.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_pelanggan.id_kota'); 
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_pelanggan.id_kecamatan');
         $where = array(
             'id_pelanggan' => $iduser
         );
@@ -66,6 +69,7 @@ class M_pelanggan extends CI_Model {
             
             'id_provinsi' => $this->input->post('prov'),
             'id_kota' => $this->input->post('kota'),
+            'id_kecamatan' => $this->input->post('kecamatan'),
             'alamat' => $this->input->post('alamat'),
             'tlp' => $this->input->post('tlp'),
             'limit' => $harga_str,
