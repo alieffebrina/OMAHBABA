@@ -63,7 +63,7 @@ class C_hargagaram extends CI_Controller{
         $ket = 'tambah data harga';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('Sukses', "Data harga Berhasil Di Tambahkan.");
+        $this->session->set_flashdata('Sukses', "Data Harga Garam Berhasil Di Tambahkan.");
         redirect('C_hargagaram');
     }
 
@@ -101,19 +101,19 @@ class C_hargagaram extends CI_Controller{
         $ket = 'edit data harga';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('Sukses', "Data harga Berhasil Di Perbarui.");
+        $this->session->set_flashdata('Sukses', "Data Harga Garam Berhasil Di Perbarui.");
         redirect('C_hargagaram');
     }
 
     function hapus($id){
         $where = array('id_harga' => $id);
-        $this->M_Setting->delete($where,'tb_harga');
+        $this->M_Setting->delete($where,'tb_hargagaram');
 
         $id_submenu = '41';
         $ket = 'hapus data harga'.$id;
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 
-        $this->session->set_flashdata('Sukses', "Data harga Berhasil Di Hapus.");
+        $this->session->set_flashdata('Sukses', "Data Harga Garam Berhasil Di Hapus.");
         redirect('C_hargagaram');
     }
 
