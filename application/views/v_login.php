@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Sistem Poin Of Sales | Oemah Babah</title>
-    <meta name="Sistem Penjualan Oemah Babah" content="">
+    <title>Sistem Poin Of Sales</title>
+  <!-- omahbaba -->
+    <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/login/img/icon.png"/>
+    <!-- <meta name="Sistem Penjualan Oemah Babah" content=""> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url() ?>assets/login/img/icon.png">
@@ -28,7 +30,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 col-12 fxt-bg-wrap">
+                    <!-- omahbaba -->
                     <div class="fxt-bg-img" data-bg-image="<?php echo base_url() ?>assets/login/img/figure/bg4-l.jpg">
+                        <!-- garam -->
+                        <!-- <div class="fxt-bg-img" data-bg-image="<?php echo base_url() ?>assets/garam/company.jpg"> -->
                         <div class="fxt-header">
                             <div class="fxt-transformY-50 fxt-transition-delay-1">
                                 <!-- <a href="login-4.html" class="fxt-logo"><img src="<?php echo base_url() ?>assets/login/img/logo-4.png" alt="Logo"></a> -->

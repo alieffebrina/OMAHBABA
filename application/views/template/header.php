@@ -4,7 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Sistem Poin Of Sales</title>
+  <!-- omahbaba -->
   <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/login/img/icon.png"/>
+  <!-- garam --><!-- 
+  <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/garam/Favicon/favicon.ico"/> -->
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -43,16 +46,26 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+<!-- omahbaba -->
 <body class="hold-transition skin-green fixed sidebar-mini">
+<!-- garam -->
+<!-- <body class="hold-transition skin-blue fixed sidebar-mini"> -->
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
     <a href="<?php echo site_url('Welcome'); ?>" class="logo">
+      <!-- omahbaba -->
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>O</b>B</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>OEMAH </b>BABAH</span>
+
+      <!-- garam -->
+
+      <!-- <span class="logo-mini"><b>AS</b>KM</span> -->
+      <!-- logo for regular state and mobile devices -->
+      <!-- <span class="logo-lg"><b>PT </b>Anugerah Setia Kawan Mandiri</span> -->
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
