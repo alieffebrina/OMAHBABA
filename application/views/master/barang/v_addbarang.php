@@ -31,7 +31,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tambah Data barang</h3>
+              <h3 class="box-title">Tambah Data Barang</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -39,7 +39,7 @@
               <div class="box-body">
                 
                  <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama barang</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Barang</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="barang" name="barang" placeholder="Nama Barang">
                   </div>

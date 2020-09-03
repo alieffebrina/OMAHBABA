@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data barang
+        Data Barang Garam
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="<?php echo site_url('C_baranggaram'); ?>">Data Master</a></li>
-        <li class="active">Data barang</li>
+        <li class="active">Data Barang Garam</li>
       </ol>
     </section>
     <div class="box-body">
@@ -27,10 +27,10 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data barang</h3>
+              <h3 class="box-title">Data Barang Garam</h3>
             </div>
             <div class="box-header">
-              <a href="<?php echo site_url('C_baranggaram/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data Barang</button></a>
+              <a href="<?php echo site_url('C_baranggaram/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data Barang Garam</button></a>
              <!--  <a href="<?php echo site_url('C_gudang/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Gudang</button></a> -->
               <a href="<?php echo site_url('C_satuangaram/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Satuan</button></a>
               <a href="<?php echo site_url('C_kategorigaram/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Kategori</button></a>
@@ -44,7 +44,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama barang</th>
+                  <th>Nama Barang</th>
                   <th>Barcode</th>
                   <th>Expaid</th>
                   <th>Lokasi</th>

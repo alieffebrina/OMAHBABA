@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data barang
+        Data Barang
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="<?php echo site_url('C_barang'); ?>">Data Master</a></li>
-        <li class="active">Data barang</li>
+        <li class="active">Data Barang</li>
       </ol>
     </section>
     <div class="box-body">
@@ -27,7 +27,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data barang</h3>
+              <h3 class="box-title">Data Barang</h3>
             </div>
             <div class="box-header">
               <a href="<?php echo site_url('C_barang/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data Barang</button></a>
@@ -43,7 +43,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama barang</th>
+                  <th>Nama Barang</th>
                   <th>Barcode</th>
                   <th>Expaid</th>
                   <th>Lokasi</th>

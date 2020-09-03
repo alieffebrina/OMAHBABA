@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data barang
+        Data Barang Garam
         <small>Lihat</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
-        <li><a href="<?php echo site_url('C_baranggaram'); ?>">Data barang</a></li>>
-        <li class="active">Lihat Data barang</li>
+        <li><a href="<?php echo site_url('C_baranggaram'); ?>">Data Barang Garam</a></li>>
+        <li class="active">Lihat Data Barang Garam</li>
       </ol>
     </section>
 
@@ -21,7 +21,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Lihat Data barang</h3>
+              <h3 class="box-title">Lihat Data Barang Garam</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -29,7 +29,7 @@
               <div class="box-body">
                 <?php foreach ($barang as $barang) { ?>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama barang</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Barang</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="barang" name="barang" value="<?php echo $barang->barang ?>" readonly>
                   </div>

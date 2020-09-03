@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data barang
+        Data Barang
         <small>Edit</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Data Master</a></li>
-        <li><a href="<?php echo site_url('C_barang'); ?>">Data barang</a></li>>
-        <li class="active">Lihat Data barang</li>
+        <li><a href="<?php echo site_url('C_barang'); ?>">Data Barang</a></li>>
+        <li class="active">Lihat Data Barang</li>
       </ol>
     </section>
 
@@ -31,7 +31,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Lihat Data barang</h3>
+              <h3 class="box-title">Lihat Data Barang</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -40,7 +40,7 @@
                 <?php foreach ($barang as $barang) { ?>
                 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama barang</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Barang</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="barang" name="barang" value="<?php echo $barang->barang ?>">
                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $barang->id_barang ?>">
@@ -81,25 +81,7 @@
                   </div>
                 </div>
 
-                <!-- <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
-                  <div class="col-sm-9">
-                    <select class="form-control select2" id="gudang" name="gudang" style="width: 100%;">
-                      <?php foreach ($gudang as $gudang) { ?>
-                      <option value="<?php echo $gudang->id_gudang; ?>" <?php if ($barang->id_gudang == $gudang->id_gudang ){ echo "selected"; } ?> ><?php echo $gudang->gudang ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
-                  <div class="col-sm-9">
-                  <select class="form-control select2" id="namacabang" name="namacabang" style="width: 100%;">
-                      <option value="<?php echo $barang->id_cabang ?>"><?php echo $barang->namacabang ?></option>
-                    </select>
-                  </div>
-                </div> -->
+                
 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Satuan</label>
