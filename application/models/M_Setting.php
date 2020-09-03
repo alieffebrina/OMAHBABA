@@ -170,6 +170,15 @@ class M_Setting extends CI_Model {
         return $query->result();
     }
 
+    function gethargabaranggaram(){
+        $this->db->select('*');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_baranggaram.id_kategori');
+        $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_baranggaram.id_satuan');
+        $this->db->from('tb_baranggaram');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     function getsuplier(){
         $this->db->select('*');
         $this->db->from('tb_provinsi');
