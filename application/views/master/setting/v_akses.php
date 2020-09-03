@@ -39,8 +39,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama</th>
-                  <th>Username</th>
+                  <th>tipeuser</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -50,11 +49,10 @@
                   foreach ($user as $user) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
-                  <td><?php echo $user->nama; ?></td>
-                  <td><?php echo $user->username; ?></td>
+                  <td><?php echo $user->tipeuser; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_Setting/view/'.$user->id_user); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
+                      <a href="<?php echo site_url('C_Setting/view/'.$user->id_tipeuser); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
                     </div>
                   </td>
                 </tr>

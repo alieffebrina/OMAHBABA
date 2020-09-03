@@ -104,6 +104,11 @@ class C_User extends CI_Controller{
     public function tambahtipeuser()
     {   
         $this->M_User->tambahtipeuser();
+        $data = $this->M_User->cekkodetipeuser();
+        foreach ($data as $id) {
+            $id = $id;
+            $this->M_User->tambahakses($id);
+        }
 
         $id = $this->session->userdata('id_user');
         $id_submenu = '2';
@@ -122,9 +127,15 @@ class C_User extends CI_Controller{
 
     public function tambahtipeuserindex(){   
         $this->M_User->tambahtipeuser();
+        
+        $data = $this->M_User->cekkodetipeuser();
+        foreach ($data as $id) {
+            $id = $id;
+            $this->M_User->tambahakses($id);
+        }
 
         $id = $this->session->userdata('id_user');
-        $id_submenu = '1';
+        $id_submenu = '2';
         $ket = 'tambah data tipe user';
         $this->M_Setting->userlog($id, $id_submenu, $ket);
 

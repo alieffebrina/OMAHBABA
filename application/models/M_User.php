@@ -36,6 +36,8 @@ class M_User extends CI_Model {
             'tipeuser' => $this->input->post('tipeusermodal'),
         );
         $this->db->insert('tb_tipeuser', $user);
+
+
     }
 
 
@@ -127,5 +129,6 @@ class M_User extends CI_Model {
         $this->db->where($where);
         $this->db->update('tb_tipeuser',$user);
     }
-    
+
+   
 }

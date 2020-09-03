@@ -131,7 +131,7 @@ class M_Setting extends CI_Model {
         $this->db->select('*');
         $this->db->join('tb_submenu', 'tb_submenu.id_submenu = tb_akses.id_submenu');
         $this->db->join('tb_menu', 'tb_menu.id_menu = tb_submenu.id_menus');
-        $this->db->join('tb_staf', 'tb_staf.id_tipeuser = tb_akses.id_tipeuser');
+        $this->db->join('tb_tipeuser', 'tb_tipeuser.id_tipeuser = tb_akses.id_tipeuser');
         $where = array(
             'tb_akses.id_tipeuser' => $ida
         );
@@ -230,7 +230,7 @@ class M_Setting extends CI_Model {
 
     function editv($iduser,$submenu,$view){
             $where = array(
-                'id_user' =>  $iduser,
+                'id_tipeuser' =>  $iduser,
                 'id_submenu' => $view
             );
 
@@ -244,7 +244,7 @@ class M_Setting extends CI_Model {
 
     function edita($iduser,$submenu,$add){
         $where = array(
-            'id_user' =>  $iduser,
+            'id_tipeuser' =>  $iduser,
             'id_submenu' => $add
         );
 
@@ -258,7 +258,7 @@ class M_Setting extends CI_Model {
 
     function edite($iduser,$submenu,$edit){
         $where = array(
-            'id_user' =>  $iduser,
+            'id_tipeuser' =>  $iduser,
             'id_submenu' => $edit
         );
 
@@ -273,7 +273,7 @@ class M_Setting extends CI_Model {
 
     function editd($iduser,$submenu,$delete){
         $where = array(
-            'id_user' =>  $iduser,
+            'id_tipeuser' =>  $iduser,
             'id_submenu' => $delete
         );
 
@@ -294,7 +294,7 @@ class M_Setting extends CI_Model {
         );
 
         $where = array(
-            'id_user' =>  $iduser
+            'id_tipeuser' =>  $iduser
         );
 
         $this->db->where($where);                                                            

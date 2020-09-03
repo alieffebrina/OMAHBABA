@@ -22,7 +22,7 @@
           <div class="box box-primary">
             <div class="box-header with-border">
                   <?php foreach ($user as $user) { ?>
-              <h1 class="box-title"><?php echo $user->nama; ?></h1> 
+              <h1 class="box-title"><?php echo $user->tipeuser; ?></h1> 
                   <?php } ?>
             </div>
             <!-- /.box-header -->
@@ -46,7 +46,7 @@
                   foreach ($akses as $akses) { ?>
                 <tr>
                   <td>
-                  <input type="hidden" name="id" value="<?php echo $akses->id_user ?>">
+                  <input type="hidden" name="id" value="<?php echo $akses->id_tipeuser ?>">
                   <input type="hidden" name="submenu[]" value="<?php echo $akses->id_submenu ?>">
                   <?php echo $akses->submenu; ?></td>
                   <td><input type="checkbox" class="icheckbox_flat-green" name="view[]" value="<?php echo $akses->id_submenu ?>" <?php if($akses->view == '1'){ echo "checked"; } ?>> </td>
@@ -57,6 +57,7 @@
                   <?php } ?>
                 </tbody>
               </table>
+              <a href="<?php echo site_url('C_Setting'); ?>" class="btn btn-default">Batal</a>
               <button type="submit" class="btn btn-warning" name="save" >Simpan</button>
             </div>
                 </form>
