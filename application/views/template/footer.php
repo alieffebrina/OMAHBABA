@@ -279,7 +279,7 @@
       },
       success: function(response){ // Ketika proses pengiriman berhasil
           $('.close').click(); // Close / Tutup Modal Dialog
-          $("#modalwarna").html(response.list_kategori).show();
+          $("#modalwarna").html(response.list_warna).show();
       },
       error: function (xhr, ajaxOptions, thrownError) { // Ketika terjadi error
         alert(xhr.responseText) // munculkan alert
