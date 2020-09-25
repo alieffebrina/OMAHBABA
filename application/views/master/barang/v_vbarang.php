@@ -28,6 +28,16 @@
             <form class="form-horizontal" method="POST" action="<?php echo site_url('C_barang')?>">
               <div class="box-body">
                 <?php foreach ($barang as $barang) { ?>
+
+                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Foto Barang</label>
+                  <div class="col-sm-9">
+                    <img src="<?php echo base_url().'/uploadgambar/'.$barang->fotobarang?>" class='img-thumbnail' style='width:150px;height:200px;'>
+                    <p><?php echo $barang->fotobarang?></p>
+                    <!-- <input type="text" class="form-control" id="fotobarang" name="fotobarang" value="<?//php echo $barang->fotobarang?>" readonly> -->
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Barang</label>
                   <div class="col-sm-9">

@@ -40,6 +40,13 @@
                 <?php foreach ($barang as $barang) { ?>
                 
                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Foto Barang</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="fotobarang" name="fotobarang" value="<?php echo $barang->fotobarang ?>">
+                  </div>
+                </div>
+
+                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Barang</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="barang" name="barang" value="<?php echo $barang->barang ?>">
@@ -57,7 +64,7 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Expaid</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="expaid" name="expaid" value="<?php echo date($barang->expaid); ?>">
+                    <input type="date" class="form-control" id="expaid" name="expaid" value="<?php echo date($barang->expaid); ?>">
                   </div>
                 </div>
 

@@ -43,6 +43,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Foto</th>
                   <th>Nama Barang</th>
                   <th>Barcode</th>
                   <th>Expaid</th>
@@ -66,6 +67,7 @@
                   foreach ($barang as $barang) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
+                  <td><?php echo $barang->fotobarang; ?></td>
                   <td><?php echo $barang->barang; ?></td>
                   <td><?php echo $barang->barcode; ?></td>
                   <td><?php echo $barang->expaid; ?></td>

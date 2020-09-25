@@ -35,9 +35,16 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="<?php echo site_url('C_barang/tambah')?>">
+            <form class="form-horizontal" method="POST" action="<?php echo site_url('C_barang/tambah')?>" enctype="multipart/form-data">
               <div class="box-body">
                 
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Foto Barang</label>
+                  <div class="col-sm-9">
+                    <input type="file" name="fotobarang" id="fotobarang">
+                  </div>
+                </div>
+
                  <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Barang</label>
                   <div class="col-sm-9">
@@ -79,43 +86,6 @@
                   </div>
                 </div>
 
-                <!-- <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
-                  <div class="col-sm-9">
-                  <div class="input-group input-group-sm">
-                    <select class="form-control select2" id="modalgudang" name="gudang" style="width: 100%;">
-                      <option value="">--Pilih--</option>
-                      <?php foreach ($gudang as $gudang) { ?>
-                      <option value="<?php echo $gudang->id_gudang?>"><?php echo $gudang->gudang ?></option>
-                      <?php } ?>
-                    </select>
-                        <span class="input-group-btn">
-                          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modaladdgudang">
-                            Tambah
-                          </button>
-                        </span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
-                  <div class="col-sm-9">
-                  <div class="input-group input-group-sm">
-                    <select class="form-control select2" id="modalnamacabang" name="namacabang" style="width: 100%;">
-                      <option value="">--Pilih--</option>
-                      <?php foreach ($namacabang as $namacabang) { ?>
-                      <option value="<?php echo $namacabang->id_cabang?>"><?php echo $namacabang->namacabang ?></option>
-                      <?php } ?>
-                    </select>
-                        <span class="input-group-btn">
-                          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modaladdnamacabang">
-                            Tambah
-                          </button>
-                        </span>
-                  </div>
-                  </div>
-                </div>  -->
-                
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Satuan</label>
                   <div class="col-sm-9">
@@ -212,7 +182,7 @@
               <div class="box-footer">
                   <div class="col-sm-10">
                     <a href="<?php echo site_url('C_barang/index'); ?>" class="btn btn-default">Batal</a>
-                    <button type="submit" class="btn btn-info">Simpan Data</button>
+                    <input type="submit" name='simpan' class="btn btn-info" value='Simpan Data'>
                   </div>
               </div>
               <!-- /.box-footer -->
@@ -224,3 +194,4 @@
     </section>
     <!-- /.content -->
   </div>
+
