@@ -68,16 +68,49 @@ class C_barang extends CI_Controller{
 
     public function tambah()
     {   
+        if (isset($_POST['simpan'])) {
+        //buat folder bernama gambar
+            // print_r($_FILES);exit;
+            $tempdir = "uploadgambar/"; 
+            if (!file_exists($tempdir))
+                mkdir($tempdir,0755); 
+            //gambar akan di simpan di folder gambar
+            $target_path = $tempdir . basename($_FILES['fotobarang']['name']);
 
-        $id = $this->session->userdata('id_user');
-        $this->M_barang->tambahdata($id);
-        
-        $id_submenu = '7';
-        $ket = 'tambah data barang';
-        $this->M_Setting->userlog($id, $id_submenu, $ket);
+            //nama gambar
+            $nama_gambar=$_FILES['fotobarang']['name'];
+            //ukuran gambar
+            $ukuran_gambar = $_FILES['fotobarang']['size']; 
 
-        $this->session->set_flashdata('Sukses', "Data Barang Berhasil Di Tambahkan.");
-        redirect('C_barang');
+            $fileinfo = @getimagesize($_FILES["fotobarang"]["tmp_name"]);
+            //lebar gambar
+            $width = $fileinfo[0];
+            //tinggi gambar
+            $height = $fileinfo[1]; 
+            if($ukuran_gambar > 2000000){ 
+                $this->session->set_flashdata('Sukses', "Ukuran gambar melebihi 80kb");
+            }else if ($width > "472" || $height > "709") {
+                $this->session->set_flashdata('Sukses', "Ukuran gambar harus 472x709");
+            }else{
+                if (move_uploaded_file($_FILES['fotobarang']['tmp_name'], $target_path)) {
+                    $id = $this->session->userdata('id_user');
+
+                    $this->M_barang->tambahdata($id,$nama_gambar);
+                    
+                    $id_submenu = '7';
+                    $ket = 'tambah data barang';
+                    $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+                    $this->session->set_flashdata('Sukses', "Data Barang Berhasil Di Tambahkan.");
+                } else {
+                    echo 'gagal upload';
+                    $this->session->set_flashdata('Sukses', "Data Barang Gagal Di Tambahkan.");
+                }
+            } 
+            redirect('C_barang');
+        }else{
+            echo 'eror';
+        }
     }
 
     function view($ida)
@@ -136,5 +169,4 @@ class C_barang extends CI_Controller{
         $this->session->set_flashdata('Sukses', "Data Barang Berhasil Di Hapus.");
         redirect('C_barang');
     }
-
 }
