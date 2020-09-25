@@ -28,7 +28,8 @@ class M_voucher extends CI_Model {
             'ket' => $this->input->post('ket'),
             'minpembelian' => $minpembelian_str,
             // 'tglmulai' => date('Y-m-d'),
-            'tglakhir' => date('Y-m-d'),
+            // 'tglakhir' => date('Y-m-d'),
+            'tglakhir' =>  $this->input->post('tglakhir'),
             'discount' => $diskon_str,
             'id_user' => $id,
             'tglupdate' => date('Y-m-d')
@@ -65,7 +66,8 @@ class M_voucher extends CI_Model {
             'ket' => $this->input->post('ket'),
             'minpembelian' => $minpembelian_str,
             // 'tglmulai' => date('Y-m-d'),
-            'tglakhir' => date('Y-m-d'),
+            // 'tglakhir' => date('Y-m-d'),
+            'tglakhir' =>  $this->input->post('tglakhir'),
             'discount' => $diskon_str,
             'id_user' => $id,
             'tglupdate' => date('Y-m-d')
