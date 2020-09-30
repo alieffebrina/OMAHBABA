@@ -32,13 +32,13 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                   <!-- Conversations are loaded here -->
-                  <div class="direct-chat-messages">
+                  <div class="direct-chat-messages" style="height: 500px">
                     <!-- Message. Default to the left -->
 
                   <ul class="users-list clearfix">
                     <?php foreach ($barang as $barang) { ?>
                     <li>
-                      <img src="<?php echo base_url() ?>uploadgambar/<?php echo $barang->foto; ?>" alt="User Image">
+                      <img src="<?php echo base_url() ?>uploadgambar/administrator.jpg" alt="User Image" style='height: 100px'>
                       <a class="users-list-name" href="#"><?php echo $barang->barang ?></a>
                       <span class="users-list-date"><?php echo 'Ukuran '.$barang->ukuran ?></span>
                       <span class="users-list-date"><?php echo 'Merk '.$barang->merk ?></span>
@@ -46,6 +46,56 @@
                     </li>
 
                     <?php } ?>
+
+                    <li>
+                      <img src="<?php echo base_url() ?>uploadgambar/administrator.jpg" alt="User Image" style='height: 100px'>
+                      <a class="users-list-name" href="#"><?php echo 'tes' ?></a>
+                      <span class="users-list-date"><?php echo 'Ukuran ' ?></span>
+                      <span class="users-list-date"><?php echo 'Merk ' ?></span>
+                      <span class="users-list-date"><?php echo 'Stok ' ?></span>
+                    </li>
+                    <li>
+                      <img src="<?php echo base_url() ?>uploadgambar/administrator.jpg" alt="User Image" style='height: 100px'>
+                      <a class="users-list-name" href="#"><?php echo 'tes' ?></a>
+                      <span class="users-list-date"><?php echo 'Ukuran ' ?></span>
+                      <span class="users-list-date"><?php echo 'Merk ' ?></span>
+                      <span class="users-list-date"><?php echo 'Stok ' ?></span>
+                    </li>
+                    <li>
+                      <img src="<?php echo base_url() ?>uploadgambar/administrator.jpg" alt="User Image" style='height: 100px'>
+                      <a class="users-list-name" href="#"><?php echo 'tes' ?></a>
+                      <span class="users-list-date"><?php echo 'Ukuran ' ?></span>
+                      <span class="users-list-date"><?php echo 'Merk ' ?></span>
+                      <span class="users-list-date"><?php echo 'Stok ' ?></span>
+                    </li>
+                    <li>
+                      <img src="<?php echo base_url() ?>uploadgambar/administrator.jpg" alt="User Image" style='height: 100px'>
+                      <a class="users-list-name" href="#"><?php echo 'tes' ?></a>
+                      <span class="users-list-date"><?php echo 'Ukuran ' ?></span>
+                      <span class="users-list-date"><?php echo 'Merk ' ?></span>
+                      <span class="users-list-date"><?php echo 'Stok ' ?></span>
+                    </li>
+                    <li>
+                      <img src="<?php echo base_url() ?>uploadgambar/administrator.jpg" alt="User Image" style='height: 100px'>
+                      <a class="users-list-name" href="#"><?php echo 'tes' ?></a>
+                      <span class="users-list-date"><?php echo 'Ukuran ' ?></span>
+                      <span class="users-list-date"><?php echo 'Merk ' ?></span>
+                      <span class="users-list-date"><?php echo 'Stok ' ?></span>
+                    </li>
+                    <li>
+                      <img src="<?php echo base_url() ?>uploadgambar/administrator.jpg" alt="User Image" style='height: 100px'>
+                      <a class="users-list-name" href="#"><?php echo 'tes' ?></a>
+                      <span class="users-list-date"><?php echo 'Ukuran ' ?></span>
+                      <span class="users-list-date"><?php echo 'Merk ' ?></span>
+                      <span class="users-list-date"><?php echo 'Stok ' ?></span>
+                    </li>
+                    <li>
+                      <img src="<?php echo base_url() ?>uploadgambar/administrator.jpg" alt="User Image" style='height: 100px'>
+                      <a class="users-list-name" href="#"><?php echo 'tes' ?></a>
+                      <span class="users-list-date"><?php echo 'Ukuran ' ?></span>
+                      <span class="users-list-date"><?php echo 'Merk ' ?></span>
+                      <span class="users-list-date"><?php echo 'Stok ' ?></span>
+                    </li>
                   </ul>
                     <!-- /.direct-chat-msg -->
                   </div>
@@ -81,6 +131,11 @@
                   <label>Harga</label>
                   <input type="text" class="form-control" placeholder="Enter ...">
                 </div>
+
+            <div class="box-footer clearfix">
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+            </div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -93,29 +148,25 @@
           <!-- general form elements disabled -->
           <div class="box box-warning">
             <div class="box-header with-border">
-              <h3 class="box-title">General Elements</h3>
+              <h3 class="box-title">Detail Suplier</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <form role="form">
                 <!-- text input -->
                 <div class="form-group">
-                  <label>Text</label>
+                  <label>Nama Suplier</label>
                   <input type="text" class="form-control" placeholder="Enter ...">
                 </div>
                 <div class="form-group">
-                  <label>Text Disabled</label>
+                  <label>Nama Toko</label>
                   <input type="text" class="form-control" placeholder="Enter ..." disabled>
                 </div>
 
                 <!-- textarea -->
                 <div class="form-group">
-                  <label>Textarea</label>
+                  <label>Alamat</label>
                   <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                </div>
-                <div class="form-group">
-                  <label>Textarea Disabled</label>
-                  <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
                 </div>
               </form>
             </div>
@@ -124,7 +175,7 @@
           <!-- /.box -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Latest Orders</h3>
+              <h3 class="box-title">Daftar Pembelian</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -137,10 +188,10 @@
                 <table class="table no-margin">
                   <thead>
                   <tr>
-                    <th>Order ID</th>
-                    <th>Item</th>
-                    <th>Status</th>
-                    <th>Popularity</th>
+                    <th>Kode Barang</th>
+                    <th>Barang </th>
+                    <th>Qtt</th>
+                    <th>Harga</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -202,13 +253,23 @@
                   </tr>
                   </tbody>
                 </table>
+
+                <div class="form-group">
+                  <label>Total</label>
+                  <input type="text" class="form-control" placeholder="Enter ..." disabled>
+                </div>
+                <div class="form-group">
+                  <label>Terbilang</label>
+                  <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
               </div>
               <!-- /.table-responsive -->
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Simpan</a> &nbsp;
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Simpan dan Cetak</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">Batal</a>
             </div>
             <!-- /.box-footer -->
           </div>
