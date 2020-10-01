@@ -2963,13 +2963,13 @@ table.text-center th {
  * ---------------------
  */
 .users-list > li {
-  width: 25%;
+  width: 15%;
   float: left;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
 }
 .users-list > li img {
-  border-radius: 50%;
+  border-radius: 10%;
   max-width: 100%;
   height: auto;
 }
