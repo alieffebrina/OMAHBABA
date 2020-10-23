@@ -76,14 +76,27 @@
                     <div class="btn-group">
                      <a href="<?php echo site_url('C_penjualan/view/'.$penjualan->id_penjualan); ?>"><button type="button" class="btn btn-success">Lihat</button></a>
                       <a href="<?php echo site_url('C_penjualan/cetakpenjualan/'.$penjualan->id_penjualan); ?>"><button type="button" class="btn btn-info">Cetak</button></a>
+
+                       <?php if (empty($penjualan->id_invoicejual )) { ?>
                       <a href="<?php echo site_url('C_invoice/add/'.$penjualan->id_penjualan); ?>"><button type="button" class="btn btn-danger">Invoice</button></a>
+                      <?php } ?>
+
                       <?php if ($penjualan->status == '1') { ?>
+                        <?php if (empty($penjualan->id_suratjalan)) { ?>
+                        <a href="<?php echo site_url('C_suratjalan/add/'.$penjualan->id_penjualan); ?>"><button type="button" class="btn btn-danger">Surat Jalan</button></a>
+                        <?php }?>
+                      <?php }else { ?>
+                        <a href="<?php echo site_url('C_penjualan/bayar/'.$penjualan->id_penjualan); ?>"><button type="button" class="btn btn-primary">Bayar</button></a>
+                       <?php } ?>
+
+                  <!--     <?php if ($penjualan->status == '1') { ?>
                       <a href="<?php echo site_url('C_suratjalan/add/'.$penjualan->id_penjualan); ?>"><button type="button" class="btn btn-danger">Surat Jalan</button></a>
                       <?php } ?>
 
                       <?php if ($penjualan->status == '0') { ?>
                       <a href="<?php echo site_url('C_penjualan/bayar/'.$penjualan->id_penjualan); ?>"><button type="button" class="btn btn-primary">Bayar</button></a>
-                      <?php } ?>
+                      <?php } ?> -->
+
                     </div>
                   </td>
                 </tr>

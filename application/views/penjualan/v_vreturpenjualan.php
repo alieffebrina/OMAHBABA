@@ -37,9 +37,9 @@
               <h3 class="box-title">Data Retur Penjualan</h3>
             </div>
 
-            <div class="box-header">
+           <!--  <div class="box-header">
               <a href="<?php echo site_url('C_returpenjualan/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
-            </div>
+            </div> -->
             <!-- /.box-header -->
 
             <div class="box-body table-responsive">

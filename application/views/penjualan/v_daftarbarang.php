@@ -31,22 +31,26 @@
               <h3 class="box-title">Daftar Barang Pre Order</h3>
 
                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                  </div>
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                </div>
+                <div class="box-tools pull-right">
+                  <input type='text' class='form-control' id='search_catalog' placeholder='Ketik untuk mencari'>
+                </div>
             </div>
 
 
                  
 
             <div class="box-header">
-              <button type="button" class="btn btn-warning" id='butsendpenjualan' >Tambah Ke keranjang</button>
-              <div class="box-tools pull-right">
+             <!--  <button type="button" class="btn btn-warning" id='butsendpenjualan' >Tambah Ke keranjang</button> -->
+              <!-- <div class="box-tools pull-right">
                 <input type='text' class='form-control' id='search_catalog' placeholder='Ketik untuk mencari'>
-              </div>
+              </div> -->
             </div>
             <!-- /.box-header -->
 
+            <!-- <div class="box-body" style="overflow-x: hidden; overflow-y: scroll; height:600px"> -->
             <div class="box-body">
               <!-- <div class="direct-chat-messages" style="height: 500px" > -->
               <div class='row' id='catalog'>

@@ -43,27 +43,34 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-1 control-label">No PO</label>
                   <div class="col-sm-10">
-                    <select class="form-control select2" id="id_penjualan" name="id_penjualan" style="width: 100%;">
-                      <option value="">--Pilih--</option>
-                      <?php foreach ($penjualan as $penjualan) { ?>
-                      <option value="<?php echo $penjualan->id_penjualan ?>"><?php echo $penjualan->id_penjualan ?></option>
-                      <?php } ?>
-                    </select>
+                    <input type="text" class="form-control" id="nonota" name="nonota" value="<?php echo $penjualan->id_penjualan; ?>" readonly>
                   </div>
                 </div>
+
+                <!-- <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-1 control-label">No PO</label>
+                  <div class="col-sm-10">
+                    <select class="form-control select2" id="id_penjualan" name="id_penjualan" style="width: 100%;">
+                      <option value=""></option>
+                      <?php //foreach ($penjualan as $penjualan) { ?>
+                      <option value="<?php //echo $penjualan->id_penjualan ?>"><?php //echo $penjualan->id_penjualan ?></option>
+                      <?php// } ?>
+                    </select>
+                  </div>
+                </div> -->
 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-1 control-label">Nama Pelanggan</label>
                   <div class="col-sm-10">
                     <input type="hidden" id="id_pelanggan">
-                    <input type="text" name="nama" class="form-control" id="nama" readonly>
+                    <input type="text" name="nama" class="form-control" id="nama" value="<?php echo $penjualan->nama; ?>" readonly>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-1 control-label">Alamat</label>
                   <div class="col-sm-10">
-                    <textarea name="alamat" class="form-control" id="alamat" readonly></textarea>
+                    <textarea name="alamat" class="form-control" id="alamat" readonly><?php echo $penjualan->alamat; ?></textarea>
                   </div>
                 </div>
                 
@@ -78,14 +85,14 @@
                   <div class="col-sm-10" id="namapengirim">
                     <input type="text" class="form-control" name="namapengirim" name="namapengirim">
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-1 control-label">Pengiriman</label>
-                  <div class="col-sm-10">
-                  <input type="radio" id="Dikirim" name="pengiriman" value="Dikirim"> Dikirim
-                  <input type="radio" id="Diambil" name="pengiriman" value="Diambil"> Diambil
-                  </div>
                 </div> -->
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-1 control-label">Jenis Retur</label>
+                  <div class="col-sm-10">
+                  <input type="radio" id="nota" name="jenisretur" value="Nota" checked onclick='change_jenis()'> Nota 
+                  <input type="radio" id="barang" name="jenisretur" value="Barang" onclick='change_jenis()'> Barang
+                  </div>
+                </div>
               </div>
               <!-- /.box-body -->
               <!-- /.box-footer -->
@@ -103,22 +110,64 @@
                   <thead>
                   <tr>
                     <th>No</th>
+                    <th>Barcode</th>
                     <th>Barang</th>
-                    <th>Satuan</th>
-                    <th>Jenis Barang</th>
+                    <th>Kategori</th>
                     <th>Qtt Beli</th>
+                    <th>Harga Beli</th> 
                     <th>Qtt Retur</th>
-                    <th>Harga</th> 
                   </tr>
                   </thead>
                   <tbody>
+                     <?php 
+                  $no=1;
+                  foreach ($returpenjualan as $key=>$returpenjualan) {
+                    
+                    ?>
+
+                <tr id='<?= $key?>'>
+                  <td><?php echo $no++; ?></td>
+                  <td><?php echo $returpenjualan->barcode; ?></td>
+                  <td><?php echo $returpenjualan->barang.' / '.$returpenjualan->merk.' / '.$returpenjualan->ukuran.' '.$returpenjualan->satuan;?></td>
+                  <td><?php echo $returpenjualan->kategori;?></td>
+                  <td><?php echo $returpenjualan->qtt;?></td>
+                  <td><?php echo $returpenjualan->harga; ?></td>
+                  <td>
+                    <input type='hidden' value='<?php echo $returpenjualan->satuan; ?>' name="satuan[]" >
+                    <input type='hidden' value='<?php echo $returpenjualan->id_detailpenjualan ; ?>' name="id_detailpenjualan[]" >
+                    <input type='hidden' value='<?php echo $returpenjualan->id_barang; ?>' name="id_barang[]" >
+                    <input type='hidden' id="qtt<?= $key?>" value='<?php echo $returpenjualan->qtt; ?>'>
+                    <input type='hidden' id="harga<?= $key?>" value='<?php echo $returpenjualan->harga; ?>' name="harga[]">
+                    <input type="text" name="jumlahretur[]" id="jumlahretur<?= $key?>" onkeyup="hitung_retur()"></td>
+                </tr>
+                <?php }?>
                   </tbody>
                 </table>
-                &nbsp;&nbsp;&nbsp;
+                <!-- &nbsp;&nbsp;&nbsp;
                 <button type="button" class="btn btn-default">Cancel</button>&nbsp;&nbsp;&nbsp;
                 <input type="submit" class="btn btn-info " value="Simpan">&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn btn-info ">Cetak Nota</button>
-                <p>
+                <button type="button" class="btn btn-info ">Cetak Nota</button> -->
+                
+                <div id='jenisretur'>
+                  <div class="form-group">
+                    <h4><label for="inputEmail3" class="col-sm-1 control-label">Total</label></h4>
+                    <div class="col-sm-12">
+                      <input type="text" class="form-control" id="subtotalbawah" readonly value="0">
+                      <input type="hidden" class="form-control" name="subtotalbawahrupiah" id="subtotalbawahrupiah">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <h4><label for="inputEmail3" class="col-sm-1 control-label">Terbilang</label></h4>
+                    <div class="col-sm-12">
+                      <textarea class="form-control" id="terbilang" readonly></textarea>
+                    </div>
+                  </div>
+                </div>
+                <a href="<?= site_url('C_returpenjualan');?>" class="btn btn-default pull-right">Cancel</a>
+                <input type='submit' class="btn btn-info pull-right" name="simpan" value='Simpan'> &nbsp;
+                <input type='submit' class="btn btn-primary pull-right" name="cetak" value='Cetak'>
+
               </div>
               <!-- /.col -->
             </div>

@@ -69,6 +69,14 @@
                   </div>
                 </div>
                 
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-1 control-label">Jenis Retur</label>
+                  <div class="col-sm-10">
+                  <input type="radio" name="jenisretur" <?php if($key->jenisretur == "nota"){ echo 'checked="checked"'; }?> disabled> Nota
+                  <input type="radio" name="jenisretur" <?php if($key->jenisretur == "barang"){ echo 'checked="checked"'; }?> disabled> Barang
+                  </div>
+                </div>
+
                 <!-- <div class="form-group">
                   <label for="inputPassword3" class="col-sm-1 control-label">Nama Pengirim</label>
                   <div class="col-sm-10">
@@ -128,9 +136,9 @@
         </div>
         <!--<?php $this->load->view('master/setting/terbilang'); ?> -->
         <!-- left column -->
-        <!-- <div class="col-md-6">
-          <div class="box box-danger">
-            <div class="col-xs-12">
+       <!--  <div class="col-md-6">
+          <div class="box box-danger"> -->
+            <div class="col-xs-12" <?php if($key->jenisretur != "nota"){ echo 'hidden'; }?>>
               <p class="lead" style="text-align: center;"><b>Total :</b></p>
                   <div class="bg-maroon disable color-palette" ><h1 style="text-align: center;" id="totalfix"><?php echo number_format($key->total); ?></h1></div></br >
                   <input type="hidden" id="totalfixruppiah" name="total" value="<?php echo $key->total; ?> ">
@@ -138,7 +146,7 @@
               <h3 class="text-muted well well-sm no-shadow" id="terbilang" style="text-align: center;"><?php echo (terbilang($key->total))." rupiah"?></h3>
             </div>
 
-            <!-- /.box-body -->
+            <!-- /.box-body
           <!--</div>
         </div> -->
         <!-- <div class="col-md-6">

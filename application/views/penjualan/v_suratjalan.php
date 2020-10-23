@@ -13,6 +13,7 @@
       </ol>
     </section>
     <section class="content">
+      <form class="form-horizontal" method="POST" action="<?php echo site_url('C_suratjalan/tambah')?>" >
       <div class="row">
         <!-- left column -->
         <div class="col-md-6">
@@ -36,9 +37,9 @@
                       <th hidden><center></center></th>
                       <th width='15%'><center>Barcode</center></th>
                       <th width='35%'><center>Barang</center></th>
-                      <th width='10%'> <center>Qtt</center></th>
+                      <th width='10%'> <center>Qtt</center></th><!-- 
                       <th width='15%'> <center>Diskon</center></th>
-                      <th width='20%'><center>Sub Total</center></th>
+                      <th width='20%'><center>Sub Total</center></th> -->
                       <!-- <th width='5%'><center></center></th> -->
 
                     </tr>
@@ -54,9 +55,9 @@
                   <!-- <td><?php echo $no++; ?></td> -->
                   <td><?php echo $suratjalan->barcode; ?></td>
                   <td><?php echo $suratjalan->barang.' / '.$suratjalan->merk.' / '.$suratjalan->ukuran.' '.$suratjalan->satuan;?></td>
-                  <td><?php echo $suratjalan->qtt;?></td>
+                  <td><?php echo $suratjalan->qtt;?></td><!-- 
                   <td><?php echo $suratjalan->diskon;?></td>
-                  <td><?php echo $suratjalan->subtotal; ?></td>
+                  <td><?php echo $suratjalan->subtotal; ?></td> -->
                 </tr>
                 <?php }?>
                     </tbody>
@@ -85,7 +86,7 @@
 
         <div class="col-md-6">
         <!-- <div class="col-md-6" style="padding-right:2px"> -->
-          <form class="form-horizontal" method="POST" action="<?php echo site_url('C_suratjalan/tambah')?>" >
+          
             <div class="box box-info">
               <div class="box-header with-border">
                 <h3 class="box-title">Identitas Pelanggan</h3>
@@ -214,9 +215,9 @@
             </div>
             <!-- /.box-body -->
           </div>
-          </form>
         </div>
       </div>
+      </form>
     </section>
           <!-- general form elements -->
               

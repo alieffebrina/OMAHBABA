@@ -3,23 +3,23 @@
   <div class="content-wrapper">
      <section class="content-header">
       <h1>
-        Data Barang Invoice
+        Bonus Sales
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('C_invoice'); ?>"><i class="fa fa-dashboard"></i>Daftar Barang Invoice</a></li>
-        <li class="active"><a href="<?php echo site_url('C_penjualan'); ?>">Transaksi Invoice</a></li>
+        <li><a href="<?php echo site_url('C_onussales'); ?>"><i class="fa fa-dashboard"></i>Bonus Sales</a></li>
+        <!-- <li class="active"><a href="<?php echo site_url('C_penjualan'); ?>">Transaksi Invoice</a></li> -->
         <li class="active">Lihat Data</li>
       </ol>
     </section>
     <section class="content">
-      <form class="form-horizontal" method="POST" action="<?php echo site_url('C_invoice/tambah')?>">
+      <form class="form-horizontal" method="POST" action="<?php echo site_url('C_bonussales/tambah')?>">
       <div class="row">
         <!-- left column -->
         <div class="col-md-6">
           <div class="box box-info">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Daftar Barang Pre Order</h3>
+                  <h3 class="box-title">Daftar Barang Terjual</h3>
 
                    <div class="box-tools pull-right">
                       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -35,8 +35,8 @@
                     <tr>
                       
                       <th hidden><center></center></th>
-                      <th width='15%'><center>Barcode</center></th>
-                      <th width='35%'><center>Barang</center></th>
+                      <th width='15%'><center>NO Penjualan</center></th>
+                      <th width='35%'><center>Nama </center></th>
                       <th width='10%'> <center>Qtt</center></th>
                       <th width='15%'> <center>Diskon</center></th>
                       <th width='20%'><center>Sub Total</center></th>
