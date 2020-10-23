@@ -49,12 +49,13 @@ class M_returpenjualan extends CI_Model {
 
 
     function tambahdata($id){
-        // $jenisretur = $this->input->post('jenisretur');
-        // if ($jenisretur == 'nota'){
-        //     $status = 1;
-        // } else {
-        //     $status = 0;
-        // }
+        // echo '<pre>';print_r($this->input->post());exit;
+        $jenisretur = $this->input->post('jenisretur');
+        if ($jenisretur == 'nota'){
+            $status = 1;
+        } else {
+            $status = 0;
+        }
 
         $this->load->model('M_barang');
         date_default_timezone_set('Asia/Jakarta');
@@ -62,11 +63,11 @@ class M_returpenjualan extends CI_Model {
         $retur = array(
             // 'id_user' => $id,
             'id_returpenjualan' => $this->input->post('id_returpenjualan'),
-            'id_penjualan' => $this->input->post('id_penjualan'),
+            'id_penjualan' => $this->input->post('nonota'),
             'tanggalretur' => date('Y-m-d'),
-            // 'jenisretur' => $this->input->post('jenisretur'),
+            'jenisretur' => $this->input->post('jenisretur'),
             'ketretur' => $this->input->post('ketretur'),
-            // 'total' => $this->input->post('total'),
+            'total' => $this->input->post('subtotalbawahrupiah'),
             'status' => $status
 
         );
@@ -137,4 +138,21 @@ class M_returpenjualan extends CI_Model {
         }
         return $result;
     }
+
+    //  function getlaporan(){
+    //     if(isset($_POST) && !empty($_POST)){
+    //         $tgl=explode(' - ', $_POST['tgl']);
+    //         $tgl_mulai=explode('/', $tgl[0]);
+    //         $tgl_sampai=explode('/', $tgl[1]);
+    //     }
+
+    //     $query = "SELECT tb_returjual.id_retur,tb_returjual.status status,tb_penjualan.* from tb_penjualan 
+    //     left join tb_returjual on tb_returjual.id_penjualan = tb_penjualan.id_penjualan";
+    //     if(!empty($tgl[0]) && !empty($tgl[1])){
+    //         $query=$query." where tanggalretur between '".($tgl_mulai[2]."-".$tgl_mulai[1]."-".$tgl_mulai[0])."' and '".($tgl_sampai[2]."-".$tgl_sampai[1]."-".$tgl_sampai[0])."'";
+    //     }
+    //     $query = $this->db->query($query);
+
+    //     return $query->result();
+    // }
 }

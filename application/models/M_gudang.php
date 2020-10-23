@@ -3,8 +3,9 @@
 class M_gudang extends CI_Model {
 
     function getgudang(){
-        $this->db->select('*');
-        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_gudang.id_provinsi');
+        $this->db->select('tb_cabang.namacabang,tb_kecamatan.*,tb_kota.*,tb_provinsi.*,tb_gudang.*');
+        $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_gudang.id_cabang');
+        $this->db->join('tb_provinsi','tb_provinsi.id_provinsi = tb_gudang.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_gudang.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_gudang.id_kecamatan');
         $query = $this->db->get('tb_gudang');
@@ -25,6 +26,7 @@ class M_gudang extends CI_Model {
         $gudang = array(
             'id_user' => $id,
             'gudang' => $this->input->post('gudang'),
+            'id_cabang' => $this->input->post('id_cabang'),
             'id_provinsi' => $this->input->post('prov'),
             'id_kota' => $this->input->post('kota'),
             'id_kecamatan' => $this->input->post('kecamatan'),
@@ -56,10 +58,11 @@ class M_gudang extends CI_Model {
     //}
 
     function getspek($iduser){
-        $this->db->select('*');
+        $this->db->select('tb_cabang.namacabang,tb_kecamatan.*,tb_kota.*,tb_provinsi.*,tb_gudang.*');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_gudang.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_gudang.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_gudang.id_kecamatan');
+        $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_gudang.id_cabang');
         $where = array(
             'id_gudang' => $iduser
         );
@@ -72,6 +75,7 @@ class M_gudang extends CI_Model {
 
             'id_user' => $id,
             'gudang' => $this->input->post('gudang'),
+            'id_cabang' => $this->input->post('id_cabang'),
             'id_provinsi' => $this->input->post('prov'),
             'id_kota' => $this->input->post('kota'),
             'id_kecamatan' => $this->input->post('kecamatan'),

@@ -59,21 +59,6 @@ class M_Setting extends CI_Model {
         return $query->result();
     }
 
-    function getkonversi(){
-        $this->db->select('*');
-        $this->db->from('tb_konversi');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    function getkonversisatuan(){
-        $this->db->select('b.satuan satuan_awal,c.satuan satuan_konversi,a.*');
-        $this->db->join('tb_satuan b', 'a.id_satuan = b.id_satuan');
-        $this->db->join('tb_satuan c', 'a.satuan = c.id_satuan');
-        $query = $this->db->get('tb_konversi a');
-        return $query->result();
-    }
-
     function getharga(){
         $this->db->select('*');
         $this->db->from('tb_harga');
@@ -89,13 +74,13 @@ class M_Setting extends CI_Model {
         return $query->result();
     }
 
-    function getcabangg($id){
+    function getgudangg($id){
         $this->db->select('*');
-        $this->db->order_by('namacabang', 'ASC');
+        $this->db->order_by('gudang', 'ASC');
         $where = array(
-            'id_gudang' => $id
+            'id_cabang' => $id
         );
-        $query = $this->db->get_where('tb_cabang', $where);
+        $query = $this->db->get_where('tb_gudang', $where);
         return $query->result();
     }
 
@@ -200,20 +185,6 @@ class M_Setting extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-
-    //function getharga(){
-        //$this->db->select('*');
-        //$this->db->from('tb_barang');
-        //$query = $this->db->get();
-        //return $query->result();
-    //}
-
-    // function getkonversisatuan(){
-    //     $this->db->select('*');
-    //     $this->db->from('tb_satuan');
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
 
     function getmenu1($id){
         $this->db->distinct();

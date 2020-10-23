@@ -11,6 +11,14 @@ class M_pelanggan extends CI_Model {
     	return $query->result();
     }
 
+    function get_limit($id){
+        $this->db->select('FORMAT(tb_pelanggan.limit,0) as limit_pelanggan',false);
+        $where = array(
+            'id_pelanggan' => $id
+        );
+        return $this->db->get_where('tb_pelanggan', $where)->row();
+    }
+
     // function getnama($ida){
     //     $where = array(
     //         'id_pelanggan' => $ida

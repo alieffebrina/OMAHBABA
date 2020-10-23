@@ -10,6 +10,9 @@ class M_penjualan extends CI_Model {
     }
 
     function getall($id, $username){
+        $this->db->select('tb_sjpenjualan.id_suratjalan, tb_invoicejual.id_invoicejual, tb_penjualan.*, tb_cabang.namacabang, tb_sales.namasales, tb_pelanggan.*');
+        $this->db->join('tb_sjpenjualan', 'tb_sjpenjualan.id_penjualan = tb_penjualan.id_penjualan','left');
+        $this->db->join('tb_invoicejual', 'tb_invoicejual.id_penjualan = tb_penjualan.id_penjualan','left');
         $this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
         $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_penjualan.id_cabang');
         $this->db->join('tb_sales', 'tb_sales.id_sales = tb_penjualan.id_sales');
@@ -53,6 +56,7 @@ class M_penjualan extends CI_Model {
     }
 
     function getnota($nota){
+        $this->db->select('tb_sales.namasales, tb_cabang.namacabang, tb_pelanggan.*,tb_penjualan.*');
         $this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
         $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_penjualan.id_cabang');
         $this->db->join('tb_sales', 'tb_sales.id_sales = tb_penjualan.id_sales');
@@ -245,6 +249,20 @@ class M_penjualan extends CI_Model {
         }
     }
 
+    function edit($ida){
+        $barang = array(
+
+            'status' => '1'
+        );
+
+        $where = array(
+            'id_penjualan' =>  $ida,
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_penjualan',$barang);
+    }
+
     function datapenjualan(){
         $vbulan = date("m"); 
          $this->db->select('sum(total) as totalbulanini');
@@ -306,26 +324,26 @@ class M_penjualan extends CI_Model {
         return $this->db->get('tb_penjualan')->result();
       }
 
-      function excel($tgl){
-        if(isset($tgl) && !empty($tgl)){
-            $tgl=explode('-', $tgl);
-            $tgl_mulai=explode('.', $tgl[0]);
-            $tgl_sampai=explode('.', $tgl[1]);
-        } 
+      // function excel($tgl){
+      //   if(isset($tgl) && !empty($tgl)){
+      //       $tgl=explode('-', $tgl);
+      //       $tgl_mulai=explode('.', $tgl[0]);
+      //       $tgl_sampai=explode('.', $tgl[1]);
+      //   } 
 
-        $this->db->join('tb_penjualan', 'tb_penjualan.id_penjualan = tb_dtljual.id_penjualan');
-        $this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
-        $this->db->join('tb_barang', 'tb_barang.id_barang = tb_dtljual.id_barang');
-        $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_barang.id_satuan');
-        $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_barang.id_kategori');
+      //   $this->db->join('tb_penjualan', 'tb_penjualan.id_penjualan = tb_dtljual.id_penjualan');
+      //   $this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
+      //   $this->db->join('tb_barang', 'tb_barang.id_barang = tb_dtljual.id_barang');
+      //   $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_barang.id_satuan');
+      //   $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_barang.id_kategori');
 
-        if(!empty($tgl[0]) && !empty($tgl[1])){
+      //   if(!empty($tgl[0]) && !empty($tgl[1])){
 
-        $this->db->where("tglpojual BETWEEN '".($tgl_mulai[2]."-".$tgl_mulai[1]."-".$tgl_mulai[0])."' and '".($tgl_sampai[2]."-".$tgl_sampai[1]."-".$tgl_sampai[0])."'");
-        }
+      //   $this->db->where("tglpojual BETWEEN '".($tgl_mulai[2]."-".$tgl_mulai[1]."-".$tgl_mulai[0])."' and '".($tgl_sampai[2]."-".$tgl_sampai[1]."-".$tgl_sampai[0])."'");
+      //   }
 
-        return $this->db->get('tb_detail')->result();
-      }
+      //   return $this->db->get('tb_detail')->result();
+      // }
 
       function lpiutang($tgl){
         if(isset($tgl) && !empty($tgl)){
@@ -345,26 +363,26 @@ class M_penjualan extends CI_Model {
         return $this->db->get('tb_penjualan')->result();
       }
 
-      function excelpiutang($tgl){
-        if(isset($tgl) && !empty($tgl)){
-            $tgl=explode('-', $tgl);
-            $tgl_mulai=explode('.', $tgl[0]);
-            $tgl_sampai=explode('.', $tgl[1]);
-        } 
+      // function excelpiutang($tgl){
+      //   if(isset($tgl) && !empty($tgl)){
+      //       $tgl=explode('-', $tgl);
+      //       $tgl_mulai=explode('.', $tgl[0]);
+      //       $tgl_sampai=explode('.', $tgl[1]);
+      //   } 
 
-        $this->db->join('tb_penjualan', 'tb_penjualan.id_penjualan = tb_dtljual.id_penjualan');
-        $this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
-        $this->db->join('tb_barang', 'tb_barang.id_barang = tb_dtljual.id_barang');
-        $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_barang.id_satuan');
-        $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_barang.id_kategori');
-        $this->db->where("status = '0'");
+      //   $this->db->join('tb_penjualan', 'tb_penjualan.id_penjualan = tb_dtljual.id_penjualan');
+      //   $this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
+      //   $this->db->join('tb_barang', 'tb_barang.id_barang = tb_dtljual.id_barang');
+      //   $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_barang.id_satuan');
+      //   $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_barang.id_kategori');
+      //   $this->db->where("status = '0'");
 
-        if(!empty($tgl[0]) && !empty($tgl[1])){
+      //   if(!empty($tgl[0]) && !empty($tgl[1])){
 
-        $this->db->where("status = '0' and tglpojual BETWEEN '".($tgl_mulai[2]."-".$tgl_mulai[1]."-".$tgl_mulai[0])."' and '".($tgl_sampai[2]."-".$tgl_sampai[1]."-".$tgl_sampai[0])."'");
-        }
+      //   $this->db->where("status = '0' and tglpojual BETWEEN '".($tgl_mulai[2]."-".$tgl_mulai[1]."-".$tgl_mulai[0])."' and '".($tgl_sampai[2]."-".$tgl_sampai[1]."-".$tgl_sampai[0])."'");
+      //   }
 
-        return $this->db->get('tb_dtljual')->result();
-      }
+      //   return $this->db->get('tb_dtljual')->result();
+      // }
 
 }

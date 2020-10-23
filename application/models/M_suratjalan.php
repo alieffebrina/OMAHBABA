@@ -26,6 +26,7 @@ class M_suratjalan extends CI_Model {
     }
 
     function getall(){
+        $this->db->select('tb_sales.namasales, tb_cabang.namacabang, tb_sjpenjualan.*, tb_pelanggan.*,tb_penjualan.*');
         $this->db->join('tb_penjualan', 'tb_penjualan.id_penjualan = tb_sjpenjualan.id_penjualan');
         $this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan = tb_penjualan.id_pelanggan');
         $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_penjualan.id_cabang');
@@ -67,11 +68,14 @@ class M_suratjalan extends CI_Model {
             $status = 0;
         }
 
+        date_default_timezone_set('Asia/Jakarta');
+
         $tb_sjpenjualan = array(
             'id_user' => $id,
             'id_suratjalan' => $this->input->post('id_suratjalan'),
-            'id_penjualan' => $this->input->post('id_penjualan'),
-            'tglkirim' => $this->input->post('tglkirim'),
+            'id_penjualan' => $this->input->post('nonota'),
+            // 'tglkirim' => $this->input->post('tglkirim'),
+            'tglkirim' => date('Y-m-d'),
             'namapengirim' => $this->input->post('namapengirim'),
             'alamatkirim' => $this->input->post('alamatkirim'),
             'status' => $status
@@ -111,4 +115,21 @@ class M_suratjalan extends CI_Model {
         }
         return $this->db->get('tb_sjpenjualan')->result();
       }
+
+    //    function getlaporan(){
+    //     if(isset($_POST) && !empty($_POST)){
+    //         $tgl=explode(' - ', $_POST['tgl']);
+    //         $tgl_mulai=explode('/', $tgl[0]);
+    //         $tgl_sampai=explode('/', $tgl[1]);
+    //     }
+
+    //     $query = "SELECT tb_sjpenjualan.id_suratjalan,tb_sjpenjualan.status status_kirim,tb_penjualan.* from tb_penjualan 
+    //     left join tb_sjpenjualan on tb_sjpenjualan.id_penjualan = tb_penjualan.id_penjualan";
+    //     if(!empty($tgl[0]) && !empty($tgl[1])){
+    //         $query=$query." where tglkirim between '".($tgl_mulai[2]."-".$tgl_mulai[1]."-".$tgl_mulai[0])."' and '".($tgl_sampai[2]."-".$tgl_sampai[1]."-".$tgl_sampai[0])."'";
+    //     }
+    //     $query = $this->db->query($query);
+
+    //     return $query->result();
+    // }
 }

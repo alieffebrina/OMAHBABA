@@ -2,13 +2,17 @@
 
 class M_barang extends CI_Model {
 
-	function getbarang(){
+	function getbarang($idcabang='',$keyword=''){
 		$this->db->select('tb_barang.*, tb_gudang.gudang, tb_cabang.namacabang, tb_satuan.satuan,tb_kategori.kategori,tb_warna.warna');
         $this->db->join('tb_gudang', 'tb_gudang.id_gudang = tb_barang.id_gudang');
         $this->db->join('tb_cabang', 'tb_cabang.id_cabang = tb_barang.id_cabang');
         $this->db->join('tb_satuan', 'tb_satuan.id_satuan = tb_barang.id_satuan');
         $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_barang.id_kategori');
+        $this->db->like('tb_barang.barang', $keyword);
         $this->db->join('tb_warna', 'tb_warna.id_warna = tb_barang.id_warna');
+        if($idcabang!=''){
+            $this->db->where('tb_barang.id_cabang',$idcabang);
+        }
         $query = $this->db->get('tb_barang');
     	return $query->result();
     }

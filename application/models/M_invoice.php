@@ -60,35 +60,35 @@ class M_invoice extends CI_Model {
     }
 
     function tambahdata($id){
-        
+        date_default_timezone_set('Asia/Jakarta');
         $tb_invoicejual = array(
             'id_user' => $id,
             'id_invoicejual' => $this->input->post('id_invoicejual'),
-            'id_penjualan' => $this->input->post('id_penjualan'),
-            'tglinvoice' => $this->input->post('tglinvoice'),
-            'id_voucher' => $this->input->post('id_voucher'),
-            'diskon' => $this->input->post('diskon'),
-            'biayakirim' => $this->input->post('biayakirim'),
-            'subtotal' => $this->input->post('subtotal'),
+            'id_penjualan' => $this->input->post('nonota'),
+            'tglinvoice' => date('Y-m-d'),
+            'id_voucher' => $this->input->post('kodevoucher'),
+            'diskon' => $this->input->post('diskonbawah'),
+            'biayakirim' => $this->input->post('biayalain'),
+            'subtotal' => $this->input->post('subtotalbawahrupiah'),
             'total' => $this->input->post('total'),
-            'status' => $status
+            // 'status' => $status
         );
         
         $this->db->insert('tb_invoicejual', $tb_invoicejual);  
     }
 
-    function edit($ida){
-        $barang = array(
-            'status' => '1'
-        );
+    // function edit($ida){
+    //     $barang = array(
+    //         'status' => '1'
+    //     );
 
-        $where = array(
-            'id_invoicejual' =>  $ida,
-        );
+    //     $where = array(
+    //         'id_invoicejual' =>  $ida,
+    //     );
         
-        $this->db->where($where);
-        $this->db->update('tb_invoicejual',$barang);
-    }
+    //     $this->db->where($where);
+    //     $this->db->update('tb_invoicejual',$barang);
+    // }
 
     function search($tgl){
         if(isset($tgl) && !empty($tgl)){
@@ -107,5 +107,22 @@ class M_invoice extends CI_Model {
 
         }
         return $this->db->get('tb_invoicejual')->result();
-      }
+    }
+
+    // function getlaporan(){
+    //     if(isset($_POST) && !empty($_POST)){
+    //         $tgl=explode(' - ', $_POST['tgl']);
+    //         $tgl_mulai=explode('/', $tgl[0]);
+    //         $tgl_sampai=explode('/', $tgl[1]);
+    //     }
+
+    //     $query = "SELECT tb_invoicejual.id_invoicejual,tb_penjualan.* from tb_penjualan 
+    //     left join tb_invoicejual on tb_invoicejual.id_penjualan = tb_penjualan.id_penjualan";
+    //     if(!empty($tgl[0]) && !empty($tgl[1])){
+    //         $query=$query." where tglinvoice between '".($tgl_mulai[2]."-".$tgl_mulai[1]."-".$tgl_mulai[0])."' and '".($tgl_sampai[2]."-".$tgl_sampai[1]."-".$tgl_sampai[0])."'";
+    //     }
+    //     $query = $this->db->query($query);
+
+    //     return $query->result();
+    // }
 }

@@ -50,7 +50,7 @@ class M_voucher extends CI_Model {
             'id_voucher' => $iduser
         );
         $query = $this->db->get_where('tb_voucher', $where);
-        return $query->result();
+        return $query->row();
     }
 
     function edit($id){
