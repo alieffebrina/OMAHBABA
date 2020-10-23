@@ -35,6 +35,24 @@
                 </div>
                 
                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
+                  <div class="col-sm-9">
+                  <div class="input-group input-group-sm">
+                    <select class="form-control select2" id="modalCabang" name="id_cabang" style="width: 100%;">
+                      <option value="">--Pilih--</option>
+                      <?php foreach ($cabang as $cabang) { ?>
+                      <option value="<?php echo $cabang->id_cabang?>"><?php echo $cabang->namacabang ?></option>
+                      <?php } ?>
+                    </select>
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modaladdnamacabang">
+                            Tambah
+                          </button>
+                        </span>
+                  </div>
+                </div>
+              </div>
+                <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="prov" name="prov" style="width: 100%;">

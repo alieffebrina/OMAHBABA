@@ -35,7 +35,16 @@
                     <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $gudang->id_gudang ?>">
                   </div>
                 </div>
-                
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
+                  <div class="col-sm-9">
+                    <select class="form-control select2" id="cabang" name="id_cabang" style="width: 100%;">
+                      <?php foreach ($cabang as $cabang) { ?>
+                      <option value="<?php echo $cabang->id_cabang; ?>" <?php if ($gudang->id_cabang == $cabang->id_cabang ){ echo "selected"; } ?> ><?php echo $cabang->namacabang ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">

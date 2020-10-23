@@ -41,6 +41,7 @@
                 <tr>
                   <th>No</th>
                   <th>Gudang</th>
+                  <th>Nama Cabang</th>
                   <th>Provinsi</th>
                   <th>Kabupaten/kota</th>
                   <th>Kecamatan</th>
@@ -58,6 +59,7 @@
                 <tr>
                   <td><?php echo $no++; ?></td>
                   <td><?php echo $gudang->gudang; ?></td>
+                  <td><?php echo $gudang->namacabang; ?></td>
                   <td><?php echo $gudang->name_prov;?></td>
                   <td><?php echo $gudang->name_kota;?></td>
                   <td><?php echo $gudang->kecamatan;?></td>

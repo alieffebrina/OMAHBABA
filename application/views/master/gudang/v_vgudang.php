@@ -34,7 +34,12 @@
                     <input type="text" class="form-control" id="gudang" name="gudang" value="<?php echo $gudang->gudang ?>" readonly>
                   </div>
                 </div>
-                
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="gudang" name="cabang" value="<?php echo $gudang->namacabang ?>" readonly>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
