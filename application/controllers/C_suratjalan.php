@@ -12,7 +12,7 @@ class C_suratjalan extends CI_Controller{
         $this->load->model('M_Setting');
         $this->load->model('M_penjualan');
         $this->load->model('M_barang');
-        $this->load->library('pdf'); 
+        // $this->load->library('pdf'); 
         if(!$this->session->userdata('id_user')){
             redirect('C_Login');
         }
@@ -33,7 +33,7 @@ class C_suratjalan extends CI_Controller{
     {
         $id = $this->session->userdata('id_user');
         $nota =  $this->input->post('nonota');
-        $cek = $this->M_penjualan->tambahdata($id);
+        $cek = $this->M_suratjalan->tambahdata($id);
 
         $id_submenu = '11';
         $ket = 'tambah data surat jalan';
@@ -80,7 +80,7 @@ class C_suratjalan extends CI_Controller{
         $data['penjualan'] = $this->M_penjualan->getnota($nota);
         $data['suratjalan'] = $this->M_penjualan->getdetailpenjualan($nota);
         // echo '<pre>';print_r($data['penjualan']);exit;
-        $data['barang'] = $this->M_barang->getbarang();
+        // $data['barang'] = $this->M_barang->getbarang();
         $this->load->view('penjualan/v_suratjalan',$data); 
         $this->load->view('template/footer');
     }
@@ -98,6 +98,24 @@ class C_suratjalan extends CI_Controller{
         $this->load->view('template/footer');
     }
 
+     function laporan()
+    {
+        $tgla = $this->input->post('tgl');
+        $tglb = str_replace(' ', '', $tgla);
+        $excel = $this->input->post('excel');
+        if ($excel == 'excel'){
+            redirect('C_penjualan/excel/'.$tglb);
+        } else {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['penjualan'] = $this->M_suratjalan->search($tglb);
+        $this->load->view('penjualan/v_laporansuratjalan',$data); 
+        $this->load->view('template/footer');
+        }
+    }
+
     function kirim($ida)
     {   
         // $id = $this->session->userdata('id_user');
@@ -106,74 +124,74 @@ class C_suratjalan extends CI_Controller{
         redirect('C_suratjalan');
     }
 
-    function cetak($ida)
-    {
-        $this->load->view('penjualan/cetak'); 
-    }
+    // function cetak($ida)
+    // {
+    //     $this->load->view('penjualan/cetak'); 
+    // }
 
-    function cetaksuratjalan($ida){
-        // $this->load->view('master/setting/terbilang'); 
-        $pdf = new FPDF('L','mm',array('110', '160'));
-        // $pdf = new FPDF('L','mm',array('148', '210'));
-        // membuat halaman baru
-        $pdf->AddPage();
-        // setting jenis font yang akan digunakan
-        $pdf->SetFont('Arial','',8,'C');
-        // mencetak string 
-        $pdf->Cell(90,5,'OMAH BABA',0,0,'L');
-        // $pdf->Cell(90,5,'JUAL PAVING MULTI',0,0,'L');   
+    // function cetaksuratjalan($ida){
+    //     // $this->load->view('master/setting/terbilang'); 
+    //     $pdf = new FPDF('L','mm',array('110', '160'));
+    //     // $pdf = new FPDF('L','mm',array('148', '210'));
+    //     // membuat halaman baru
+    //     $pdf->AddPage();
+    //     // setting jenis font yang akan digunakan
+    //     $pdf->SetFont('Arial','',8,'C');
+    //     // mencetak string 
+    //     $pdf->Cell(90,5,'OMAH BABA',0,0,'L');
+    //     // $pdf->Cell(90,5,'JUAL PAVING MULTI',0,0,'L');   
 
-        $suratjalan = $this->M_suratjalan->getsuratjalan($ida);
-        $sj = $this->M_suratjalan->getsj($ida);
-        //$admin = $this->M_suratjalan->getadmin($ida);
+    //     $suratjalan = $this->M_suratjalan->getsuratjalan($ida);
+    //     $sj = $this->M_suratjalan->getsj($ida);
+    //     //$admin = $this->M_suratjalan->getadmin($ida);
 
-        foreach ($suratjalan as $key ) {
+    //     foreach ($suratjalan as $key ) {
 
-            // $originalDate = "2010-03-21";
-            $newDate = date("d-m-Y h:i:s", strtotime($key->tglkirim));
+    //         // $originalDate = "2010-03-21";
+    //         $newDate = date("d-m-Y h:i:s", strtotime($key->tglkirim));
 
-            $pdf->Cell(28,4,'Brebes : '.$newDate,0,1,'R');
-            $pdf->Cell(90,4,'OMAH BABA',0,0,'L');
-            $pdf->Cell(34,4,'Tuan / Toko : '.$key->nama,0,1,'R');
-            $pdf->Cell(90,4,'Brebes, Jawa Tengah',0,0,'L');
-            $pdf->Cell(18,4,'Telp : '.$key->tlp,0,1,'R');
-            $pdf->Cell(90,4,'Telp : 081376767574',0,0,'L');
-            $pdf->Cell(53,4,'Alamat : '.$key->alamat,0,1,'R'); 
-            $pdf->Cell(90,4,'Website : www.omahbaba.com',0,0,'L');
-            $pdf->Cell(19,4,'Nama Pengirim : '.$key->namapengirim,0,1,'R'); 
-            $pdf->Cell(110,4,'Alamat Pengiriman: ... ',0,1,'R');
-            $pdf->Cell(143,4,''.$key->alamatkirim,0,1,'R'); 
-            $pdf->Cell(28,4,'Admin : '.$key->username,0,0,'L');
-            $pdf->Cell(96,4,'No. Reg. : '.$key->id_suratjalan,0,1,'R');
+    //         $pdf->Cell(28,4,'Brebes : '.$newDate,0,1,'R');
+    //         $pdf->Cell(90,4,'OMAH BABA',0,0,'L');
+    //         $pdf->Cell(34,4,'Tuan / Toko : '.$key->nama,0,1,'R');
+    //         $pdf->Cell(90,4,'Brebes, Jawa Tengah',0,0,'L');
+    //         $pdf->Cell(18,4,'Telp : '.$key->tlp,0,1,'R');
+    //         $pdf->Cell(90,4,'Telp : 081376767574',0,0,'L');
+    //         $pdf->Cell(53,4,'Alamat : '.$key->alamat,0,1,'R'); 
+    //         $pdf->Cell(90,4,'Website : www.omahbaba.com',0,0,'L');
+    //         $pdf->Cell(19,4,'Nama Pengirim : '.$key->namapengirim,0,1,'R'); 
+    //         $pdf->Cell(110,4,'Alamat Pengiriman: ... ',0,1,'R');
+    //         $pdf->Cell(143,4,''.$key->alamatkirim,0,1,'R'); 
+    //         $pdf->Cell(28,4,'Admin : '.$key->username,0,0,'L');
+    //         $pdf->Cell(96,4,'No. Reg. : '.$key->id_suratjalan,0,1,'R');
             
             
-            $pdf->Cell(100,3,'',0,1,'L');
-            // $pdf->Line(10,15,200,15);
-        // Memberikan space kebawah agar tidak terlalu rapat
-            $pdf->SetFont('Arial','B',8,'C');
-            $pdf->Cell(100,4,'NOTA SURAT JALAN',0,2,'L');
-            $pdf->SetFont('Arial','',8,'C');
-            $pdf->Cell(10,2,'',0,1);
-            $pdf->SetFont('Arial','',8,'C');
-            $pdf->Cell(30,6,'Jumlah',1,0,'C');
-            $pdf->Cell(30,6,'Satuan',1,0,'C');
-            $pdf->Cell(82,6,'Keterangan',1,0,'C');
-            $pdf->Cell(100,6,'',0,1);
-        }
-        $no =1;
-        foreach ($sj as $dtl ) {
+    //         $pdf->Cell(100,3,'',0,1,'L');
+    //         // $pdf->Line(10,15,200,15);
+    //     // Memberikan space kebawah agar tidak terlalu rapat
+    //         $pdf->SetFont('Arial','B',8,'C');
+    //         $pdf->Cell(100,4,'NOTA SURAT JALAN',0,2,'L');
+    //         $pdf->SetFont('Arial','',8,'C');
+    //         $pdf->Cell(10,2,'',0,1);
+    //         $pdf->SetFont('Arial','',8,'C');
+    //         $pdf->Cell(30,6,'Jumlah',1,0,'C');
+    //         $pdf->Cell(30,6,'Satuan',1,0,'C');
+    //         $pdf->Cell(82,6,'Keterangan',1,0,'C');
+    //         $pdf->Cell(100,6,'',0,1);
+    //     }
+    //     $no =1;
+    //     foreach ($sj as $dtl ) {
             
-            $pdf->Cell(30,6,$dtl->qtt,1,0,'C');
-            $pdf->Cell(30,6,$dtl->satuan,1,0,'C');
-            $pdf->Cell(82,6,$dtl->kategori,1,0);
-            $pdf->Cell(100,6,'',0,1);
+    //         $pdf->Cell(30,6,$dtl->qtt,1,0,'C');
+    //         $pdf->Cell(30,6,$dtl->satuan,1,0,'C');
+    //         $pdf->Cell(82,6,$dtl->kategori,1,0);
+    //         $pdf->Cell(100,6,'',0,1);
         
-        } 
-        $pdf->Cell(30,5,'',0,1);
-        $pdf->Cell(50,3,'Hormat Kami,',0,0,'L');
-        $pdf->Cell(30,10,'',0,1);
-        $pdf->Cell(50,3,'( Lina )',0,0,'L');
-        // $pdf->AutoPrint(true);
-        $pdf->Output();
-    }
+    //     } 
+    //     $pdf->Cell(30,5,'',0,1);
+    //     $pdf->Cell(50,3,'Hormat Kami,',0,0,'L');
+    //     $pdf->Cell(30,10,'',0,1);
+    //     $pdf->Cell(50,3,'( Lina )',0,0,'L');
+    //     // $pdf->AutoPrint(true);
+    //     $pdf->Output();
+    // }
 }

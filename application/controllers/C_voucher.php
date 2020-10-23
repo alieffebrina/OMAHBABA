@@ -68,17 +68,9 @@ class C_voucher extends CI_Controller{
         $kode = $this->input->post('id_voucher');
                 # select ke model member Kualifikasiname yang diinput Kualifikasi
         $hasil_kode = $this->M_voucher->getspek($kode);
-         
+         // print_r($hasil_kode);exit;
                 # pengecekan value $hasil_Kualifikasiname
-        if(count($hasil_kode)!=0){
-          # kalu value $hasil_Kualifikasiname tidak 0
-                  # echo 1 untuk pertanda Kualifikasiname sudah ada pada db    
-            echo '1';
-        }else{
-                  # kalu value $hasil_Kualifikasiname = 0
-                  # echo 2 untuk pertanda Kualifikasiname belum ada pada db
-            echo '2';
-        }
+        echo json_encode($hasil_kode);
          
     }
 

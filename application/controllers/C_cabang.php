@@ -29,7 +29,7 @@ class C_cabang extends CI_Controller{
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['gudang'] = $this->M_Setting->getgudang();
         $this->load->view('master/cabang/v_addcabang', $data); 
-        $this->load->view('master/user/v_modal');
+        // $this->load->view('master/user/v_modal');
         $this->load->view('template/footer');
     }
 
@@ -67,6 +67,25 @@ class C_cabang extends CI_Controller{
         redirect('C_cabang');
     }
 
+    public function tambahcabang()
+    {   
+        $id = $this->session->userdata('id_user');
+        $this->M_cabang->tambahdata($id);
+
+        $id_submenu = '39';
+        $ket = 'tambah data cabang';
+        $this->M_Setting->userlog($id, $id_submenu, $ket);
+
+        $data = $this->M_cabang->getcabang();
+            $lists = "<option value=''>Pilih</option>";
+        foreach($data as $data){
+              $lists .= "<option value=".$data->id_cabang.">".$data->namacabang."</option>"; // Tambahkan tag option ke variabel $lists
+            }
+        $callback = array('list_cabang'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+        echo json_encode($callback); // konversi varibael $callback menjadi JSON
+
+    }
+
     function view($ida)
     {
         $this->load->view('template/header');
@@ -85,7 +104,6 @@ class C_cabang extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
-        $data['gudang'] = $this->M_Setting->getgudang();
         $data['cabang'] = $this->M_cabang->getspek($iduser);
         $this->load->view('master/cabang/v_ecabang',$data); 
         $this->load->view('template/footer');

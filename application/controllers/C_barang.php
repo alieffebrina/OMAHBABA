@@ -33,7 +33,7 @@ class C_barang extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['gudang'] = $this->M_Setting->getgudang();
-        $data['cabang'] = $this->M_Setting->getcabang();
+        $data['cabang'] = $this->M_Setting->getcabangss();
         $data['satuan'] = $this->M_Setting->getsatuan();
         $data['kategori'] = $this->M_kategori->getkategori();
         $data['warna'] = $this->M_warna->getwarna();
@@ -135,11 +135,12 @@ class C_barang extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         // $data['provinsi'] = $this->M_Setting->getprovinsi();
-        $data['gudang'] = $this->M_Setting->getgudang();
+        $data['barang'] = $this->M_barang->getspek($iduser);
+        $data['cabang'] = $this->M_Setting->getcabangss();
+        $data['gudang'] = $this->M_Setting->getgudangg($data['barang'][0]->id_cabang);
         $data['satuan'] = $this->M_Setting->getsatuan();
         $data['kategori'] = $this->M_Setting->getkategori();
         $data['warna'] = $this->M_Setting->getwarna();
-        $data['barang'] = $this->M_barang->getspek($iduser);
         $this->load->view('master/barang/v_ebarang',$data); 
         $this->load->view('template/footer');
     }

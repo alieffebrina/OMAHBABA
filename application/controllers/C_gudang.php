@@ -31,7 +31,9 @@ class C_gudang extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['gudang'] = $this->M_Setting->getgudang();
         $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['cabang'] = $this->M_Setting->getcabangss();
         $this->load->view('master/gudang/v_addgudang', $data); 
+        $this->load->view('master/user/v_modalcabang');
         $this->load->view('template/footer');
     }
 
@@ -104,6 +106,7 @@ class C_gudang extends CI_Controller{
         $this->load->view('template/header');
         $id = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
+        $data['cabang'] = $this->M_Setting->getcabangss();
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['gudang'] = $this->M_gudang->getspek($iduser);
