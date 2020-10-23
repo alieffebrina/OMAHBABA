@@ -35,24 +35,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
-                  <div class="col-sm-9">
-                  <div class="input-group input-group-sm">
-                    <select class="form-control select2" id="modalgudang" name="gudang" style="width: 100%;">
-                      <option value="">--Pilih--</option>
-                      <?php foreach ($gudang as $gudang) { ?>
-                      <option value="<?php echo $gudang->id_gudang?>"><?php echo $gudang->gudang ?></option>
-                      <?php } ?>
-                    </select>
-                        <span class="input-group-btn">
-                          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modaladdgudang">
-                            Tambah
-                          </button>
-                        </span>
-                  </div>
-                </div>
-              </div>
-                <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="prov" name="prov" style="width: 100%;">

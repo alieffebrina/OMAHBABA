@@ -35,12 +35,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="gudang" name="gudang" value="<?php echo $cabang->gudang ?>" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="prov" name="prov" value="<?php echo $cabang->name_prov ?>" readonly>

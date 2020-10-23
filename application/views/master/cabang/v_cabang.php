@@ -41,7 +41,6 @@
                 <tr>
                   <th>No</th>
                   <th>Nama Cabang</th>
-                  <th>Nama Gudang</th>
                   <th>Alamat</th>
                   <th>Telepon</th>
                   <th>Email</th>
@@ -55,7 +54,6 @@
                 <tr>
                   <td><?php echo $no++; ?></td>
                   <td><?php echo $cabang->namacabang; ?></td>
-                  <td><?php echo $cabang->gudang; ?></td>
                   <td><?php echo $cabang->alamat.', Kec. '.$cabang->kecamatan.', '.$cabang->name_kota.', '.$cabang->name_prov;?></td>
                   <td><?php echo $cabang->tlf;?></td>
                   <td><?php echo $cabang->email;?></td>
