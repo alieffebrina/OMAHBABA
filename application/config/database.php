@@ -78,7 +78,11 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
+<<<<<<< HEAD
 	'database' => 'db_posomahbaba',
+=======
+	'database' => 'db_omahbaba',
+>>>>>>> 29bd5a444befa7083d1b7b66d88ded70717917d7
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

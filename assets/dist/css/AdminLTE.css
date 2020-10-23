@@ -2963,6 +2963,7 @@ table.text-center th {
  * ---------------------
  */
 .users-list > li {
+<<<<<<< HEAD
   width: 25%;
   float: left;
   padding: 10px;
@@ -2970,6 +2971,15 @@ table.text-center th {
 }
 .users-list > li img {
   border-radius: 50%;
+=======
+  width: 15%;
+  float: left;
+  padding: 5px;
+  text-align: center;
+}
+.users-list > li img {
+  border-radius: 10%;
+>>>>>>> 29bd5a444befa7083d1b7b66d88ded70717917d7
   max-width: 100%;
   height: auto;
 }
