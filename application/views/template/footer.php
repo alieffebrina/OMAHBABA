@@ -134,9 +134,10 @@
   
   $('#btnsimpangudang').click(function(){ // Ketika tombol simpan di klik
     $.ajax({
-      url: "<?php echo base_url("index.php/C_gudang/tambahgudang"); ?>", // Isi dengan url/path file php yang dituju
+      url: "<?php echo base_url('index.php/C_gudang/tambahgudang'); ?>", // Isi dengan url/path file php yang dituju
       type: 'POST', // Tentukan type nya POST atau GET
       data: {gudang : $("#gudang").val(),
+      id_cabang: $("#cabangmodal").val(),
       prov: $("#provmodal").val(),
       kota: $("#kotamodal").val(),
       kecamatan: $("#kecmodal").val(),
@@ -183,14 +184,13 @@
   });
   $('#btnsimpancabang').click(function(){ // Ketika tombol simpan di klik
     $.ajax({
-      url: "<?php echo base_url("index.php/C_cabang/tambahcabang"); ?>", // Isi dengan url/path file php yang dituju
+      url: "<?php echo base_url('index.php/C_cabang/tambahcabang'); ?>", // Isi dengan url/path file php yang dituju
       type: 'POST', // Tentukan type nya POST atau GET
-      data: {namacabang : $("#namacabang").val(),
-      gudang: $("#gudangmodal").val(),
+      data: {namacabang : $("#cabang").val(),
       prov: $("#provmodal").val(),
       kota: $("#kotamodal").val(),
       kecamatan: $("#kecmodal").val(),
-      alamat: $("#alamatcabang").val(),
+      alamat: $("#alamat").val(),
       tlf: $("#tlfcabang").val(),
       email: $("#emailcabang").val(),
       }, // Ambil semua data yang ada didalam tag form
@@ -201,8 +201,9 @@
         }
       },
       success: function(response){ // Ketika proses pengiriman berhasil
+        console.log(response);
           $('.close').click(); // Close / Tutup Modal Dialog
-          $("#modalnamacabang").html(response.list_namacabang).show();
+          $("#modalCabang").html(response.list_cabang).show();
       },
       error: function (xhr, ajaxOptions, thrownError) { // Ketika terjadi error
         alert(xhr.responseText) // munculkan alert
@@ -220,7 +221,7 @@
   
   $('#btnsimpankategori').click(function(){ // Ketika tombol simpan di klik
     $.ajax({
-      url: "<?php echo base_url("index.php/C_kategori/tambahkategori"); ?>", // Isi dengan url/path file php yang dituju
+      url: "<?php echo base_url('index.php/C_kategori/tambahkategori'); ?>", // Isi dengan url/path file php yang dituju
       type: 'POST', // Tentukan type nya POST atau GET
       data: {kategori : $("#kategori").val(),
       }, // Ambil semua data yang ada didalam tag form
@@ -250,7 +251,7 @@
   
   $('#btnsimpansatuan').click(function(){ // Ketika tombol simpan di klik
     $.ajax({
-      url: "<?php echo base_url("index.php/C_satuan/tambahsatuan"); ?>", // Isi dengan url/path file php yang dituju
+      url: "<?php echo base_url('index.php/C_satuan/tambahsatuan'); ?>", // Isi dengan url/path file php yang dituju
       type: 'POST', // Tentukan type nya POST atau GET
       data: {satuan : $("#satuan").val(),
       }, // Ambil semua data yang ada didalam tag form
@@ -280,7 +281,7 @@
   
   $('#btnsimpanwarna').click(function(){ // Ketika tombol simpan di klik
     $.ajax({
-      url: "<?php echo base_url("index.php/C_warna/tambahwarna"); ?>", // Isi dengan url/path file php yang dituju
+      url: "<?php echo base_url('index.php/C_warna/tambahwarna'); ?>", // Isi dengan url/path file php yang dituju
       type: 'POST', // Tentukan type nya POST atau GET
       data: {warna : $("#warna").val(),
       }, // Ambil semua data yang ada didalam tag form
@@ -308,12 +309,12 @@
 <script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
-    $("#gudang").change(function(){ // Ketika user mengganti atau memilih data provinsi
+    $("#namacabang").change(function(){ // Ketika user mengganti atau memilih data provinsi
     
       $.ajax({
         type: "POST", // Method pengiriman data bisa dengan GET atau POST
-        url: "<?php echo base_url("index.php/C_Setting/get_cabang"); ?>", // Isi dengan url/path file php yang dituju
-        data: {id_gudang : $("#gudang").val()}, // data yang akan dikirim ke file yang dituju
+        url: "<?php echo base_url('index.php/C_Setting/get_gudang'); ?>", // Isi dengan url/path file php yang dituju
+        data: {id_cabang : $("#namacabang").val()}, // data yang akan dikirim ke file yang dituju
         dataType: "json",
         beforeSend: function(e) {
           if(e && e.overrideMimeType) {
@@ -323,7 +324,7 @@
         success: function(response){ // Ketika proses pengiriman berhasil
           // set isi dari combobox kota
           // lalu munculkan kembali combobox kotanya
-          $("#namacabang").html(response.list_cabang).show();
+          $("#gudang").html(response.list_gudang).show();
         },
         error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
           alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
@@ -716,6 +717,17 @@
     // clearInterval(intervala);
   };
 
+  function hitung_subtotalmutasi(){
+    // alert('capek');
+    var subtotal=0;
+    $("#tabelku > tbody > tr").each(function() {
+      var id=$(this).attr("id");
+      subtotal+=parseInt($('#cart_qtt'+id).val());
+    });
+    $('#totalmutasi').val(subtotal);
+  }
+
+
   function hitung_subtotal(){
     // alert('capek');
     var subtotalbawahrupiah=0;
@@ -771,6 +783,41 @@
     });
     return cek;
   }
+
+  function add_to_cartmutasi(id){
+    var cek_barang_double=cek_item($("#id_barang"+id).val());
+
+    if(cek_barang_double==-1){
+      var newid=$('#tabelku tbody>tr').length;
+        
+      $("#tabelku").append('<tr valign="top" id="'+newid+'">'
+      
+       +'<td width="100px" class="barcode'+newid+'">'
+      +'<input type="hidden" name="id_barang[]" id="cart_id_barang'+newid+'" value="'+$("#id_barang"+id).val()+'">'+ $("#barcode"+id).val() + '</td>'
+      +'<td width="100px" class="barang'+newid+'">'
+      +'<input type="hidden" name="barcode[]" value="'+$("#barcode"+id).val()+'">'
+      +'<input type="hidden" name=merk[]" value="'+$("#merk"+id).val()+'">'
+      +'<input type="hidden" name=warna[]" value="'+$("#warna"+id).val()+'">'
+      +'<input type="hidden" name="ukuran[]" value="'+$("#ukuran"+id).val()+'">'
+      +'<input type="hidden" name="satuan[]" value="'+$("#satuan"+id).val()+'">'
+      +'<input type="hidden" name="stok[]" value="'+$("#stok"+id).val()+'">'
+      +'<input type="hidden" name="harga[]" id="cart_harga'+newid+'" value="'+$("#harga"+id).val()+'"> ' + $("#merk"+id).val() + ' ' + $("#ukuran"+id).val() + $("#satuan"+id).val() +  '</td>'
+      +'<td width="100px" class="qtt'+newid+'">'
+      +'<input class="form-control" type="text" name="qtt[]" id="cart_qtt'+newid+'" value="1" onkeyup="hitung_subtotalmutasi()"></td>'
+      
+      +'<td width="100px"><a href="javascript:void(0);" class="remCFmutasi"><input type="hidden" id="suba" class="aatd'+newid+'">'
+      +'<button type="button" class="btn btn-info btn-sm">'
+      +'<i class="fa fa-times"></i></button></a></td></tr>');
+      newid++;
+    }else{
+      var exist_qtt=$('#cart_qtt'+cek_barang_double).val();
+
+      $('#cart_qtt'+cek_barang_double).val(parseInt(exist_qtt)+1);
+    }
+    // $("#qtt"+id).val('');
+    hitung_subtotalmutasi();
+  }
+
   function add_to_cart(id){
     var cek_barang_double=cek_item($("#id_barang"+id).val());
 
@@ -810,7 +857,7 @@
     hitung_subtotal();
   }
 
-     $(document).ready(function() {
+    $(document).ready(function() {
     $("#formpenjualan").on('submit', function(e){
         var limit=(($('#limit').val()=='')?0:$('#limit').val().replace(/,/g,''));
         var total=(($('#total').val()=='')?1110:$('#total').val());
@@ -1015,6 +1062,26 @@
       // var sta = parseInt($("#subtotalrupiah").val());
       $(this).parent().parent().remove();
       hitung_subtotal();
+      // sumHasl =  document.getElementById('subtotalbawahrupiah').value;
+      // var suba= $(this).parent().find('#suba').val();
+      // sumHasl=sumHasl-suba;
+      // var number_string = sumHasl.toString(),
+      //   sisa  = number_string.length % 3,
+      //   rupiah  = number_string.substr(0, sisa),
+      //   ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+      //   if (ribuan) {
+      //     separator = sisa ? '.' : '';
+      //     rupiah += separator + ribuan.join('.');
+      //   }
+      // document.getElementById('subtotalbawah').value = formatRupiah(rupiah);
+      // document.getElementById('subtotalbawahrupiah').value =sumHasl ;
+      // Calculate_total();
+    });
+    $("#tabelku").on('click', '.remCFmutasi', function() {
+      // var rowid = $(this).attr('id');;
+      // var sta = parseInt($("#subtotalrupiah").val());
+      $(this).parent().parent().remove();
+      hitung_subtotalmutasi();
       // sumHasl =  document.getElementById('subtotalbawahrupiah').value;
       // var suba= $(this).parent().find('#suba').val();
       // sumHasl=sumHasl-suba;
@@ -1786,6 +1853,37 @@ function toggle(source) {
     if(parseInt(qtt)<$(row).val()){
       $(row).val(qtt);
       alert('retur tidak boleh melebihi penjualan');
+    }
+  }
+  function change_jenis(){
+    var jenis=$('input[name=jenisretur]:checked', '#formretur').val();
+    if(jenis=='Nota'){
+      $('#jenisretur').css("display", "block");
+    }else{
+      $('#jenisretur').css("display", "none");
+    }
+  }
+  function hitung_retur(){
+    var jenis=$('input[name=jenisretur]:checked', '#formretur').val();
+    var total_retur=$('#subtotalbawahrupiah').val();
+    if(jenis=='Nota'){
+      var subtotalbawahrupiah=0;
+      $("#tabelku > tbody > tr").each(function() {
+        var id=$(this).attr("id");
+        var jumlahretur=$('#jumlahretur'+id).val();
+        var qtt=$('#qtt'+id).val();
+        var harga=$('#harga'+id).val();
+        if(qtt<jumlahretur){
+          jumlahretur=qtt;
+          $('#jumlahretur'+id).val(qtt);
+          alert('Jumlah retur tidak boleh melebihi pembelian');
+        }
+        subtotalbawahrupiah+=parseFloat(jumlahretur)*parseFloat(harga);
+      });
+
+      $('#subtotalbawah').val('Rp. '+formatRupiah(subtotalbawahrupiah));
+      $('#subtotalbawahrupiah').val(subtotalbawahrupiah);
+      $('#terbilang').val(terbilang(subtotalbawahrupiah));
     }
   }
   </script>
