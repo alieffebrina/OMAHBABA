@@ -69,27 +69,25 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="gudang" name="gudang" style="width: 100%;">
-                      <option value="<?php echo $barang->id_gudang ?>"><?php echo $barang->gudang ?></option>
-                      <?php foreach ($gudang as $gudang) { ?>
-                      <option value="<?php echo $gudang->id_gudang ?>"><?php echo $gudang->gudang?></option>
+                  <select class="form-control select2" id="namacabang" name="namacabang" style="width: 100%;">
+                      <?php foreach ($cabang as $cabang) { ?>
+                      <option value="<?php echo $cabang->id_cabang ?>" <?= ($barang->id_cabang==$cabang->id_cabang)?'selected':'' ?>><?php echo $cabang->namacabang?></option>
                       <?php } ?>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
                   <div class="col-sm-9">
-                  <select class="form-control select2" id="namacabang" name="namacabang" style="width: 100%;">
-                      <option value="<?php echo $barang->id_cabang ?>"><?php echo $barang->namacabang ?></option>
+                    <select class="form-control select2" id="gudang" name="gudang" style="width: 100%;">
+                      <?php foreach ($gudang as $gudang) { ?>
+                      <option value="<?php echo $gudang->id_gudang ?>" <?= ($barang->id_gudang==$gudang->id_gudang)?'selected':'' ?>><?php echo $gudang->gudang?></option>
+                      <?php } ?>
                     </select>
                   </div>
                 </div>
-
-                
-
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Satuan</label>
                   <div class="col-sm-9">
