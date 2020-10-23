@@ -38,19 +38,6 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="inputPassword3" class="col-sm-2 control-label">Gudang</label>
-          <div class="col-sm-9">
-            <select class="form-control select2" id="gudangmodal" name="gudang" style="width: 100%;">
-              <option value="">--Pilih--</option>
-              <?php foreach ($gudang as $gudang) { ?>
-              <option value="<?php echo $gudang->id_gudang ?>"><?php echo $gudang->gudang ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
           <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
           <div class="col-sm-9">
             <select class="form-control select2" id="provmodal" name="prov" style="width: 100%;">
@@ -61,8 +48,6 @@
             </select>
           </div>
         </div>
-      </div>
-      <div class="modal-body">
         <div class="form-group">
           <label for="inputPassword3" class="col-sm-2 control-label">Kota</label>
           <div class="col-sm-9">
@@ -70,8 +55,6 @@
             </select>
           </div>
         </div>
-      </div>
-      <div class="modal-body">
         <div class="form-group">
           <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
           <div class="col-sm-9">
@@ -79,24 +62,18 @@
             </select>
           </div>
         </div>
-      </div>
-      <div class="modal-body">
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Alamat</label>
           <div class="col-sm-9">
             <textarea class="form-control" name="alamatcabang" id='alamat'></textarea>
           </div>
         </div>
-      </div>
-      <div class="modal-body">
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Telepon</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" id="tlfcabang" name="tlf" placeholder="Telepon" maxlength="12" minlength="6" onkeypress="return Angkasaja(event)">
           </div>
         </div>
-      </div>
-      <div class="modal-body">
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
           <div class="col-sm-9">
